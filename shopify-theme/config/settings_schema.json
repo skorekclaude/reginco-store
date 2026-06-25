@@ -1,0 +1,18 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Regincós",
+    "theme_version": "1.0.0",
+    "theme_author": "Regincós",
+    "theme_documentation_url": "https://www.regincoshair.com",
+    "theme_support_url": "https://www.regincoshair.com"
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      { "type": "color", "id": "color_accent", "label": "Acento (cortiça)", "default": "#C2925E" },
+      { "type": "color", "id": "color_ink", "label": "Tinta (texto escuro)", "default": "#2A2118" },
+      { "type": "color", "id": "color_paper", "label": "Fundo (papel)", "default": "#F4EEE3" }
+    ]
+  }
+]

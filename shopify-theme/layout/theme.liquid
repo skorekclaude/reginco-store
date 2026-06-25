@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2A2118">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <title>{{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+  {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {%- style -%}
+    :root{
+      --cork:{{ settings.color_accent | default: '#C2925E' }};
+      --ink:{{ settings.color_ink | default: '#2A2118' }};
+      --paper:{{ settings.color_paper | default: '#F4EEE3' }};
+    }
+  {%- endstyle -%}
+  {{ content_for_header }}
+</head>
+<body class="template-{{ request.page_type }}">
+  <a class="skip" href="#MainContent">{{ 'general.accessibility.skip' | t }}</a>
+  {% section 'header' %}
+  <main id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+  {% section 'footer' %}
+  {{ 'global.js' | asset_url | script_tag }}
+</body>
+</html>

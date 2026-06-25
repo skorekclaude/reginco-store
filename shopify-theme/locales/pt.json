@@ -1,0 +1,41 @@
+{
+  "general": {
+    "accessibility": { "skip": "Saltar para o conteúdo" },
+    "search": { "search": "Pesquisar" },
+    "cart": "Cesto",
+    "continue": "Continuar a comprar",
+    "breadcrumb": { "home": "Início" }
+  },
+  "customer": {
+    "account": { "title": "Conta" },
+    "log_in": "Iniciar sessão",
+    "register": "Criar conta",
+    "email": "Email",
+    "password": "Palavra-passe"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Adicionar ao cesto",
+      "sold_out": "Esgotado",
+      "on_sale": "Promoção",
+      "new": "Novo",
+      "vegan": "Vegana"
+    }
+  },
+  "collections": {
+    "all": "Todas",
+    "sort": "Ordenar",
+    "featured": "Destaques",
+    "price_low": "Preço: crescente",
+    "price_high": "Preço: decrescente",
+    "empty": "Nenhum produto encontrado."
+  },
+  "cart": {
+    "title": "Cesto",
+    "update": "Atualizar",
+    "subtotal": "Subtotal",
+    "checkout": "Finalizar compra",
+    "empty": "O seu cesto está vazio.",
+    "continue": "Continuar a comprar"
+  }
+}

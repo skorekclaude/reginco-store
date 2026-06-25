@@ -1,0 +1,49 @@
+{%- if section.settings.announcement != blank -%}
+<div class="topbar">{{ section.settings.announcement }}</div>
+{%- endif -%}
+
+<nav>
+  <div class="wrap nav">
+    <div class="navlinks">
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </div>
+    <a href="{{ routes.root_url }}" class="logo">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 300 | image_tag: alt: shop.name, style: 'height:30px;width:auto' }}
+      {%- else -%}
+        REGINC<span>Ó</span>S
+      {%- endif -%}
+    </a>
+    <div class="navright">
+      <div class="navicons">
+        <a href="{{ routes.search_url }}" aria-label="{{ 'general.search.search' | t }}">⌕</a>
+        <a href="{{ routes.account_url }}" aria-label="{{ 'customer.account.title' | t }}">♡</a>
+        <a href="{{ routes.cart_url }}" aria-label="{{ 'general.cart' | t }}">⛒ {{ cart.item_count }}</a>
+      </div>
+      {%- if section.settings.show_locale -%}
+      <div class="lang">
+        {%- form 'localization' -%}
+          {%- for language in localization.available_languages -%}
+            <a href="#" data-lang="{{ language.iso_code }}" class="{% if language.iso_code == localization.language.iso_code %}on{% endif %}" onclick="this.closest('form').querySelector('[name=language_code]').value='{{ language.iso_code }}';this.closest('form').submit();return false;">{{ language.iso_code | upcase }}</a>
+          {%- endfor -%}
+          <input type="hidden" name="language_code" value="{{ localization.language.iso_code }}">
+        {%- endform -%}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo (puste = tekst REGINCÓS)" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "announcement", "label": "Pasek ogłoszeń", "default": "Envio grátis acima de €45 · Feito à mão com cortiça e madeira desde 1987" },
+    { "type": "checkbox", "id": "show_locale", "label": "Przełącznik języka", "default": true }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,27 @@
+<section class="wrap">
+  {%- if section.settings.eyebrow != blank -%}<div class="upper eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+  {%- if section.settings.heading != blank -%}<div class="h2 serif">{{ section.settings.heading }}</div>{%- endif -%}
+  {%- assign coll = collections[section.settings.collection] -%}
+  <div class="grid4">
+    {%- for product in coll.products limit: section.settings.count -%}
+      {%- render 'card-product', card_product: product -%}
+    {%- else -%}
+      {%- for i in (1..4) -%}
+        <div class="prod"><div class="ph">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div><h4 class="serif">Cork Grip Round</h4><div class="px">€24,90</div></div>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Polecane produkty",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Nadtytuł", "default": "Mais vendidos" },
+    { "type": "text", "id": "heading", "label": "Nagłówek", "default": "Amada pelos profissionais." },
+    { "type": "collection", "id": "collection", "label": "Kolekcja" },
+    { "type": "range", "id": "count", "label": "Liczba produktów", "min": 2, "max": 8, "step": 1, "default": 4 }
+  ],
+  "presets": [ { "name": "Polecane produkty" } ]
+}
+{% endschema %}

@@ -1,0 +1,101 @@
+<div class="wrap">
+  <div class="crumb"><a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>{% if product.collections.first %} · <a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>{% endif %} · <span>{{ product.title }}</span></div>
+
+  <div class="pdp">
+    <div class="gallery">
+      <div class="main">
+        {%- if product.featured_media -%}
+          <img id="mainimg" src="{{ product.featured_media | image_url: width: 1100 }}" alt="{{ product.featured_media.alt | escape }}">
+        {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+      <div class="thumbs">
+        {%- for media in product.media limit: 6 -%}
+          <img class="{% if forloop.first %}on{% endif %}" src="{{ media | image_url: width: 200 }}" data-full="{{ media | image_url: width: 1100 }}" alt="">
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </div>
+
+    <div class="pinfo">
+      <div class="upper kick">{{ product.type | default: product.vendor }}</div>
+      <h1 class="serif">{{ product.title }}</h1>
+      <div class="price" id="price">{{ product.selected_or_first_available_variant.price | money }}</div>
+      <div class="pdesc">{{ product.description }}</div>
+
+      {%- form 'product', product, id: 'product-form' -%}
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div class="opt" data-opt-index="{{ forloop.index0 }}">
+              <div class="lab">{{ option.name }}</div>
+              <div class="row">
+                {%- for value in option.values -%}
+                  <button type="button" data-value="{{ value | escape }}" class="{% if option.selected_value == value %}on{% endif %}">{{ value }}</button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+        <select name="id" id="variant-id" hidden>
+          {%- for v in product.variants -%}
+            <option value="{{ v.id }}" {% if v == product.selected_or_first_available_variant %}selected{% endif %} {% unless v.available %}disabled{% endunless %}>{{ v.title }}</option>
+          {%- endfor -%}
+        </select>
+        <div class="buyrow">
+          <div class="qty"><button type="button" id="minus">−</button><span id="q">1</span><button type="button" id="plus">+</button></div>
+          <input type="hidden" name="quantity" id="quantity" value="1">
+          <button type="submit" class="btn" {% unless product.available %}disabled{% endunless %}>
+            {%- if product.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+          </button>
+        </div>
+      {%- endform -%}
+
+      {%- if section.settings.pro_note != blank -%}<div class="pronote">{{ section.settings.pro_note }}</div>{%- endif -%}
+
+      <div class="acc">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'accordion' -%}
+            <details {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}><summary>{{ block.settings.title }}</summary><div class="body">{{ block.settings.content }}</div></details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="trust">
+        <span><b>✛</b> {{ section.settings.trust1 }}</span>
+        <span><b>↺</b> {{ section.settings.trust2 }}</span>
+        <span><b>✂</b> {{ section.settings.trust3 }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.RGvariants = {{ product.variants | json }};
+window.RGmoney = function(c){ return new Intl.NumberFormat('{{ request.locale.iso_code }}',{style:'currency',currency:'{{ cart.currency.iso_code }}'}).format(c/100); };
+window.RGsyncVariant = function(){
+  var opts = [].map.call(document.querySelectorAll('.opt'), function(o){ var b=o.querySelector('button.on'); return b?b.getAttribute('data-value'):null; });
+  var v = window.RGvariants.find(function(x){ return x.options.every(function(o,i){ return opts[i]==null || o===opts[i]; }); });
+  if(!v) return;
+  var sel=document.getElementById('variant-id'); if(sel) sel.value=v.id;
+  var pr=document.getElementById('price'); if(pr) pr.textContent=window.RGmoney(v.price);
+};
+</script>
+
+{% schema %}
+{
+  "name": "Produkt",
+  "settings": [
+    { "type": "textarea", "id": "pro_note", "label": "Nota dla profesjonalistów", "default": "Profissional? Inicie sessão para preços grossistas." },
+    { "type": "text", "id": "trust1", "label": "Trust 1", "default": "Feita à mão em Espanha" },
+    { "type": "text", "id": "trust2", "label": "Trust 2", "default": "Devoluções 30 dias" },
+    { "type": "text", "id": "trust3", "label": "Trust 3", "default": "Confiança dos profissionais" }
+  ],
+  "blocks": [
+    { "type": "accordion", "name": "Akordeon", "settings": [
+      { "type": "text", "id": "title", "label": "Tytuł", "default": "Detalhes e materiais" },
+      { "type": "richtext", "id": "content", "label": "Treść" }
+    ]}
+  ],
+  "default": { "blocks": [ {"type":"accordion"}, {"type":"accordion"}, {"type":"accordion"} ] }
+}
+{% endschema %}

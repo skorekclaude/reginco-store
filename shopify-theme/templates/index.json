@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "v1": { "type": "value", "settings": { "text": "<p><strong>1987</strong> · Ofício espanhol</p>" } },
+        "v2": { "type": "value", "settings": { "text": "<p>Cortiça e madeira <strong>naturais</strong></p>" } },
+        "v3": { "type": "value", "settings": { "text": "<p><strong>Pro</strong> · confiança dos profissionais</p>" } },
+        "v4": { "type": "value", "settings": { "text": "<p>Opções <strong>veganas</strong></p>" } }
+      },
+      "block_order": ["v1", "v2", "v3", "v4"],
+      "settings": {}
+    },
+    "collections": {
+      "type": "collection-grid",
+      "blocks": {
+        "c1": { "type": "cell", "settings": { "title": "Série Cortiça", "subtitle": "A identidade · desde 1987", "size": "c-tall" } },
+        "c2": { "type": "cell", "settings": { "title": "Ibiza Hair · VelChrome™", "subtitle": "Novo · rolos térmicos", "size": "c-wide" } },
+        "c3": { "type": "cell", "settings": { "title": "Série Madeira" } },
+        "c4": { "type": "cell", "settings": { "title": "Homem", "subtitle": "Barba & fade" } },
+        "c5": { "type": "cell", "settings": { "title": "Pentes & Conjuntos", "subtitle": "Pentes profissionais", "size": "c-wide" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5"],
+      "settings": {}
+    },
+    "heritage": { "type": "image-with-text", "settings": {} },
+    "featured": { "type": "featured-collection", "settings": {} },
+    "b2b": { "type": "b2b-banner", "settings": {} }
+  },
+  "order": ["hero", "collections", "heritage", "featured", "b2b"]
+}

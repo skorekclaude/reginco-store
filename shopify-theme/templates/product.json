@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "a1": { "type": "accordion", "settings": { "title": "Detalhes e materiais", "content": "<p>Pega de cortiça natural, núcleo de faia FSC, cerdas de javali e nylon. Feita à mão em Espanha.</p>" } },
+        "a2": { "type": "accordion", "settings": { "title": "Envios e devoluções", "content": "<p>Envio grátis acima de €45. Expedição em 24–48h. Devoluções em 30 dias.</p>" } },
+        "a3": { "type": "accordion", "settings": { "title": "Cuidados", "content": "<p>Remova o cabelo após cada uso. Mantenha a cortiça seca. Não mergulhar.</p>" } }
+      },
+      "block_order": ["a1", "a2", "a3"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

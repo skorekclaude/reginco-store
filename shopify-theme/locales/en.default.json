@@ -1,0 +1,41 @@
+{
+  "general": {
+    "accessibility": { "skip": "Skip to content" },
+    "search": { "search": "Search" },
+    "cart": "Cart",
+    "continue": "Continue shopping",
+    "breadcrumb": { "home": "Home" }
+  },
+  "customer": {
+    "account": { "title": "Account" },
+    "log_in": "Log in",
+    "register": "Create account",
+    "email": "Email",
+    "password": "Password"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "on_sale": "Sale",
+      "new": "New",
+      "vegan": "Vegan"
+    }
+  },
+  "collections": {
+    "all": "All",
+    "sort": "Sort",
+    "featured": "Featured",
+    "price_low": "Price: low to high",
+    "price_high": "Price: high to low",
+    "empty": "No products found."
+  },
+  "cart": {
+    "title": "Cart",
+    "update": "Update",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "empty": "Your cart is empty.",
+    "continue": "Continue shopping"
+  }
+}

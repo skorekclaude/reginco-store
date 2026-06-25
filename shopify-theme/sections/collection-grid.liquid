@@ -1,0 +1,43 @@
+<section class="wrap">
+  {%- if section.settings.eyebrow != blank -%}<div class="upper eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+  {%- if section.settings.heading != blank -%}<div class="h2 serif">{{ section.settings.heading }}</div>{%- endif -%}
+  {%- if section.settings.lead != blank -%}<div class="lead">{{ section.settings.lead }}</div>{%- endif -%}
+  <div class="bento">
+    {%- for block in section.blocks -%}
+      {%- assign coll = collections[block.settings.collection] -%}
+      {%- assign link = block.settings.link | default: coll.url -%}
+      {%- assign img = block.settings.image | default: coll.featured_image -%}
+      <a class="cell {{ block.settings.size }}" href="{{ link }}" {{ block.shopify_attributes }}>
+        {%- if img != blank -%}{{ img | image_url: width: 1200 | image_tag: alt: block.settings.title }}{%- endif -%}
+        <div class="lbl">
+          <div class="t serif">{{ block.settings.title | default: coll.title }}</div>
+          {%- if block.settings.subtitle != blank -%}<div class="s">{{ block.settings.subtitle }}</div>{%- endif -%}
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bento kolekcji",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Nadtytuł", "default": "Coleções" },
+    { "type": "text", "id": "heading", "label": "Nagłówek", "default": "Encontre a sua escova." },
+    { "type": "textarea", "id": "lead", "label": "Lead" }
+  ],
+  "blocks": [
+    { "type": "cell", "name": "Kafelek", "settings": [
+      { "type": "collection", "id": "collection", "label": "Kolekcja" },
+      { "type": "image_picker", "id": "image", "label": "Zdjęcie (nadpisuje kolekcję)" },
+      { "type": "text", "id": "title", "label": "Tytuł" },
+      { "type": "text", "id": "subtitle", "label": "Podtytuł" },
+      { "type": "url", "id": "link", "label": "Link (nadpisuje kolekcję)" },
+      { "type": "select", "id": "size", "label": "Rozmiar", "default": "", "options": [
+        { "value": "", "label": "Normalny" }, { "value": "c-wide", "label": "Szeroki" }, { "value": "c-tall", "label": "Wysoki" } ] }
+    ]}
+  ],
+  "default": { "blocks": [ {"type":"cell","settings":{"size":"c-tall"}}, {"type":"cell","settings":{"size":"c-wide"}}, {"type":"cell"}, {"type":"cell"}, {"type":"cell","settings":{"size":"c-wide"}} ] },
+  "presets": [ { "name": "Bento kolekcji" } ]
+}
+{% endschema %}

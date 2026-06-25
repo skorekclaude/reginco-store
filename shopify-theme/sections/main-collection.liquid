@@ -1,0 +1,50 @@
+<header class="collhero">
+  {%- if collection.image -%}{{ collection.image | image_url: width: 1600 | image_tag: class: 'img', alt: collection.title }}{%- endif -%}
+  <div class="wrap">
+    <div class="crumb"><a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> · {{ collection.title }}</div>
+    <h1 class="serif">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}<p>{{ collection.description | strip_html | truncatewords: 28 }}</p>{%- endif -%}
+  </div>
+</header>
+
+<div class="wrap">
+  {%- if section.settings.show_filters -%}
+  <div class="toolbar">
+    <div class="chips">
+      <button class="chip on" data-filter="all">{{ 'collections.all' | t }}</button>
+      {%- for tag in collection.all_tags limit: 5 -%}
+        <button class="chip" data-filter="{{ tag | handleize }}">{{ tag }}</button>
+      {%- endfor -%}
+    </div>
+    <div class="sort"><span>{{ 'collections.sort' | t }}</span>
+      <select id="sort">
+        <option value="feat">{{ 'collections.featured' | t }}</option>
+        <option value="low">{{ 'collections.price_low' | t }}</option>
+        <option value="high">{{ 'collections.price_high' | t }}</option>
+      </select>
+    </div>
+  </div>
+  {%- endif -%}
+
+  {%- paginate collection.products by 12 -%}
+    <div class="pgrid" id="grid">
+      {%- for product in collection.products -%}
+        {%- render 'card-product', card_product: product -%}
+      {%- else -%}
+        <p style="padding:40px 0;color:var(--ink2)">{{ 'collections.empty' | t }}</p>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <div class="loadwrap">{{ paginate | default_pagination }}</div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Kolekcja",
+  "settings": [
+    { "type": "checkbox", "id": "show_filters", "label": "Pokaż filtry + sortowanie", "default": true }
+  ]
+}
+{% endschema %}

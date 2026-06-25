@@ -1,0 +1,30 @@
+<section class="wrap">
+  <div class="split">
+    {%- if section.settings.image != blank -%}
+    <div class="img" style="background-image:url('{{ section.settings.image | image_url: width: 1000 }}')"></div>
+    {%- endif -%}
+    <div class="txt">
+      {%- if section.settings.stamp != blank -%}<div class="stamp serif">{{ section.settings.stamp }}</div>{%- endif -%}
+      {%- if section.settings.eyebrow != blank -%}<div class="upper" style="color:var(--cork);margin:18px 0 10px">{{ section.settings.eyebrow }}</div>{%- endif -%}
+      <div class="h2 serif">{{ section.settings.heading }}</div>
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.btn_label != blank -%}<div style="margin-top:26px"><a class="btn" href="{{ section.settings.btn_link }}">{{ section.settings.btn_label }}</a></div>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Obraz + tekst",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Zdjęcie" },
+    { "type": "text", "id": "stamp", "label": "Stempel", "default": "'87" },
+    { "type": "text", "id": "eyebrow", "label": "Nadtytuł", "default": "Cortiça — a nossa identidade" },
+    { "type": "text", "id": "heading", "label": "Nagłówek", "default": "Um material que respira, agarra e dura." },
+    { "type": "textarea", "id": "text", "label": "Tekst" },
+    { "type": "text", "id": "btn_label", "label": "Przycisk", "default": "Descobrir o ofício" },
+    { "type": "url", "id": "btn_link", "label": "Link" }
+  ],
+  "presets": [ { "name": "Obraz + tekst" } ]
+}
+{% endschema %}

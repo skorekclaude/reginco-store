@@ -1,0 +1,23 @@
+{%- liquid
+  assign p = card_product
+  assign cents = p.price | divided_by: 100.0
+-%}
+<a class="prod" href="{{ p.url }}" data-cat="{{ p.type | handleize }} {% for t in p.tags %}{{ t | handleize }} {% endfor %}" data-price="{{ cents }}">
+  <div class="ph">
+    {%- if p.compare_at_price > p.price -%}
+      <span class="tag">{{ 'products.product.on_sale' | t }}</span>
+    {%- elsif p.tags contains 'new' -%}
+      <span class="tag">{{ 'products.product.new' | t }}</span>
+    {%- elsif p.tags contains 'vegan' -%}
+      <span class="tag">{{ 'products.product.vegan' | t }}</span>
+    {%- endif -%}
+    {%- if p.featured_media -%}
+      {{ p.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', alt: p.title, widths: '300,600' }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+    {%- endif -%}
+    <span class="add">{{ 'products.product.add_to_cart' | t }}</span>
+  </div>
+  <h4 class="serif">{{ p.title }}</h4>
+  <div class="px">{{ p.price | money }}</div>
+</a>

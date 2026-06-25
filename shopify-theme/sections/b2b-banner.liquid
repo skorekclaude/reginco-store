@@ -1,0 +1,24 @@
+<section class="wrap">
+  <div class="b2b">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<div class="upper" style="color:#5b3c1c;margin-bottom:8px">{{ section.settings.eyebrow }}</div>{%- endif -%}
+      <div class="h2 serif">{{ section.settings.heading }}</div>
+      {%- if section.settings.text != blank -%}<p style="max-width:42ch;margin-top:8px;color:#4a3215">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    {%- if section.settings.btn_label != blank -%}<a class="btn dark" href="{{ section.settings.btn_link | default: routes.account_register_url }}">{{ section.settings.btn_label }}</a>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Baner B2B",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Nadtytuł", "default": "Para salões e profissionais" },
+    { "type": "text", "id": "heading", "label": "Nagłówek", "default": "É profissional?" },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Registe-se para preços grossistas, ferramentas exclusivas e reposições prioritárias." },
+    { "type": "text", "id": "btn_label", "label": "Przycisk", "default": "Abrir conta profissional" },
+    { "type": "url", "id": "btn_link", "label": "Link (puste = rejestracja)" }
+  ],
+  "presets": [ { "name": "Baner B2B" } ]
+}
+{% endschema %}
