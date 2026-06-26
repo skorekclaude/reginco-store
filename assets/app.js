@@ -118,6 +118,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   initLookbook();
   initMaterials();
   initPDP();
+  /* perf: async-decode every image, lazy-load all but the LCP product image */
+  document.querySelectorAll('img').forEach(function(im){im.setAttribute('decoding','async');if(im.id!=='mainimg'&&!im.hasAttribute('loading'))im.setAttribute('loading','lazy');});
+  var _lcp=document.getElementById('mainimg');if(_lcp)_lcp.setAttribute('fetchpriority','high');
 });
 
 /* ===== AI-flavored search (krok 20). Prototyp; produkcyjnie -> Shopify Search & Discovery / Algolia ===== */
@@ -278,6 +281,23 @@ function initPDP(){
     var sbn=document.querySelector('.stickybar .sb-name');if(sbn){sbn.textContent=name;sbn.removeAttribute('data-i');}
     var sbp=document.querySelector('.stickybar .sb-price');if(sbp)sbp.textContent=price;
     document.title=name+' — Regincós Hair';
+    /* ===== SEO: meta description, Open Graph, JSON-LD Product schema (real catalog data) ===== */
+    var sdesc=(p.d||(name+' — handcrafted cork & wood hair brush by Regincós, Spain since 1987.')).slice(0,160);
+    var purl=location.href, ogimg=imgs[0]+'?width=1200';
+    function _m(sel,mk){var el=document.head.querySelector(sel);if(!el){el=mk();document.head.appendChild(el);}return el;}
+    function _n(n){return _m('meta[name="'+n+'"]',function(){var m=document.createElement('meta');m.setAttribute('name',n);return m;});}
+    function _p(pr){return _m('meta[property="'+pr+'"]',function(){var m=document.createElement('meta');m.setAttribute('property',pr);return m;});}
+    _n('description').setAttribute('content',sdesc);
+    _m('link[rel="canonical"]',function(){var l=document.createElement('link');l.setAttribute('rel','canonical');return l;}).setAttribute('href',purl);
+    _p('og:type').setAttribute('content','product');
+    _p('og:title').setAttribute('content',name+' — Regincós Hair');
+    _p('og:description').setAttribute('content',sdesc);
+    _p('og:image').setAttribute('content',ogimg);
+    _p('og:url').setAttribute('content',purl);
+    _n('twitter:card').setAttribute('content','summary_large_image');
+    var ld={'@context':'https://schema.org/','@type':'Product',name:name,image:imgs.map(function(u){return u+'?width=1200';}),description:sdesc,brand:{'@type':'Brand',name:'Regincós Hair'},offers:{'@type':'Offer',priceCurrency:'EUR',price:Number(p.p).toFixed(2),availability:'https://schema.org/InStock',url:purl}};
+    var sc=document.getElementById('ld-product');if(!sc){sc=document.createElement('script');sc.type='application/ld+json';sc.id='ld-product';document.head.appendChild(sc);}
+    sc.textContent=JSON.stringify(ld);
   }catch(e){}
 }
 
