@@ -1,2 +1,8 @@
 .firecrawl/
 media/
+
+# dev utilities (lokalne)
+_serve.js
+_ig_montage.py
+_ig_contact.jpg
+_ig_map.json
