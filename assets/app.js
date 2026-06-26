@@ -250,20 +250,25 @@ function initPDP(){
     if(!h||!window.CATALOG)return;
     var p=window.CATALOG.find(function(x){return x.h===h;});
     if(!p)return;
-    var name=p.t.replace(/\s*[-–]\s*Cepillo.*$/i,'').trim();
-    var price='€'+Number(p.p).toFixed(2).replace('.',',');
+    var name=p.t, price='€'+Number(p.p).toFixed(2).replace('.',',');
+    var imgs=(p.imgs&&p.imgs.length)?p.imgs:[p.img];
     var h1=document.querySelector('.pinfo h1');
     if(h1){var w=name.split(' ');var last=w.length>1?w.pop():'';h1.innerHTML=w.join(' ')+(last?' <em>'+last+'</em>':'');h1.removeAttribute('data-i');}
-    var pr=document.querySelector('.pinfo .price');
-    if(pr)pr.innerHTML=price;
-    var cr=document.querySelector('[data-i="pd_crumb"]');
-    if(cr){cr.textContent=name;cr.removeAttribute('data-i');}
-    var kick=document.querySelector('.pinfo .kick');
-    if(kick){kick.textContent=p.line.charAt(0).toUpperCase()+p.line.slice(1);kick.removeAttribute('data-i');}
-    var img=document.getElementById('mainimg');
-    if(img)img.src=p.img+'?width=1100';
-    var thumbs=document.querySelector('.thumbs');if(thumbs)thumbs.style.display='none';
-    var v360=document.getElementById('v360btn');if(v360)v360.style.display='none';
+    var pr=document.querySelector('.pinfo .price');if(pr)pr.innerHTML=price;
+    var cr=document.querySelector('[data-i="pd_crumb"]');if(cr){cr.textContent=name;cr.removeAttribute('data-i');}
+    var kick=document.querySelector('.pinfo .kick');if(kick){kick.textContent=p.line.charAt(0).toUpperCase()+p.line.slice(1);kick.removeAttribute('data-i');}
+    if(p.d){var pd=document.querySelector('.pdesc');if(pd){pd.textContent=p.d;pd.removeAttribute('data-i');}}
+    var img=document.getElementById('mainimg');if(img)img.src=imgs[0]+'?width=1100';
+    var thumbs=document.querySelector('.thumbs');
+    if(thumbs){
+      thumbs.innerHTML=imgs.map(function(u,i){return '<button class="thumb'+(i===0?' on':'')+'" type="button" data-full="'+u+'?width=1100"><img src="'+u+'?width=200" alt=""></button>';}).join('');
+      thumbs.querySelectorAll('.thumb').forEach(function(b){b.addEventListener('click',function(){thumbs.querySelectorAll('.thumb').forEach(function(x){x.classList.remove('on');});b.classList.add('on');var m=document.getElementById('mainimg');if(m){m.classList.add('swapping');setTimeout(function(){m.src=b.getAttribute('data-full');m.classList.remove('swapping');},180);}});});
+      thumbs.style.display='';
+    }
+    if(p.v&&p.v.length){var row=document.querySelector('.opt .row');if(row)row.innerHTML=p.v.map(function(v,i){return '<button type="button" class="'+(i===0?'on':'')+'">'+v+'</button>';}).join('');var opts=document.querySelectorAll('.opt');if(opts[1])opts[1].style.display='none';}
+    var v360=document.getElementById('v360btn');
+    if(p.vid){var mv=document.getElementById('v360');if(mv){var s=mv.querySelector('source');if(s)s.src=p.vid;mv.setAttribute('poster',imgs[0]+'?width=1100');}if(v360)v360.style.display='';}
+    else if(v360)v360.style.display='none';
     var sbn=document.querySelector('.stickybar .sb-name');if(sbn){sbn.textContent=name;sbn.removeAttribute('data-i');}
     var sbp=document.querySelector('.stickybar .sb-price');if(sbp)sbp.textContent=price;
     document.title=name+' — Regincós Hair';
