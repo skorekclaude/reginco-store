@@ -446,3 +446,13 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .hero video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero img.bg-fallback{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 @media (prefers-reduced-motion:reduce){.hero video.bg{display:none}.hero img.bg-fallback{display:block}}
+
+/* ===== 360 product viewer (Hedra I2V — orbit) ===== */
+.gallery .main{position:relative}
+.gallery .main .v360{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.gallery .main.is360 #mainimg{visibility:hidden}
+.gallery .main.is360 .v360{display:block}
+.v360btn{position:absolute;top:12px;right:12px;z-index:3;background:rgba(244,238,227,.92);border:1px solid var(--line);color:var(--ink);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:8px 13px;cursor:pointer;backdrop-filter:blur(6px)}
+.v360btn:hover{border-color:var(--cork)}
+.v360btn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+[data-theme="dark"] .v360btn{background:rgba(26,23,20,.9)}

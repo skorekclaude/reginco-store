@@ -30,7 +30,7 @@
 
   <div class="pdp">
     <div class="gallery">
-      <div class="main"><img id="mainimg" src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=1100" alt=""></div>
+      <div class="main"><img id="mainimg" src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=1100" alt=""><video id="v360" class="v360" muted loop playsinline preload="none" poster="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=1100"><source src="assets/brush-360.mp4" type="video/mp4"></video><button type="button" class="v360btn" id="v360btn" data-i="view360"></button></div>
       <div class="thumbs">
         <img class="on" src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=300" data-full="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=1100" alt="">
         <img src="https://www.regincoshair.com/cdn/shop/products/605.jpg?width=300" data-full="https://www.regincoshair.com/cdn/shop/products/605.jpg?width=1100" alt="">
@@ -158,6 +158,8 @@ document.querySelectorAll('.opt .row').forEach(row=>row.addEventListener('click'
 }));
 const bnbtn=document.getElementById('bnbtn');
 if(bnbtn){bnbtn.addEventListener('click',()=>{bnbtn.classList.add('added');const l=document.documentElement.lang||'en';bnbtn.textContent=(typeof T!=='undefined'&&T[l]&&T[l].bn_done)||'✓';});}
+const b360=document.getElementById('v360btn'),m360=document.querySelector('.gallery .main'),v360=document.getElementById('v360');
+if(b360&&m360&&v360){b360.addEventListener('click',()=>{const on=m360.classList.toggle('is360');b360.classList.toggle('on',on);if(on){v360.load();const p=v360.play();if(p&&p.catch)p.catch(()=>{});}else{v360.pause();}});}
 let q=1;const qel=document.getElementById('q');
 document.getElementById('plus').onclick=()=>{q++;qel.textContent=q;};
 document.getElementById('minus').onclick=()=>{if(q>1){q--;qel.textContent=q;}};
