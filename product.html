@@ -90,6 +90,26 @@
     <div class="rgrid" id="rlist"></div>
   </section>
 
+  <section class="wrap bundle">
+    <div class="upper eyebrow" data-i="bn_eye"></div>
+    <div class="h2 serif" data-i="bn_h2"></div>
+    <div class="bn-row">
+      <div class="bn-items">
+        <div class="bn-item"><img src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=200" alt=""><div><div class="bn-n serif" data-i="bn_i1"></div><div class="bn-p">€24,90</div></div></div>
+        <span class="bn-plus">+</span>
+        <div class="bn-item"><img src="https://www.regincoshair.com/cdn/shop/products/282.jpg?width=200" alt=""><div><div class="bn-n serif" data-i="bn_i2"></div><div class="bn-p">€12,00</div></div></div>
+        <span class="bn-plus">+</span>
+        <div class="bn-item"><img src="https://www.regincoshair.com/cdn/shop/products/307.jpg?width=200" alt=""><div><div class="bn-n serif" data-i="bn_i3"></div><div class="bn-p">€16,00</div></div></div>
+      </div>
+      <div class="bn-buy">
+        <div class="bn-was">€52,90</div>
+        <div class="bn-total">€46,90 <span class="bn-save" data-i="bn_save"></span></div>
+        <button class="btn block" type="button" id="bnbtn" data-i="bn_btn"></button>
+        <div class="bn-note" data-i="bn_note"></div>
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="upper eyebrow" data-i="rel_eye"></div>
     <div class="h2 serif" data-i="rel_title"></div>
@@ -134,6 +154,8 @@ if(_bar&&_buy&&'IntersectionObserver'in window){new IntersectionObserver(([e])=>
 document.querySelectorAll('.opt .row').forEach(row=>row.addEventListener('click',e=>{
   if(e.target.tagName==='BUTTON'){row.querySelectorAll('button').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false');});e.target.classList.add('on');e.target.setAttribute('aria-pressed','true');}
 }));
+const bnbtn=document.getElementById('bnbtn');
+if(bnbtn){bnbtn.addEventListener('click',()=>{bnbtn.classList.add('added');const l=document.documentElement.lang||'en';bnbtn.textContent=(typeof T!=='undefined'&&T[l]&&T[l].bn_done)||'✓';});}
 let q=1;const qel=document.getElementById('q');
 document.getElementById('plus').onclick=()=>{q++;qel.textContent=q;};
 document.getElementById('minus').onclick=()=>{if(q>1){q--;qel.textContent=q;}};
