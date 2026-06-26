@@ -27,7 +27,7 @@ const T = {
   acc1:'Details & materials',acc1b:'Natural cork handle, FSC beechwood core, boar &amp; nylon bristles. Handmade in Spain. Naturally antibacterial and lightweight.',
   acc2:'Shipping & returns',acc2b:'Free shipping over €45. Dispatched in 24–48h. 30-day returns. Worldwide delivery available.',
   acc3:'Care',acc3b:'Remove hair after each use, clean with the Regincós brush cleaner. Keep cork dry. Do not soak.',
-  trust1:'Handmade in Spain',trust2:'30-day returns',trust3:'Pro trusted',rel_title:'Complete the set',
+  trust1:'Handmade in Spain',trust2:'30-day returns',trust3:'Pro trusted',rel_title:'Complete the set',rv_eye:'Reviews',rv_h2:'What stylists say.',rv_count:'128 reviews · 96% would recommend',
   pc1:'Cork Grip Round',pc2:'Cork Grip Large',pc3:'Cork Paddle Brush',pc4:'Cork Vent Brush',pc5:'Cork Duo Brush',pc6:'Cork Elipse Brush',pc7:'Cork Premium Noire',pc8:'Cork Oval Brush'
  },
  pt:{
@@ -58,7 +58,7 @@ const T = {
   acc1:'Detalhes e materiais',acc1b:'Pega de cortiça natural, núcleo de faia FSC, cerdas de javali e nylon. Feita à mão em Espanha. Naturalmente antibacteriana e leve.',
   acc2:'Envios e devoluções',acc2b:'Envio grátis acima de €45. Expedição em 24–48h. Devoluções em 30 dias. Entrega internacional disponível.',
   acc3:'Cuidados',acc3b:'Remova o cabelo após cada uso, limpe com o limpa-escovas Regincós. Mantenha a cortiça seca. Não mergulhar.',
-  trust1:'Feita à mão em Espanha',trust2:'Devoluções 30 dias',trust3:'Confiança dos profissionais',rel_title:'Complete o conjunto',
+  trust1:'Feita à mão em Espanha',trust2:'Devoluções 30 dias',trust3:'Confiança dos profissionais',rel_title:'Complete o conjunto',rv_eye:'Avaliações',rv_h2:'O que dizem os estilistas.',rv_count:'128 avaliações · 96% recomendam',
   pc1:'Cork Grip Redonda',pc2:'Cork Grip Grande',pc3:'Escova Plana Cortiça',pc4:'Escova Ventilada Cortiça',pc5:'Cork Duo',pc6:'Cork Elipse',pc7:'Cork Premium Noire',pc8:'Cork Oval'
  }
 };
@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   applyTheme(th);
   document.querySelectorAll('.themetoggle').forEach(b=>b.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')));
   initSearch();
+  initReviews();
 });
 
 /* ===== AI-flavored search (krok 20). Prototyp; produkcyjnie -> Shopify Search & Discovery / Algolia ===== */
@@ -120,4 +121,20 @@ function initSearch(){
   ov.addEventListener('click',e=>{if(e.target===ov)close();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ov.classList.contains('open'))close();});
   document.querySelectorAll('[title="search"]').forEach(s=>{s.style.cursor='pointer';s.setAttribute('role','button');s.setAttribute('tabindex','0');s.addEventListener('click',open);s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});});
+}
+
+/* ===== UGC reviews (krok 19). Prototyp; produkcyjnie -> Judge.me / Loox / Okendo via app blocks + metafields ===== */
+const REVIEWS=[
+ {n:'Marta R.',loc:'Lisboa',s:5,b:'A pega de cortiça é incrível — leve e quente ao toque. Uso-a todos os dias no salão.'},
+ {n:'James A.',loc:'London',s:5,b:'Best round brush I have owned. The cork grip genuinely stops my wrist aching on long blow-dries.'},
+ {n:'Sofia M.',loc:'Porto',s:4,b:'Linda e bem feita. As cerdas são firmes; demora um pouco a habituar, mas vale a pena.'},
+ {n:'Daniel K.',loc:'Berlin',s:5,b:'A beautiful object that actually works. You can feel the 1987 heritage — proper craftsmanship.'}
+];
+function initReviews(){
+  const list=document.getElementById('rlist');if(!list)return;
+  const avg=REVIEWS.reduce((a,r)=>a+r.s,0)/REVIEWS.length;
+  const avgEl=document.querySelector('.reviews .ravg');if(avgEl)avgEl.textContent=avg.toFixed(1);
+  const bars=document.getElementById('rbars');
+  if(bars){let h='';for(let star=5;star>=1;star--){const c=REVIEWS.filter(r=>r.s===star).length;const pct=Math.round(c/REVIEWS.length*100);h+='<div class="rbar"><span class="rb-l">'+star+'★</span><span class="rb-t"><span style="width:'+pct+'%"></span></span><span class="rb-n">'+c+'</span></div>';}bars.innerHTML=h;}
+  list.innerHTML=REVIEWS.map(r=>'<div class="rcard"><div class="rc-top"><span class="rc-av">'+r.n.charAt(0)+'</span><div><div class="rc-n">'+r.n+'</div><div class="rc-loc">'+r.loc+'</div></div><span class="rc-st">'+'★'.repeat(r.s)+'<span class="rc-off">'+'★'.repeat(5-r.s)+'</span></span></div><p class="rc-b">'+r.b+'</p></div>').join('');
 }
