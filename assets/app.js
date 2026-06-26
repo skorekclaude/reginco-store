@@ -244,7 +244,7 @@ function initLookbook(){
 
 /* ===== Materials triptych autoplay ===== */
 function initMaterials(){
-  var cells=document.querySelectorAll('.mat-cell video'); if(!cells.length)return;
+  var cells=document.querySelectorAll('.mat-cell video, .mprod video'); if(!cells.length)return;
   var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;var sd=navigator.connection&&navigator.connection.saveData;
   if(rm||sd)return;
   cells.forEach(function(v){var p=v.play();if(p&&p.catch)p.catch(function(){});});
