@@ -235,4 +235,6 @@ function initLookbook(){
   var x=document.getElementById('lbx'); if(x)x.addEventListener('click',close);
   modal.addEventListener('click',function(e){if(e.target===modal)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))close();});
+  var hv=document.querySelector('.lb-hero video.bg');
+  if(hv){var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;var sd=navigator.connection&&navigator.connection.saveData;if(rm||sd){hv.style.display='none';var fb=document.querySelector('.lb-hero .bg-fallback');if(fb)fb.style.display='block';}else{var pp=hv.play();if(pp&&pp.catch)pp.catch(function(){});}}
 }
