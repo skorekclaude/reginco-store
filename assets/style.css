@@ -286,3 +286,29 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
     .pgrid .prod:nth-child(2){animation-delay:.04s}.pgrid .prod:nth-child(3){animation-delay:.08s}.pgrid .prod:nth-child(4){animation-delay:.12s}
   }
 }
+
+/* ===== PRODUCT — editorial PDP (kroki 8-11) ===== */
+.pinfo h1{font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.022em;font-weight:420;font-variation-settings:"opsz" 144;text-wrap:balance}
+.price{font-size:32px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.price .was{font-size:18px;color:var(--ink2);text-decoration:line-through;font-weight:500}
+.price .save{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cork-d);border:1px solid var(--line);border-radius:0;padding:4px 10px}
+.stock{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sage);margin:8px 0 0}
+.stock b{width:8px;height:8px;border-radius:50%;background:var(--sage);display:inline-block}
+@media(min-width:901px){.pinfo{position:sticky;top:96px;align-self:start}}
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(244,238,227,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.stickybar.show{transform:none}
+.stickybar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;height:68px}
+.stickybar .sb-name{font-size:18px}
+.stickybar .sb-price{font-weight:600;font-variant-numeric:tabular-nums;margin-left:10px}
+.stickybar .btn{padding:12px 26px}
+[data-theme="dark"] .stickybar{background:rgba(26,23,20,.94)}
+.gallery .main img{transition:opacity .25s ease}
+.gallery .main img.swapping{opacity:0}
+@media (prefers-reduced-motion:reduce){.stickybar{transition:none}.gallery .main img{transition:none}}
+@media (prefers-reduced-motion:no-preference){
+  .pinfo > *{animation:hero-in .8s cubic-bezier(.2,.7,.2,1) both}
+  .pinfo .kick{animation-delay:.04s}.pinfo h1{animation-delay:.1s}.pinfo .price{animation-delay:.18s}.pinfo .buyrow{animation-delay:.26s}
+  @supports (animation-timeline:view()){
+    .gallery,.pdp + section .split,.grid4 .prod{animation:reveal-up both linear;animation-timeline:view();animation-range:entry 4% entry 90%}
+  }
+}

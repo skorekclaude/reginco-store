@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script>try{var t=localStorage.getItem('rg_theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
 <body>
 
@@ -19,7 +20,7 @@
   </div>
   <a href="index.html" class="logo">REGINC<span>Ó</span>S</a>
   <div class="navright">
-    <div class="navicons"><span title="search">⌕</span><span title="account">♡</span><span title="cart">⛒ 0</span></div>
+    <div class="navicons"><span title="search">⌕</span><span title="account">♡</span><span title="cart">⛒ 0</span><button type="button" class="themetoggle" aria-label="Tryb ciemny" title="Tryb ciemny">☾</button></div>
     <div class="lang"><a data-set="en" class="on">EN</a><a data-set="pt">PT</a></div>
   </div>
 </div></nav>
@@ -42,7 +43,8 @@
       <div class="upper kick" data-i="pd_kick"></div>
       <h1 class="serif" data-i="pd_title"></h1>
       <div class="stars">★★★★★ <span data-i="pd_rev"></span></div>
-      <div class="price">€24,90</div>
+      <div class="price">€24,90 <span class="was">€29,90</span><span class="save" data-i="pd_save"></span></div>
+      <div class="stock"><b></b><span data-i="pd_stock"></span></div>
       <p class="pdesc" data-i="pd_desc"></p>
 
       <div class="opt">
@@ -55,8 +57,8 @@
       </div>
 
       <div class="buyrow">
-        <div class="qty"><button id="minus">−</button><span id="q">1</span><button id="plus">+</button></div>
-        <a class="btn" data-i="addcart"></a>
+        <div class="qty"><button id="minus" type="button" aria-label="Mniej">−</button><span id="q" aria-live="polite">1</span><button id="plus" type="button" aria-label="Więcej">+</button></div>
+        <button class="btn" type="button" data-i="addcart"></button>
       </div>
       <div class="pronote" data-i="pd_pro"></div>
 
@@ -74,7 +76,13 @@
     </div>
   </div>
 
-  <section style="padding:70px 0 40px">
+  <section><div class="split">
+    <div class="img" style="background-image:url('https://www.regincoshair.com/cdn/shop/files/Regincos_2023-5.webp?width=1000')"></div>
+    <div class="txt"><div class="stamp serif">'87</div><div class="upper" style="color:var(--cork);margin:18px 0 10px" data-i="pd_story_eye"></div><div class="h2 serif" data-i="pd_story_h2"></div><p data-i="pd_story_p"></p></div>
+  </div></section>
+
+  <section>
+    <div class="upper eyebrow" data-i="rel_eye"></div>
     <div class="h2 serif" data-i="rel_title"></div>
     <div class="grid4">
       <a class="prod" href="product.html"><div class="ph"><img src="https://www.regincoshair.com/cdn/shop/products/566.jpg?width=600" alt=""><span class="add" data-i="addcart"></span></div><h4 class="serif" data-i="pc2"></h4><div class="px">€27,90</div></a>
@@ -98,14 +106,24 @@
   <div class="fbot"><span>© 2026 Regincós · concept</span><span data-i="f_bot"></span></div>
 </div></footer>
 
+<div class="stickybar"><div class="wrap">
+  <div class="sb-info"><span class="sb-name serif" data-i="pd_crumb"></span><span class="sb-price">€24,90</span></div>
+  <button class="btn" type="button" data-i="addcart"></button>
+</div></div>
+
 <script src="assets/app.js"></script>
 <script>
 document.querySelectorAll('.thumbs img').forEach(t=>t.addEventListener('click',()=>{
   document.querySelectorAll('.thumbs img').forEach(x=>x.classList.remove('on'));
-  t.classList.add('on'); document.getElementById('mainimg').src=t.getAttribute('data-full');
+  t.classList.add('on');
+  const m=document.getElementById('mainimg'),full=t.getAttribute('data-full');
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){m.src=full;}
+  else{m.classList.add('swapping');setTimeout(()=>{m.src=full;m.classList.remove('swapping');},180);}
 }));
+const _bar=document.querySelector('.stickybar'),_buy=document.querySelector('.buyrow');
+if(_bar&&_buy&&'IntersectionObserver'in window){new IntersectionObserver(([e])=>_bar.classList.toggle('show',!e.isIntersecting),{rootMargin:'-80px 0px 0px 0px'}).observe(_buy);}
 document.querySelectorAll('.opt .row').forEach(row=>row.addEventListener('click',e=>{
-  if(e.target.tagName==='BUTTON'){row.querySelectorAll('button').forEach(b=>b.classList.remove('on'));e.target.classList.add('on');}
+  if(e.target.tagName==='BUTTON'){row.querySelectorAll('button').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false');});e.target.classList.add('on');e.target.setAttribute('aria-pressed','true');}
 }));
 let q=1;const qel=document.getElementById('q');
 document.getElementById('plus').onclick=()=>{q++;qel.textContent=q;};
