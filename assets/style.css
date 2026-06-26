@@ -456,3 +456,24 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .v360btn:hover{border-color:var(--cork)}
 .v360btn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 [data-theme="dark"] .v360btn{background:rgba(26,23,20,.9)}
+
+/* ===== lookbook (shoppable hotspots) ===== */
+.lb-hero{padding:var(--section-y) 0 40px}
+.lb-hero h1{font-size:clamp(46px,8vw,120px);font-weight:410;line-height:.94;letter-spacing:-.03em;font-variation-settings:"opsz" 144;text-wrap:balance}
+.lb-hint{margin-top:18px;font-size:13px;letter-spacing:.04em;color:var(--ink2);display:inline-flex;align-items:center;gap:9px}
+.lb-hint::before{content:"";width:11px;height:11px;border-radius:50%;background:var(--cork);box-shadow:0 0 0 4px rgba(194,146,94,.3)}
+.lb-scene{position:relative;min-height:86vh;background-size:cover;background-position:center}
+.hot{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--cork);border:2px solid rgba(244,238,227,.9);cursor:pointer;z-index:3;transition:transform .2s;padding:0}
+.hot::after{content:"";position:absolute;inset:-2px;border-radius:50%;animation:hotpulse 2.2s infinite}
+.hot:hover{transform:scale(1.18)}
+@keyframes hotpulse{0%{box-shadow:0 0 0 0 rgba(194,146,94,.55)}100%{box-shadow:0 0 0 18px rgba(194,146,94,0)}}
+@media (prefers-reduced-motion:reduce){.hot::after{animation:none}}
+.lb-modal{position:fixed;inset:0;z-index:70;background:rgba(20,17,13,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px}
+.lb-modal.show{display:flex}
+.lb-card{width:300px;max-width:100%;background:var(--paper);border:1px solid var(--line);position:relative;box-shadow:0 30px 70px -25px rgba(0,0,0,.6);animation:reveal-up .3s cubic-bezier(.2,.7,.2,1) both}
+.lb-card img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--paper2)}
+.lb-card .in{padding:18px}
+.lb-card .nm{font-family:'Fraunces',Georgia,serif;font-size:19px}
+.lb-card .pr{font-weight:600;font-variant-numeric:tabular-nums;margin:6px 0 14px}
+.lb-x{position:absolute;top:8px;right:10px;background:rgba(244,238,227,.92);border:1px solid var(--line);width:30px;height:30px;cursor:pointer;z-index:2;font-size:13px;color:var(--ink)}
+[data-theme="dark"] .lb-x{background:rgba(26,23,20,.9)}

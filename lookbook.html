@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our story — Regincós Hair</title>
+<title>Lookbook — Regincós Hair</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,55 +25,38 @@
   </div>
 </div></nav>
 
-<header class="story-hero">
-  <img class="bg" src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-25.webp?width=1800" alt="">
-  <div class="wrap inner">
-    <div class="upper kick" data-i="os_kick"></div>
-    <h1 class="serif" data-i="os_h1"></h1>
-    <p data-i="os_sub"></p>
-  </div>
+<header class="lb-hero wrap">
+  <div class="upper eyebrow" data-i="lb_eye"></div>
+  <h1 class="serif" data-i="lb_h1"></h1>
+  <p class="lead" data-i="lb_lead"></p>
+  <div class="lb-hint" data-i="lb_hint"></div>
 </header>
 
-<section class="wrap chapter">
-  <div class="ch-img" style="background-image:url('https://www.regincoshair.com/cdn/shop/files/Regincos_2023-5.webp?width=1000')"></div>
-  <div class="ch-txt">
-    <div class="ch-num">01</div>
-    <div class="h2 serif" data-i="os_c1_h"></div>
-    <p data-i="os_c1_p"></p>
-  </div>
+<section class="lb-scene" style="background-image:url('https://www.regincoshair.com/cdn/shop/files/Regincos_2023-5.webp?width=1800')">
+  <button class="hot" style="left:48%;top:54%" data-prod="round" aria-label="View product"></button>
 </section>
 
-<section class="wrap chapter rev">
-  <div class="ch-img" style="background-image:url('https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=1000')"></div>
-  <div class="ch-txt">
-    <div class="ch-num">02</div>
-    <div class="h2 serif" data-i="os_c2_h"></div>
-    <p data-i="os_c2_p"></p>
-  </div>
+<section class="lb-scene" style="background-image:url('https://www.regincoshair.com/cdn/shop/files/Regincos_2023-28.jpg?width=1800')">
+  <button class="hot" style="left:38%;top:46%" data-prod="paddle" aria-label="View product"></button>
+  <button class="hot" style="left:64%;top:66%" data-prod="vent" aria-label="View product"></button>
 </section>
 
-<section class="wrap chapter">
-  <div class="ch-img" style="background-image:url('https://www.regincoshair.com/cdn/shop/files/Regincos_2023-28.jpg?width=1000')"></div>
-  <div class="ch-txt">
-    <div class="ch-num">03</div>
-    <div class="h2 serif" data-i="os_c3_h"></div>
-    <p data-i="os_c3_p"></p>
-  </div>
-</section>
-
-<section class="wrap chapter rev">
-  <div class="ch-img" style="background-image:url('https://www.regincoshair.com/cdn/shop/products/566.jpg?width=1000')"></div>
-  <div class="ch-txt">
-    <div class="ch-num">04</div>
-    <div class="h2 serif" data-i="os_c4_h"></div>
-    <p data-i="os_c4_p"></p>
-  </div>
+<section class="lb-scene" style="background-image:url('https://www.regincoshair.com/cdn/shop/files/VelChromeAll1_490e527f-12c0-4e43-a617-e9aae61f02d6.webp?width=1800')">
+  <button class="hot" style="left:52%;top:50%" data-prod="roller" aria-label="View product"></button>
 </section>
 
 <section class="wrap story-cta">
-  <div class="h2 serif" data-i="os_cta_h"></div>
-  <a class="btn" href="collection.html" data-i="os_cta_btn"></a>
+  <div class="h2 serif" data-i="lb_cta_h"></div>
+  <a class="btn" href="collection.html" data-i="lb_cta_btn"></a>
 </section>
+
+<div class="lb-modal" id="lbmodal" hidden>
+  <div class="lb-card">
+    <button class="lb-x" id="lbx" type="button" aria-label="Close">✕</button>
+    <img id="lbimg" src="" alt="">
+    <div class="in"><div class="nm serif" id="lbnm"></div><div class="pr" id="lbpr"></div><a class="btn block" id="lblink" href="product.html" data-i="lb_view"></a></div>
+  </div>
+</div>
 
 <footer><div class="wrap">
   <div class="fcols">
@@ -82,7 +65,7 @@
       <p style="max-width:36ch;font-size:14px" data-i="f_tag"></p>
     </div>
     <div><h5 data-i="f_shop"></h5><a href="collection.html" data-i="nav_cork"></a><a href="collection.html" data-i="nav_wood"></a><a href="collection.html">Ibiza Hair</a><a href="collection.html" data-i="nav_men"></a><a href="collection.html" data-i="nav_combs"></a></div>
-    <div><h5 data-i="f_brand"></h5><a href="our-story.html" data-i="sp_btn2"></a><a href="#">The Cork Grip</a><a href="#" data-i="f_sust"></a><a href="#" data-i="f_pro"></a></div>
+    <div><h5 data-i="f_brand"></h5><a href="our-story.html" data-i="sp_btn2"></a><a href="lookbook.html" data-i="nav_lookbook"></a><a href="#" data-i="f_sust"></a><a href="#" data-i="f_pro"></a></div>
     <div><h5 data-i="f_help"></h5><a href="#" data-i="f_ship"></a><a href="#" data-i="f_ret"></a><a href="#" data-i="f_con"></a><a href="#">FAQ</a></div>
   </div>
   <div class="fbot"><span>© 2026 Regincós · concept</span><span data-i="f_bot"></span></div>

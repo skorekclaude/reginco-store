@@ -1,7 +1,8 @@
 const T = {
  en:{
   topbar:'Free shipping over <b>€45</b> · Handcrafted with cork &amp; wood since <b>1987</b>',
-  nav_cork:'Cork',nav_wood:'Wood',nav_men:'Men',nav_combs:'Combs',
+  nav_cork:'Cork',nav_wood:'Wood',nav_men:'Men',nav_combs:'Combs',nav_lookbook:'Lookbook',
+  lb_eye:'Lookbook',lb_h1:'Worn by hands that <em>create</em>.',lb_lead:'The cork grip in the wild — on salon floors and bathroom shelves. Tap a dot to shop the piece.',lb_hint:'Tap the dots to shop',lb_view:'View product',lb_cta_h:'Shop the <em>collection</em>.',lb_cta_btn:'See all brushes',
   hero_kick:'The Cork Grip · est. 1987',hero_h1:'Brushes carved from <em>nature</em>.',
   hero_p:'The revolutionary cork-grip system, invented by Regincós in 1987. Cork, wood and a craft passed through generations — for hands that style for a living.',
   hero_btn1:'Shop the cork series',hero_btn2:'Our story',
@@ -45,7 +46,8 @@ const T = {
  },
  pt:{
   topbar:'Envio grátis acima de <b>€45</b> · Feito à mão com cortiça e madeira desde <b>1987</b>',
-  nav_cork:'Cortiça',nav_wood:'Madeira',nav_men:'Homem',nav_combs:'Pentes',
+  nav_cork:'Cortiça',nav_wood:'Madeira',nav_men:'Homem',nav_combs:'Pentes',nav_lookbook:'Lookbook',
+  lb_eye:'Lookbook',lb_h1:'Nas mãos de quem <em>cria</em>.',lb_lead:'O cork grip em ação — em salões e prateleiras de casa. Toque num ponto para comprar a peça.',lb_hint:'Toque nos pontos para comprar',lb_view:'Ver produto',lb_cta_h:'Ver a <em>coleção</em>.',lb_cta_btn:'Ver todas as escovas',
   hero_kick:'O Cork Grip · desde 1987',hero_h1:'Escovas esculpidas pela <em>natureza</em>.',
   hero_p:'O revolucionário sistema cork-grip, inventado pela Regincós em 1987. Cortiça, madeira e um ofício passado de geração em geração — para mãos que penteiam para viver.',
   hero_btn1:'Ver a série cortiça',hero_btn2:'A nossa história',
@@ -111,6 +113,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initSearch();
   initReviews();
   initQuiz();
+  initLookbook();
 });
 
 /* ===== AI-flavored search (krok 20). Prototyp; produkcyjnie -> Shopify Search & Discovery / Algolia ===== */
@@ -214,4 +217,22 @@ function initQuiz(){
   }
   window.quizRerender=function(){if(inResult)renderResult();else renderStep();};
   renderStep();
+}
+
+/* ===== Lookbook (shoppable hotspots → quick-view) ===== */
+const LB_PRODUCTS={
+ round:{nm:'Cork Grip Round',pr:'€24,90',img:'https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=500'},
+ paddle:{nm:'Cork Paddle Brush',pr:'€21,50',img:'https://www.regincoshair.com/cdn/shop/products/605.jpg?width=500'},
+ vent:{nm:'Cork Vent Brush',pr:'€19,90',img:'https://www.regincoshair.com/cdn/shop/products/270.jpg?width=500'},
+ roller:{nm:'VelChrome™ Roller Set',pr:'€39,90',img:'https://www.regincoshair.com/cdn/shop/files/VelChromeAll1_490e527f-12c0-4e43-a617-e9aae61f02d6.webp?width=500'}
+};
+function initLookbook(){
+  const modal=document.getElementById('lbmodal'); if(!modal)return;
+  const img=document.getElementById('lbimg'),nm=document.getElementById('lbnm'),pr=document.getElementById('lbpr');
+  function open(key){const p=LB_PRODUCTS[key]; if(!p)return; img.src=p.img; nm.textContent=p.nm; pr.textContent=p.pr; modal.hidden=false; modal.classList.add('show');}
+  function close(){modal.classList.remove('show'); modal.hidden=true;}
+  document.querySelectorAll('.hot').forEach(function(h){h.addEventListener('click',function(){open(h.getAttribute('data-prod'));});});
+  var x=document.getElementById('lbx'); if(x)x.addEventListener('click',close);
+  modal.addEventListener('click',function(e){if(e.target===modal)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))close();});
 }
