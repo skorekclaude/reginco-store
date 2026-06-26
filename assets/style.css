@@ -353,3 +353,12 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .rc-off{color:var(--line)}
 .rc-b{color:var(--ink2);font-size:15px}
 @media(max-width:900px){.rgrid{grid-template-columns:1fr}}
+
+/* ===== delivery promise w buy-box (high-ROI: Coupang/JD speed=trust) ===== */
+.shipline{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink2);margin:4px 0 16px}
+.shipline .dot{width:7px;height:7px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 4px rgba(124,122,90,.18);flex:none}
+.shipline b{color:var(--ink)}
+
+/* ===== cross-document View Transitions (high-ROI: Temu MPA, app-like nav, bez SPA) ===== */
+@view-transition{navigation:auto}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
