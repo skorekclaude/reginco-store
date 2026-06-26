@@ -81,7 +81,7 @@
   var CAT=(window.CATALOG||[]).slice();
   function eur(p){return '€'+Number(p).toFixed(2).replace('.',',');}
   function shortName(t){return t.replace(/\s*[-–]\s*Cepillo.*$/i,'').replace(/\s*[-–]\s*Cepillo/i,'').trim();}
-  function card(p){return '<a class="prod" href="product.html" data-cat="'+p.line+'" data-price="'+p.p+'"><div class="ph"><img src="'+p.img+'?width=600" alt="'+shortName(p.t).replace(/"/g,'')+'" loading="lazy"><span class="add" data-i="addcart"></span></div><h4 class="serif">'+shortName(p.t)+'</h4><div class="px">'+eur(p.p)+'</div></a>';}
+  function card(p){return '<a class="prod" href="product.html?p='+p.h+'" data-cat="'+p.line+'" data-price="'+p.p+'"><div class="ph"><img src="'+p.img+'?width=600" alt="'+shortName(p.t).replace(/"/g,'')+'" loading="lazy"><span class="add" data-i="addcart"></span></div><h4 class="serif">'+shortName(p.t)+'</h4><div class="px">'+eur(p.p)+'</div></a>';}
   var view=CAT.slice();
   function paint(){
     grid.innerHTML=view.map(card).join('');

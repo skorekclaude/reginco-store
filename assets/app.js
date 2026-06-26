@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initQuiz();
   initLookbook();
   initMaterials();
+  initPDP();
 });
 
 /* ===== AI-flavored search (krok 20). Prototyp; produkcyjnie -> Shopify Search & Discovery / Algolia ===== */
@@ -240,6 +241,33 @@ function initLookbook(){
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))close();});
   var hv=document.querySelector('.lb-hero video.bg');
   if(hv){var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;var sd=navigator.connection&&navigator.connection.saveData;if(rm||sd){hv.style.display='none';var fb=document.querySelector('.lb-hero .bg-fallback');if(fb)fb.style.display='block';}else{var pp=hv.play();if(pp&&pp.catch)pp.catch(function(){});}}
+}
+
+/* ===== Dynamic PDP — wypelnia stronę produktu z ?p=<handle> (realny katalog) ===== */
+function initPDP(){
+  try{
+    var h=new URLSearchParams(location.search).get('p');
+    if(!h||!window.CATALOG)return;
+    var p=window.CATALOG.find(function(x){return x.h===h;});
+    if(!p)return;
+    var name=p.t.replace(/\s*[-–]\s*Cepillo.*$/i,'').trim();
+    var price='€'+Number(p.p).toFixed(2).replace('.',',');
+    var h1=document.querySelector('.pinfo h1');
+    if(h1){var w=name.split(' ');var last=w.length>1?w.pop():'';h1.innerHTML=w.join(' ')+(last?' <em>'+last+'</em>':'');h1.removeAttribute('data-i');}
+    var pr=document.querySelector('.pinfo .price');
+    if(pr)pr.innerHTML=price;
+    var cr=document.querySelector('[data-i="pd_crumb"]');
+    if(cr){cr.textContent=name;cr.removeAttribute('data-i');}
+    var kick=document.querySelector('.pinfo .kick');
+    if(kick){kick.textContent=p.line.charAt(0).toUpperCase()+p.line.slice(1);kick.removeAttribute('data-i');}
+    var img=document.getElementById('mainimg');
+    if(img)img.src=p.img+'?width=1100';
+    var thumbs=document.querySelector('.thumbs');if(thumbs)thumbs.style.display='none';
+    var v360=document.getElementById('v360btn');if(v360)v360.style.display='none';
+    var sbn=document.querySelector('.stickybar .sb-name');if(sbn){sbn.textContent=name;sbn.removeAttribute('data-i');}
+    var sbp=document.querySelector('.stickybar .sb-price');if(sbp)sbp.textContent=price;
+    document.title=name+' — Regincós Hair';
+  }catch(e){}
 }
 
 /* ===== Materials triptych autoplay ===== */
