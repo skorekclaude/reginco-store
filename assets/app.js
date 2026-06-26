@@ -267,10 +267,11 @@ function initPDP(){
     var cr=document.querySelector('[data-i="pd_crumb"]');if(cr){cr.textContent=name;cr.removeAttribute('data-i');}
     var kick=document.querySelector('.pinfo .kick');if(kick){kick.textContent=p.line.charAt(0).toUpperCase()+p.line.slice(1);kick.removeAttribute('data-i');}
     if(p.d){var pd=document.querySelector('.pdesc');if(pd){pd.textContent=p.d;pd.removeAttribute('data-i');}}
-    var img=document.getElementById('mainimg');if(img)img.src=imgs[0]+'?width=1100';
+    var img=document.getElementById('mainimg');if(img){img.src=imgs[0]+'?width=1100';img.alt=name+' — Regincós Hair';}
+    var altName=name.replace(/"/g,'');
     var thumbs=document.querySelector('.thumbs');
     if(thumbs){
-      thumbs.innerHTML=imgs.map(function(u,i){return '<button class="thumb'+(i===0?' on':'')+'" type="button" data-full="'+u+'?width=1100"><img src="'+u+'?width=200" alt=""></button>';}).join('');
+      thumbs.innerHTML=imgs.map(function(u,i){return '<button class="thumb'+(i===0?' on':'')+'" type="button" aria-label="'+altName+' — view '+(i+1)+'" data-full="'+u+'?width=1100"><img src="'+u+'?width=200" alt=""></button>';}).join('');
       thumbs.querySelectorAll('.thumb').forEach(function(b){b.addEventListener('click',function(){thumbs.querySelectorAll('.thumb').forEach(function(x){x.classList.remove('on');});b.classList.add('on');var m=document.getElementById('mainimg');if(m){m.classList.add('swapping');setTimeout(function(){m.src=b.getAttribute('data-full');m.classList.remove('swapping');},180);}});});
       thumbs.style.display='';
     }
