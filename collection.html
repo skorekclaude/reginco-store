@@ -26,7 +26,8 @@
 </div></nav>
 
 <header class="collhero">
-  <img class="img" src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-5.webp?width=1600" alt="">
+  <video class="img collvid" muted loop playsinline preload="metadata" poster="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-5.webp?width=1600"><source src="assets/coll-loop.mp4" type="video/mp4"></video>
+  <img class="img bg-fallback" src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-5.webp?width=1600" alt="">
   <div class="wrap">
     <div class="crumb"><a href="index.html" data-i="cl_home">Home</a> · <span data-i="cl_crumb">Cork Series</span></div>
     <div class="upper kick" data-i="cl_kick"></div>
@@ -107,6 +108,7 @@ document.getElementById('sort').addEventListener('change',e=>{
   });
   sorted.forEach(c=>grid.appendChild(c));
 });
+(function(){var v=document.querySelector('.collhero .collvid');if(!v)return;var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;var sd=navigator.connection&&navigator.connection.saveData;if(rm||sd){v.style.display='none';var fb=document.querySelector('.collhero .bg-fallback');if(fb)fb.style.display='block';}else{var p=v.play();if(p&&p.catch)p.catch(function(){});}})();
 </script>
 </body>
 </html>
