@@ -14,6 +14,12 @@ const T = {
   bs_eye:'Bestsellers',bs_h2:'Loved by <em>professionals</em>.',t_icon:'Icon',t_new:'New',t_vegan:'Vegan',
   p1:'Cork Grip Round',p2:'VelChrome™ Roller Set',p3:'Wood Paddle Brush',p4:'Vegan Beard Brush',
   b2b_eye:'For salons & stylists',b2b_h2:'Are you a <em>professional</em>?',b2b_p:'Register for wholesale pricing, exclusive tools and priority restocks.',b2b_btn:'Open a pro account',
+  qz_eye:'Find your brush',qz_h2:'Two minutes to your <em>match</em>.',qz_lead:'Answer three quick questions and we match you to the right cork or wood brush.',qz_back:'Back',qz_result_eye:'Your match',qz_cta:'Shop this brush',qz_restart:'Retake the quiz',
+  qq_hair:'How is your hair?',qo_fine:'Fine',qo_thick:'Thick',qo_curly:'Curly',qo_straight:'Straight',
+  qq_mat:'Cork or wood?',qo_cork:'Cork — light and warm',qo_wood:'Wood — classic',qo_either:'Surprise me',
+  qq_use:'What is it for?',qo_blowdry:'Blow-dry and volume',qo_detangle:'Detangle and smooth',qo_finish:'Finish and shine',qo_beard:'Beard and grooming',
+  qz_r_round:'The icon — cork grip and boar bristles for volume and effortless blow-dries.',qz_r_paddle:'A wide cork paddle to detangle and smooth long hair fast.',qz_r_wood:'Classic beechwood paddle — sturdy, warm, everyday smoothing.',qz_r_vent:'Vented cork brush — fast drying and frizz control.',qz_r_beard:'Vegan beard brush — boar-free bristles for grooming.',
+  qz_email_h:'Get 10% off your first order',qz_email_p:'Drop your email and we send your match plus the code.',qz_email_ph:'you@email.com',qz_email_btn:'Send my match',qz_email_done:'Done — check your inbox for your match and code.',
   f_tag:'Hair tools handcrafted in Spain from cork and wood since 1987. The original Cork Grip.',
   f_shop:'Shop',f_brand:'Brand',f_help:'Help',f_sust:'Sustainability',f_pro:'Professionals',f_ship:'Shipping',f_ret:'Returns',f_con:'Contact',f_bot:'Cork · Wood · Craft · Since 1987',
   cl_home:'Home',cl_crumb:'Cork Series',cl_title:'Cork <em>Series</em>',cl_kick:'Cork — since 1987',cl_count:'tools in this series',empty_t:'Nothing here yet',empty_p:'No brushes match that filter. Try another.',cl_sub:'The original Cork Grip — lightweight cork handles, since 1987.',
@@ -45,6 +51,12 @@ const T = {
   bs_eye:'Mais vendidos',bs_h2:'Amada pelos <em>profissionais</em>.',t_icon:'Ícone',t_new:'Novo',t_vegan:'Vegana',
   p1:'Cork Grip Redonda',p2:'Conjunto de Rolos VelChrome™',p3:'Escova Plana de Madeira',p4:'Escova de Barba Vegana',
   b2b_eye:'Para salões e profissionais',b2b_h2:'É <em>profissional</em>?',b2b_p:'Registe-se para preços grossistas, ferramentas exclusivas e reposições prioritárias.',b2b_btn:'Abrir conta profissional',
+  qz_eye:'Encontre a sua escova',qz_h2:'Dois minutos até à sua <em>escova ideal</em>.',qz_lead:'Responda a três perguntas rápidas e encontramos a escova de cortiça ou madeira certa para si.',qz_back:'Voltar',qz_result_eye:'A sua escova',qz_cta:'Ver esta escova',qz_restart:'Refazer o quiz',
+  qq_hair:'Como é o seu cabelo?',qo_fine:'Fino',qo_thick:'Grosso',qo_curly:'Encaracolado',qo_straight:'Liso',
+  qq_mat:'Cortiça ou madeira?',qo_cork:'Cortiça — leve e quente',qo_wood:'Madeira — clássica',qo_either:'Surpreenda-me',
+  qq_use:'Para quê?',qo_blowdry:'Brushing e volume',qo_detangle:'Desembaraçar e alisar',qo_finish:'Acabamento e brilho',qo_beard:'Barba e cuidado',
+  qz_r_round:'O ícone — pega de cortiça e cerdas de javali para volume e brushings sem esforço.',qz_r_paddle:'Uma escova plana de cortiça larga para desembaraçar e alisar cabelo comprido depressa.',qz_r_wood:'Escova plana de faia clássica — robusta, quente, para alisar no dia a dia.',qz_r_vent:'Escova ventilada de cortiça — secagem rápida e controlo de frizz.',qz_r_beard:'Escova de barba vegana — cerdas sem javali para cuidado.',
+  qz_email_h:'Ganhe 10% no primeiro pedido',qz_email_p:'Deixe o seu email e enviamos a sua escova e o código.',qz_email_ph:'voce@email.com',qz_email_btn:'Enviar a minha escova',qz_email_done:'Pronto — verifique o email para a sua escova e código.',
   f_tag:'Ferramentas de cabelo feitas à mão em Espanha, em cortiça e madeira, desde 1987. O Cork Grip original.',
   f_shop:'Loja',f_brand:'Marca',f_help:'Ajuda',f_sust:'Sustentabilidade',f_pro:'Profissionais',f_ship:'Envios',f_ret:'Devoluções',f_con:'Contacto',f_bot:'Cortiça · Madeira · Ofício · Desde 1987',
   cl_home:'Início',cl_crumb:'Série Cortiça',cl_title:'Série <em>Cortiça</em>',cl_kick:'Cortiça — desde 1987',cl_count:'ferramentas nesta série',empty_t:'Nada por aqui',empty_p:'Nenhuma escova corresponde a esse filtro. Experimente outro.',cl_sub:'O Cork Grip original — pegas de cortiça leves, desde 1987.',
@@ -67,6 +79,7 @@ function setLang(l){
   document.querySelectorAll('.lang a').forEach(a=>a.classList.toggle('on',a.getAttribute('data-set')===l));
   document.documentElement.lang=l;
   try{localStorage.setItem('rg_lang',l);}catch(e){}
+  if(window.quizRerender)window.quizRerender();
 }
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
@@ -82,6 +95,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.themetoggle').forEach(b=>b.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')));
   initSearch();
   initReviews();
+  initQuiz();
 });
 
 /* ===== AI-flavored search (krok 20). Prototyp; produkcyjnie -> Shopify Search & Discovery / Algolia ===== */
@@ -137,4 +151,42 @@ function initReviews(){
   const bars=document.getElementById('rbars');
   if(bars){let h='';for(let star=5;star>=1;star--){const c=REVIEWS.filter(r=>r.s===star).length;const pct=Math.round(c/REVIEWS.length*100);h+='<div class="rbar"><span class="rb-l">'+star+'★</span><span class="rb-t"><span style="width:'+pct+'%"></span></span><span class="rb-n">'+c+'</span></div>';}bars.innerHTML=h;}
   list.innerHTML=REVIEWS.map(r=>'<div class="rcard"><div class="rc-top"><span class="rc-av">'+r.n.charAt(0)+'</span><div><div class="rc-n">'+r.n+'</div><div class="rc-loc">'+r.loc+'</div></div><span class="rc-st">'+'★'.repeat(r.s)+'<span class="rc-off">'+'★'.repeat(5-r.s)+'</span></span></div><p class="rc-b">'+r.b+'</p></div>').join('');
+}
+
+/* ===== Find-your-brush quiz (high-ROI: Jones Road/Shein — discovery + email capture; prod -> Klaviyo/Shopify Forms) ===== */
+const QUIZ_STEPS=[
+ {key:'hair',q:'qq_hair',opts:[['fine','qo_fine'],['thick','qo_thick'],['curly','qo_curly'],['straight','qo_straight']]},
+ {key:'material',q:'qq_mat',opts:[['cork','qo_cork'],['wood','qo_wood'],['either','qo_either']]},
+ {key:'use',q:'qq_use',opts:[['blowdry','qo_blowdry'],['detangle','qo_detangle'],['finish','qo_finish'],['beard','qo_beard']]}
+];
+const QZ_PRODUCTS={
+ round:{t:'Cork Grip Round',price:'€24,90',img:'https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=600',r:'qz_r_round'},
+ paddle:{t:'Cork Paddle Brush',price:'€21,50',img:'https://www.regincoshair.com/cdn/shop/products/605.jpg?width=600',r:'qz_r_paddle'},
+ wood:{t:'Wood Paddle Brush',price:'€23,50',img:'https://www.regincoshair.com/cdn/shop/products/282.jpg?width=600',r:'qz_r_wood'},
+ vent:{t:'Cork Vent Brush',price:'€19,90',img:'https://www.regincoshair.com/cdn/shop/products/270.jpg?width=600',r:'qz_r_vent'},
+ beard:{t:'Vegan Beard Brush',price:'€18,00',img:'https://www.regincoshair.com/cdn/shop/products/307.jpg?width=600',r:'qz_r_beard'}
+};
+function quizResultKey(a){if(a.use==='beard')return'beard';if(a.material==='wood')return'wood';if(a.use==='detangle'||a.hair==='curly')return'paddle';if(a.use==='finish')return'vent';return'round';}
+function initQuiz(){
+  const stage=document.getElementById('qzstage');if(!stage)return;
+  const bar=document.getElementById('qzbar');
+  const answers={};let step=0,inResult=false;
+  function L(k){const l=document.documentElement.lang||'en';return (T[l]&&T[l][k]!==undefined)?T[l][k]:k;}
+  function renderStep(){
+    inResult=false;const s=QUIZ_STEPS[step];
+    if(bar)bar.style.width=Math.round(step/QUIZ_STEPS.length*100)+'%';
+    stage.innerHTML='<div class="qz-q">'+L(s.q)+'</div><div class="qz-opts">'+s.opts.map(o=>'<button class="qz-opt" type="button" data-v="'+o[0]+'">'+L(o[1])+'</button>').join('')+'</div>'+(step>0?'<button class="qz-back" type="button" data-back="1">'+L('qz_back')+'</button>':'');
+    stage.querySelectorAll('.qz-opt').forEach(b=>b.addEventListener('click',()=>{answers[s.key]=b.getAttribute('data-v');step++;if(step<QUIZ_STEPS.length)renderStep();else renderResult();}));
+    const back=stage.querySelector('[data-back]');if(back)back.addEventListener('click',()=>{step--;renderStep();});
+  }
+  function renderResult(){
+    inResult=true;if(bar)bar.style.width='100%';
+    const p=QZ_PRODUCTS[quizResultKey(answers)];
+    stage.innerHTML='<div class="qz-result"><img src="'+p.img+'" alt=""><div><div class="upper qz-r-eye">'+L('qz_result_eye')+'</div><div class="qz-r-name serif">'+p.t+'</div><div class="qz-r-reason">'+L(p.r)+'</div><div class="qz-r-price">'+p.price+'</div><a class="btn" href="product.html">'+L('qz_cta')+'</a></div></div><div class="qz-email"><h4>'+L('qz_email_h')+'</h4><p>'+L('qz_email_p')+'</p><div class="qz-email-row" id="qzrow"><input type="email" id="qzmail" placeholder="'+L('qz_email_ph')+'"><button class="btn dark" id="qzsend" type="button">'+L('qz_email_btn')+'</button></div><button class="qz-back" type="button" id="qzrestart">'+L('qz_restart')+'</button></div>';
+    const send=document.getElementById('qzsend'),mail=document.getElementById('qzmail');
+    send.addEventListener('click',()=>{if(mail.value&&/.+@.+\..+/.test(mail.value)){document.getElementById('qzrow').innerHTML='<div class="qz-done">'+L('qz_email_done')+'</div>';}else{mail.focus();mail.style.borderColor='var(--cork-d)';}});
+    const rs=document.getElementById('qzrestart');if(rs)rs.addEventListener('click',()=>{step=0;Object.keys(answers).forEach(k=>delete answers[k]);renderStep();});
+  }
+  window.quizRerender=function(){if(inResult)renderResult();else renderStep();};
+  renderStep();
 }

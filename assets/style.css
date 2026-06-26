@@ -362,3 +362,33 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 /* ===== cross-document View Transitions (high-ROI: Temu MPA, app-like nav, bez SPA) ===== */
 @view-transition{navigation:auto}
 @media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+/* ===== Find-your-brush quiz (high-ROI: Jones Road/Shein — discovery + email capture) ===== */
+.quiz .qz-card{margin-top:36px;border:1px solid var(--line);background:var(--paper);max-width:720px}
+.qz-prog{height:3px;background:var(--paper2)}
+.qz-bar{display:block;height:100%;background:var(--cork);width:0;transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.qz-stage{padding:clamp(26px,4vw,40px) clamp(22px,3.4vw,36px)}
+.qz-q{font-family:'Fraunces',Georgia,serif;font-size:clamp(24px,3.4vw,36px);font-weight:420;letter-spacing:-.015em;margin-bottom:24px;font-variation-settings:"opsz" 144}
+.qz-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qz-opt{text-align:left;padding:18px 20px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-size:16px;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.qz-opt:hover{border-color:var(--cork);transform:translateY(-2px)}
+.qz-opt::after{content:"→";color:var(--cork);opacity:0;transition:.18s}
+.qz-opt:hover::after{opacity:1}
+.qz-back{margin-top:22px;background:none;border:none;color:var(--ink2);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.qz-result{display:grid;grid-template-columns:160px 1fr;gap:26px;align-items:center}
+.qz-result img{width:160px;height:160px;object-fit:cover;background:var(--paper2)}
+.qz-r-eye{color:var(--cork-d)}
+.qz-r-name{font-family:'Fraunces',Georgia,serif;font-size:26px;margin:6px 0}
+.qz-r-reason{color:var(--ink2);font-size:15px;margin-bottom:14px;max-width:46ch}
+.qz-r-price{font-weight:600;font-variant-numeric:tabular-nums;margin-bottom:16px}
+.qz-email{margin-top:28px;border-top:1px solid var(--line);padding-top:24px}
+.qz-email h4{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:19px;margin-bottom:4px}
+.qz-email p{color:var(--ink2);font-size:14px;margin-bottom:14px}
+.qz-email-row{display:flex;gap:10px;flex-wrap:wrap}
+.qz-email-row input{flex:1;min-width:200px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 16px;font:inherit;font-size:15px;outline:none}
+.qz-email-row input:focus{border-color:var(--cork)}
+.qz-done{color:var(--sage);font-weight:600;padding:6px 0}
+@media(max-width:700px){.qz-opts{grid-template-columns:1fr}.qz-result{grid-template-columns:1fr}.qz-result img{width:120px;height:120px}}
+
+/* fix: em na panelu b2b (tlo cork) NIE moze byc cork — dziedziczy kolor tekstu (akcent przez kursywe) */
+.b2b .h2 em{color:inherit}
