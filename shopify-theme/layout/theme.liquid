@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#2A2118">
+  <script>(function(){try{var s=localStorage.getItem('rg_theme');var d='{{ settings.color_scheme | default: 'light' }}';var t=s||(d==='auto'?(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):d);document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();</script>
   <link rel="canonical" href="{{ canonical_url }}">
   <title>{{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
   {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
@@ -12,12 +13,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   {{ 'base.css' | asset_url | stylesheet_tag }}
   {%- style -%}
-    :root{
+    :root:not([data-theme="dark"]){
       --cork:{{ settings.color_accent | default: '#C2925E' }};
+      --cork-d:{{ settings.color_accent_dark | default: '#A2743F' }};
       --ink:{{ settings.color_ink | default: '#2A2118' }};
       --paper:{{ settings.color_paper | default: '#F4EEE3' }};
+      --paper2:{{ settings.color_paper2 | default: '#ECE3D4' }};
+      --line:{{ settings.color_line | default: '#D8CCB8' }};
+      --wood:{{ settings.color_wood | default: '#6F4E37' }};
+      --sage:{{ settings.color_sage | default: '#7C7A5A' }};
     }
   {%- endstyle -%}
+  {%- if settings.enable_motion == false -%}<style>*,*::before,*::after{animation:none!important;transition:none!important}</style>{%- endif -%}
   {{ content_for_header }}
 </head>
 <body class="template-{{ request.page_type }}">

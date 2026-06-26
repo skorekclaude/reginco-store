@@ -353,3 +353,96 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .rc-off{color:var(--line)}
 .rc-b{color:var(--ink2);font-size:15px}
 @media(max-width:900px){.rgrid{grid-template-columns:1fr}}
+
+/* ===== delivery promise w buy-box (high-ROI: Coupang/JD speed=trust) ===== */
+.shipline{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink2);margin:4px 0 16px}
+.shipline .dot{width:7px;height:7px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 4px rgba(124,122,90,.18);flex:none}
+.shipline b{color:var(--ink)}
+
+/* ===== cross-document View Transitions (high-ROI: Temu MPA, app-like nav, bez SPA) ===== */
+@view-transition{navigation:auto}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+/* ===== Find-your-brush quiz (high-ROI: Jones Road/Shein — discovery + email capture) ===== */
+.quiz .qz-card{margin-top:36px;border:1px solid var(--line);background:var(--paper);max-width:720px}
+.qz-prog{height:3px;background:var(--paper2)}
+.qz-bar{display:block;height:100%;background:var(--cork);width:0;transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.qz-stage{padding:clamp(26px,4vw,40px) clamp(22px,3.4vw,36px)}
+.qz-q{font-family:'Fraunces',Georgia,serif;font-size:clamp(24px,3.4vw,36px);font-weight:420;letter-spacing:-.015em;margin-bottom:24px;font-variation-settings:"opsz" 144}
+.qz-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qz-opt{text-align:left;padding:18px 20px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-size:16px;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.qz-opt:hover{border-color:var(--cork);transform:translateY(-2px)}
+.qz-opt::after{content:"→";color:var(--cork);opacity:0;transition:.18s}
+.qz-opt:hover::after{opacity:1}
+.qz-back{margin-top:22px;background:none;border:none;color:var(--ink2);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.qz-result{display:grid;grid-template-columns:160px 1fr;gap:26px;align-items:center}
+.qz-result img{width:160px;height:160px;object-fit:cover;background:var(--paper2)}
+.qz-r-eye{color:var(--cork-d)}
+.qz-r-name{font-family:'Fraunces',Georgia,serif;font-size:26px;margin:6px 0}
+.qz-r-reason{color:var(--ink2);font-size:15px;margin-bottom:14px;max-width:46ch}
+.qz-r-price{font-weight:600;font-variant-numeric:tabular-nums;margin-bottom:16px}
+.qz-email{margin-top:28px;border-top:1px solid var(--line);padding-top:24px}
+.qz-email h4{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:19px;margin-bottom:4px}
+.qz-email p{color:var(--ink2);font-size:14px;margin-bottom:14px}
+.qz-email-row{display:flex;gap:10px;flex-wrap:wrap}
+.qz-email-row input{flex:1;min-width:200px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 16px;font:inherit;font-size:15px;outline:none}
+.qz-email-row input:focus{border-color:var(--cork)}
+.qz-done{color:var(--sage);font-weight:600;padding:6px 0}
+@media(max-width:700px){.qz-opts{grid-template-columns:1fr}.qz-result{grid-template-columns:1fr}.qz-result img{width:120px;height:120px}}
+
+/* fix: em na panelu b2b (tlo cork) NIE moze byc cork — dziedziczy kolor tekstu (akcent przez kursywe) */
+.b2b .h2 em{color:inherit}
+
+/* ===== our-story (cinematic heritage chapter; high-ROI: Scout heritage-as-proof) ===== */
+.story-hero{min-height:78vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;z-index:2}
+.story-hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.story-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,33,24,.15),rgba(42,33,24,.72));z-index:1}
+.story-hero .inner{position:relative;z-index:2;color:var(--paper);padding:0 0 64px}
+.story-hero .kick{color:#EDE3D2}
+.story-hero h1{font-size:clamp(52px,9vw,128px);font-weight:410;line-height:.92;letter-spacing:-.03em;font-variation-settings:"opsz" 144;text-wrap:balance}
+.story-hero p{max-width:46ch;margin-top:18px;font-size:18px;color:#EDE3D2}
+.chapter{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.chapter .ch-img{aspect-ratio:4/5;background-size:cover;background-position:center;background-color:var(--paper2)}
+.chapter.rev .ch-img{order:2}
+.ch-num{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--cork);font-size:22px;margin-bottom:10px}
+.chapter p{color:var(--ink2);margin-top:16px;font-size:16px;max-width:46ch}
+.story-cta{text-align:center}
+.story-cta .h2{margin-bottom:24px}
+[data-theme="dark"] .story-hero .inner,[data-theme="dark"] .story-hero .kick{color:#F1E9DB}
+[data-theme="dark"] .story-hero::after{background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.7))}
+@media(max-width:900px){.chapter{grid-template-columns:1fr}.chapter.rev .ch-img{order:0}}
+@media (prefers-reduced-motion:no-preference){
+  .story-hero .inner > *{animation:hero-in .9s cubic-bezier(.2,.7,.2,1) both}
+  .story-hero h1{animation-delay:.1s}.story-hero p{animation-delay:.22s}
+  @supports (animation-timeline:view()){
+    .chapter .ch-img,.chapter .ch-txt{animation:reveal-up both linear;animation-timeline:view();animation-range:entry 6% entry 82%}
+  }
+}
+
+/* ===== "complete the ritual" bundle (high-ROI: Amazon FBT / JD — AOV) ===== */
+.bundle .bn-row{display:grid;grid-template-columns:1.4fr .9fr;gap:36px;margin-top:32px;align-items:center;border:1px solid var(--line);padding:clamp(22px,3vw,34px)}
+.bn-items{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.bn-item{display:flex;align-items:center;gap:12px}
+.bn-item img{width:64px;height:64px;object-fit:cover;background:var(--paper2)}
+.bn-n{font-family:'Fraunces',Georgia,serif;font-size:15px}
+.bn-p{font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.bn-plus{color:var(--cork);font-size:20px}
+.bn-was{color:var(--ink2);text-decoration:line-through;font-size:15px}
+.bn-total{font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;margin:4px 0 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.bn-save{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cork-d);border:1px solid var(--line);padding:4px 9px}
+.bn-note{font-size:12.5px;color:var(--ink2);margin-top:10px}
+.btn.block.added{background:var(--sage);color:#14110d}
+@media(max-width:900px){.bundle .bn-row{grid-template-columns:1fr;gap:22px}}
+
+/* ===== reviews filter-by-hair-type (high-ROI #2: Shein filter-by-fit) ===== */
+.rfilters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 4px}
+.rchip{font-size:12.5px;font-weight:500;padding:7px 14px;border:1px solid var(--line);border-radius:20px;background:transparent;color:var(--ink2);cursor:pointer;transition:.15s}
+.rchip:hover{border-color:var(--cork);transform:translateY(-1px)}
+.rchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rcard{position:relative}
+.rc-ht{display:inline-block;margin-top:12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cork-d);border:1px solid var(--line);padding:3px 9px}
+
+/* ===== hero video (Veo 3 Fast — krok 16) ===== */
+.hero video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero img.bg-fallback{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+@media (prefers-reduced-motion:reduce){.hero video.bg{display:none}.hero img.bg-fallback{display:block}}

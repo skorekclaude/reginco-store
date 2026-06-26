@@ -21,6 +21,7 @@
         <a href="{{ routes.search_url }}" aria-label="{{ 'general.search.search' | t }}">⌕</a>
         <a href="{{ routes.account_url }}" aria-label="{{ 'customer.account.title' | t }}">♡</a>
         <a href="{{ routes.cart_url }}" aria-label="{{ 'general.cart' | t }}">⛒ {{ cart.item_count }}</a>
+        <button type="button" class="themetoggle" aria-label="Dark mode">☾</button>
       </div>
       {%- if section.settings.show_locale -%}
       <div class="lang">

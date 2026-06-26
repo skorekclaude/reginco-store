@@ -14,5 +14,22 @@
       { "type": "color", "id": "color_ink", "label": "Tinta (texto escuro)", "default": "#2A2118" },
       { "type": "color", "id": "color_paper", "label": "Fundo (papel)", "default": "#F4EEE3" }
     ]
+  },
+  {
+    "name": "Modo escuro & movimento",
+    "settings": [
+      { "type": "select", "id": "color_scheme", "label": "Esquema de cor", "options": [ { "value": "light", "label": "Claro" }, { "value": "dark", "label": "Escuro" }, { "value": "auto", "label": "Automático (sistema)" } ], "default": "light" },
+      { "type": "checkbox", "id": "enable_motion", "label": "Animações (scroll reveal, hover-lift)", "default": true }
+    ]
+  },
+  {
+    "name": "Cores extra",
+    "settings": [
+      { "type": "color", "id": "color_accent_dark", "label": "Cortiça escura (hover)", "default": "#A2743F" },
+      { "type": "color", "id": "color_paper2", "label": "Superfície (cartões)", "default": "#ECE3D4" },
+      { "type": "color", "id": "color_line", "label": "Linhas / bordas", "default": "#D8CCB8" },
+      { "type": "color", "id": "color_wood", "label": "Madeira", "default": "#6F4E37" },
+      { "type": "color", "id": "color_sage", "label": "Sálvia (anel de foco)", "default": "#7C7A5A" }
+    ]
   }
 ]

@@ -52,3 +52,24 @@ document.addEventListener('click', function (e) {
     cards.forEach(function (c) { grid.appendChild(c); });
   });
 })();
+// theme toggle (dark mode) — pairs with base.css [data-theme="dark"] + flash-guard w theme.liquid
+(function () {
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('rg_theme', t); } catch (e) {}
+    document.querySelectorAll('.themetoggle').forEach(function (b) { b.textContent = t === 'dark' ? '☀' : '☾'; b.setAttribute('aria-pressed', t === 'dark'); });
+  }
+  var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  applyTheme(cur);
+  document.querySelectorAll('.themetoggle').forEach(function (b) {
+    b.addEventListener('click', function () { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
+  });
+})();
+// hero video gate (poster-only pod reduced-motion / data-saver)
+(function () {
+  var hv = document.querySelector('.hero video.bg'); if (!hv) return;
+  var rm = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var sd = navigator.connection && navigator.connection.saveData;
+  if (rm || sd) { hv.style.display = 'none'; var fb = document.querySelector('.hero .bg-fallback'); if (fb) fb.style.display = 'block'; }
+  else { var p = hv.play(); if (p && p.catch) p.catch(function () {}); }
+})();
