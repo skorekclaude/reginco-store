@@ -393,6 +393,15 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 /* fix: em na panelu b2b (tlo cork) NIE moze byc cork — dziedziczy kolor tekstu (akcent przez kursywe) */
 .b2b .h2 em{color:inherit}
 
+/* ===== Materials triptych (material-as-interface; makro AI-wideo) ===== */
+.materials .mat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:40px}
+.mat-cell{position:relative;margin:0;aspect-ratio:3/4;overflow:hidden;background:var(--paper2)}
+.mat-cell video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.mat-cell figcaption{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;color:#F1E9DB;background:linear-gradient(180deg,transparent 52%,rgba(42,33,24,.68))}
+.mat-n{font-family:'Fraunces',Georgia,serif;font-size:23px;font-variation-settings:"opsz" 40}
+.mat-d{font-size:12px;letter-spacing:.06em;color:#E2D6C2;margin-top:3px}
+@media(max-width:700px){.materials .mat-grid{grid-template-columns:1fr}}
+
 /* ===== our-story (cinematic heritage chapter; high-ROI: Scout heritage-as-proof) ===== */
 .story-hero{min-height:78vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;z-index:2}
 .story-hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}

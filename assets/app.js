@@ -9,6 +9,7 @@ const T = {
   val1:'<b>1987</b> · Spanish craft',val2:'<b>Natural</b> cork &amp; wood',val3:'<b>Pro</b> trusted by stylists',val4:'<b>Vegan</b> options',
   col_eye:'Collections',col_h2:'Find your <em>brush</em>.',col_lead:'From the iconic Cork Grip to thermal VelChrome rollers — every tool, by family and by craft.',
   b_cork_t:'Cork Series',b_cork_s:'The identity · since 1987',b_ibiza_s:'New · thermal rollers',b_wood_t:'Wood Series',b_men_t:'Men',b_men_s:'Beard & fade',b_combs_t:'Combs & Sets',b_combs_s:'Professional stylist combs',
+  mat_eye:'The materials',mat_h2:'Cork, wood, and <em>nothing</em> synthetic.',mat_cork:'Cork',mat_cork_d:'Light · warm · antibacterial',mat_wood:'Wood',mat_wood_d:'FSC beech & walnut',mat_bristle:'Bristle',mat_bristle_d:'Boar & vegan options',
   sp_eye:'Cork — our identity',sp_h2:'A material that breathes, grips and <em>lasts</em>.',
   sp_p:'Lightweight, warm to the touch, naturally antibacterial. We chose cork before it was a trend — and never let it go. Scroll the story of one brush, from forest to salon.',
   sp_btn:'Discover the craft',sp_btn2:'Our story',
@@ -54,6 +55,7 @@ const T = {
   val1:'<b>1987</b> · Ofício espanhol',val2:'Cortiça e madeira <b>naturais</b>',val3:'<b>Pro</b> · confiança dos profissionais',val4:'Opções <b>veganas</b>',
   col_eye:'Coleções',col_h2:'Encontre a sua <em>escova</em>.',col_lead:'Do icónico Cork Grip aos rolos térmicos VelChrome — cada ferramenta, por família e por ofício.',
   b_cork_t:'Série Cortiça',b_cork_s:'A identidade · desde 1987',b_ibiza_s:'Novo · rolos térmicos',b_wood_t:'Série Madeira',b_men_t:'Homem',b_men_s:'Barba & fade',b_combs_t:'Pentes & Conjuntos',b_combs_s:'Pentes profissionais',
+  mat_eye:'Os materiais',mat_h2:'Cortiça, madeira e <em>nada</em> sintético.',mat_cork:'Cortiça',mat_cork_d:'Leve · quente · antibacteriana',mat_wood:'Madeira',mat_wood_d:'Faia e nogueira FSC',mat_bristle:'Cerda',mat_bristle_d:'Javali e opções veganas',
   sp_eye:'Cortiça — a nossa identidade',sp_h2:'Um material que respira, agarra e <em>dura</em>.',
   sp_p:'Leve, quente ao toque, naturalmente antibacteriana. Escolhemos a cortiça antes de ser tendência — e nunca a largámos. Percorra a história de uma escova, da floresta ao salão.',
   sp_btn:'Descobrir o ofício',sp_btn2:'A nossa história',
@@ -114,6 +116,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initReviews();
   initQuiz();
   initLookbook();
+  initMaterials();
 });
 
 /* ===== AI-flavored search (krok 20). Prototyp; produkcyjnie -> Shopify Search & Discovery / Algolia ===== */
@@ -237,4 +240,12 @@ function initLookbook(){
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))close();});
   var hv=document.querySelector('.lb-hero video.bg');
   if(hv){var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;var sd=navigator.connection&&navigator.connection.saveData;if(rm||sd){hv.style.display='none';var fb=document.querySelector('.lb-hero .bg-fallback');if(fb)fb.style.display='block';}else{var pp=hv.play();if(pp&&pp.catch)pp.catch(function(){});}}
+}
+
+/* ===== Materials triptych autoplay ===== */
+function initMaterials(){
+  var cells=document.querySelectorAll('.mat-cell video'); if(!cells.length)return;
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;var sd=navigator.connection&&navigator.connection.saveData;
+  if(rm||sd)return;
+  cells.forEach(function(v){var p=v.play();if(p&&p.catch)p.catch(function(){});});
 }
