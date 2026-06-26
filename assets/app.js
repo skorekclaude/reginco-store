@@ -130,12 +130,18 @@ const SEARCH_INDEX=[
  {t:'Vegan Beard Brush',syn:'vegan beard men cruelty-free',price:'€18,00',img:'https://www.regincoshair.com/cdn/shop/products/307.jpg?width=300'}
 ];
 const SEARCH_SYN={frizz:'vented',frizzy:'vented',frisado:'vented',dry:'vented',blowdry:'vented',volume:'round',voluminoso:'round',thick:'large',blowout:'round',straight:'paddle',liso:'paddle',smooth:'paddle',detangle:'paddle',beard:'beard',barba:'beard',men:'beard',homem:'beard',vegan:'vegan',vegana:'vegan',cruelty:'vegan',madeira:'wood',cortica:'cork'};
+function searchCorpus(){
+  var ls={cork:'cortiça corcho round redonda volume bounce',wood:'madeira fusta paddle oval flat',yoga:'flexible vented desenredante frizz detangle',ibiza:'thermal hybrid roller',combs:'peine comb pente',metal:'metallic',pocket:'travel pocket'};
+  if(window.CATALOG&&window.CATALOG.length){return window.CATALOG.map(function(p){return {t:p.t,h:p.h,price:'€'+Number(p.p).toFixed(2).replace('.',','),img:((p.imgs&&p.imgs[0])||p.img)+'?width=300',hay:(p.t+' '+p.line+' '+(ls[p.line]||'')).toLowerCase()};});}
+  return SEARCH_INDEX.map(function(p){return {t:p.t,h:'',price:p.price,img:p.img,hay:(p.t+' '+p.syn).toLowerCase()};});
+}
 function searchRank(q){
   q=(q||'').toLowerCase().trim();
-  if(!q)return SEARCH_INDEX.slice(0,4);
-  const toks=q.split(/[^0-9a-zà-ú]+/).filter(Boolean);
-  const exp=new Set();toks.forEach(t=>{exp.add(t);if(SEARCH_SYN[t])exp.add(SEARCH_SYN[t]);});
-  return SEARCH_INDEX.map(p=>{const title=p.t.toLowerCase(),hay=(p.t+' '+p.syn).toLowerCase();let s=0;exp.forEach(t=>{if(title.includes(t))s+=3;else if(hay.includes(t))s+=1;});return {p,s};}).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.p);
+  var corpus=searchCorpus();
+  if(!q)return corpus.slice(0,5);
+  var toks=q.split(/[^0-9a-zà-ú]+/).filter(Boolean);
+  var exp=new Set();toks.forEach(function(t){exp.add(t);if(SEARCH_SYN[t])exp.add(SEARCH_SYN[t]);});
+  return corpus.map(function(p){var s=0;exp.forEach(function(t){if(p.t.toLowerCase().indexOf(t)>=0)s+=3;else if(p.hay.indexOf(t)>=0)s+=1;});return {p:p,s:s};}).filter(function(x){return x.s>0;}).sort(function(a,b){return b.s-a.s;}).map(function(x){return x.p;});
 }
 function initSearch(){
   if(document.querySelector('.searchov'))return;
@@ -147,7 +153,7 @@ function initSearch(){
   function i18n(scope){const l=loc();scope.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i');if(T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k];});}
   function render(){
     const list=searchRank(inp.value);
-    res.innerHTML=list.length?list.map(p=>'<a class="sr" href="product.html"><img src="'+p.img+'" alt=""><span class="nm serif">'+p.t+'</span><span class="pr">'+p.price+'</span></a>').join(''):'<div class="none" data-i="sr_none"></div>';
+    res.innerHTML=list.length?list.map(p=>'<a class="sr" href="product.html'+(p.h?'?p='+p.h:'')+'"><img src="'+p.img+'" alt=""><span class="nm serif">'+p.t+'</span><span class="pr">'+p.price+'</span></a>').join(''):'<div class="none" data-i="sr_none"></div>';
     i18n(res);
   }
   function open(){ov.classList.add('open');inp.value='';const l=loc();if(T[l]&&T[l].sr_ph)inp.placeholder=T[l].sr_ph;i18n(ov);render();setTimeout(()=>inp.focus(),30);}
@@ -192,11 +198,11 @@ const QUIZ_STEPS=[
  {key:'use',q:'qq_use',opts:[['blowdry','qo_blowdry'],['detangle','qo_detangle'],['finish','qo_finish'],['beard','qo_beard']]}
 ];
 const QZ_PRODUCTS={
- round:{t:'Cork Grip Round',price:'€24,90',img:'https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=600',r:'qz_r_round'},
- paddle:{t:'Cork Paddle Brush',price:'€21,50',img:'https://www.regincoshair.com/cdn/shop/products/605.jpg?width=600',r:'qz_r_paddle'},
- wood:{t:'Wood Paddle Brush',price:'€23,50',img:'https://www.regincoshair.com/cdn/shop/products/282.jpg?width=600',r:'qz_r_wood'},
- vent:{t:'Cork Vent Brush',price:'€19,90',img:'https://www.regincoshair.com/cdn/shop/products/270.jpg?width=600',r:'qz_r_vent'},
- beard:{t:'Vegan Beard Brush',price:'€18,00',img:'https://www.regincoshair.com/cdn/shop/products/307.jpg?width=600',r:'qz_r_beard'}
+ round:{t:'E.Cork LARGO / Large',price:'€28,90',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/products/920.jpg?width=600',h:'ecork-largo-large',r:'qz_r_round'},
+ paddle:{t:'PADDLE Cork / HE',price:'€29,04',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/products/908.jpg?width=600',h:'paddle-cork-he-doble-pua',r:'qz_r_paddle'},
+ wood:{t:'PADDLE Wood / HE',price:'€25,41',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/products/907.jpg?width=600',h:'paddle-wood-he-double-pin',r:'qz_r_wood'},
+ vent:{t:'Cepillo YoGa Aqua',price:'€13,19',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/products/937.jpg?width=600',h:'yoga-aqua-brush',r:'qz_r_vent'},
+ beard:{t:'E.Cork LARGO / Mediano',price:'€26,90',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/products/916.jpg?width=600',h:'ecork-largo-medium',r:'qz_r_beard'}
 };
 function quizResultKey(a){if(a.use==='beard')return'beard';if(a.material==='wood')return'wood';if(a.use==='detangle'||a.hair==='curly')return'paddle';if(a.use==='finish')return'vent';return'round';}
 function initQuiz(){
@@ -214,7 +220,7 @@ function initQuiz(){
   function renderResult(){
     inResult=true;if(bar)bar.style.width='100%';
     const p=QZ_PRODUCTS[quizResultKey(answers)];
-    stage.innerHTML='<div class="qz-result"><img src="'+p.img+'" alt=""><div><div class="upper qz-r-eye">'+L('qz_result_eye')+'</div><div class="qz-r-name serif">'+p.t+'</div><div class="qz-r-reason">'+L(p.r)+'</div><div class="qz-r-price">'+p.price+'</div><a class="btn" href="product.html">'+L('qz_cta')+'</a></div></div><div class="qz-email"><h4>'+L('qz_email_h')+'</h4><p>'+L('qz_email_p')+'</p><div class="qz-email-row" id="qzrow"><input type="email" id="qzmail" placeholder="'+L('qz_email_ph')+'"><button class="btn dark" id="qzsend" type="button">'+L('qz_email_btn')+'</button></div><button class="qz-back" type="button" id="qzrestart">'+L('qz_restart')+'</button></div>';
+    stage.innerHTML='<div class="qz-result"><img src="'+p.img+'" alt=""><div><div class="upper qz-r-eye">'+L('qz_result_eye')+'</div><div class="qz-r-name serif">'+p.t+'</div><div class="qz-r-reason">'+L(p.r)+'</div><div class="qz-r-price">'+p.price+'</div><a class="btn" href="product.html?p='+p.h+'">'+L('qz_cta')+'</a></div></div><div class="qz-email"><h4>'+L('qz_email_h')+'</h4><p>'+L('qz_email_p')+'</p><div class="qz-email-row" id="qzrow"><input type="email" id="qzmail" placeholder="'+L('qz_email_ph')+'"><button class="btn dark" id="qzsend" type="button">'+L('qz_email_btn')+'</button></div><button class="qz-back" type="button" id="qzrestart">'+L('qz_restart')+'</button></div>';
     const send=document.getElementById('qzsend'),mail=document.getElementById('qzmail');
     send.addEventListener('click',()=>{if(mail.value&&/.+@.+\..+/.test(mail.value)){document.getElementById('qzrow').innerHTML='<div class="qz-done">'+L('qz_email_done')+'</div>';}else{mail.focus();mail.style.borderColor='var(--cork-d)';}});
     const rs=document.getElementById('qzrestart');if(rs)rs.addEventListener('click',()=>{step=0;Object.keys(answers).forEach(k=>delete answers[k]);renderStep();});
@@ -225,15 +231,15 @@ function initQuiz(){
 
 /* ===== Lookbook (shoppable hotspots → quick-view) ===== */
 const LB_PRODUCTS={
- round:{nm:'Cork Grip Round',pr:'€24,90',img:'https://www.regincoshair.com/cdn/shop/files/Regincos_2023-3.jpg?width=500'},
- paddle:{nm:'Cork Paddle Brush',pr:'€21,50',img:'https://www.regincoshair.com/cdn/shop/products/605.jpg?width=500'},
- vent:{nm:'Cork Vent Brush',pr:'€19,90',img:'https://www.regincoshair.com/cdn/shop/products/270.jpg?width=500'},
- roller:{nm:'VelChrome™ Roller Set',pr:'€39,90',img:'https://www.regincoshair.com/cdn/shop/files/VelChromeAll1_490e527f-12c0-4e43-a617-e9aae61f02d6.webp?width=500'}
+ round:{nm:'E.Cork LARGO / Large',pr:'€28,90',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/products/920.jpg?width=500',h:'ecork-largo-large'},
+ paddle:{nm:'PADDLE Cork / HE',pr:'€29,04',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/products/908.jpg?width=500',h:'paddle-cork-he-doble-pua'},
+ vent:{nm:'Cepillo YoGa Aqua',pr:'€13,19',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/products/937.jpg?width=500',h:'yoga-aqua-brush'},
+ roller:{nm:'Ibiza EX 6 · Hybrid',pr:'€47,19',img:'https://cdn.shopify.com/s/files/1/0769/8166/6137/files/9_724f958c-d210-4815-8d1b-3438b521cb40.png?width=500',h:'ibiza-ex-6-hybrid'}
 };
 function initLookbook(){
   const modal=document.getElementById('lbmodal'); if(!modal)return;
   const img=document.getElementById('lbimg'),nm=document.getElementById('lbnm'),pr=document.getElementById('lbpr');
-  function open(key){const p=LB_PRODUCTS[key]; if(!p)return; img.src=p.img; nm.textContent=p.nm; pr.textContent=p.pr; modal.hidden=false; modal.classList.add('show');}
+  function open(key){const p=LB_PRODUCTS[key]; if(!p)return; img.src=p.img; nm.textContent=p.nm; pr.textContent=p.pr; var lk=document.getElementById('lblink'); if(lk)lk.href='product.html'+(p.h?'?p='+p.h:''); modal.hidden=false; modal.classList.add('show');}
   function close(){modal.classList.remove('show'); modal.hidden=true;}
   document.querySelectorAll('.hot').forEach(function(h){h.addEventListener('click',function(){open(h.getAttribute('data-prod'));});});
   var x=document.getElementById('lbx'); if(x)x.addEventListener('click',close);
