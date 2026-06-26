@@ -26,7 +26,8 @@
 </div></nav>
 
 <header class="hero">
-  <img class="bg" src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-25.webp?width=1800" alt="">
+  <video class="bg" muted loop playsinline preload="metadata" poster="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-25.webp?width=1800"><source src="assets/hero-loop.mp4" type="video/mp4"></video>
+  <img class="bg-fallback" src="https://www.regincoshair.com/cdn/shop/files/Regincos_2023-25.webp?width=1800" alt="">
   <div class="wrap inner">
     <div class="upper kick" data-i="hero_kick"></div>
     <h1 class="serif" data-i="hero_h1"></h1>
@@ -112,5 +113,8 @@
 </div></footer>
 
 <script src="assets/app.js"></script>
+<script>
+(function(){var hv=document.querySelector('.hero video.bg');if(!hv)return;var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;var sd=navigator.connection&&navigator.connection.saveData;if(rm||sd){hv.style.display='none';var fb=document.querySelector('.hero .bg-fallback');if(fb)fb.style.display='block';}else{var p=hv.play();if(p&&p.catch)p.catch(function(){});}})();
+</script>
 </body>
 </html>

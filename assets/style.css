@@ -441,3 +441,8 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .rchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .rcard{position:relative}
 .rc-ht{display:inline-block;margin-top:12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cork-d);border:1px solid var(--line);padding:3px 9px}
+
+/* ===== hero video (Veo 3 Fast — krok 16) ===== */
+.hero video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero img.bg-fallback{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+@media (prefers-reduced-motion:reduce){.hero video.bg{display:none}.hero img.bg-fallback{display:block}}
