@@ -187,3 +187,81 @@ section{padding:84px 0}
 }
 @keyframes reveal-up{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
 @keyframes hero-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   HIGH-CONTRAST EDITORIAL 2026 — kierunek wybrany przez panel (8.8)
+   + szczepienia: dark mode warm-charcoal, sage focus, ziarno
+   analogowe, SOFT/WONK na hero em. Ewolucja tokenow — bez nowych
+   kolorow ani fontow. prefers-reduced-motion respektowane.
+   ============================================================ */
+
+/* — przestrzen + rytm magazynowy — */
+:root{--gap:28px;--section-y:clamp(84px,11vw,120px)}
+section{padding:var(--section-y) 0}
+section+section{border-top:1px solid var(--line)}
+.bento,.grid4,.pgrid{gap:var(--gap)}
+
+/* — oversized, LEKKI display (couture, nie bold) — */
+.hero{min-height:92vh}
+.hero h1{font-size:clamp(56px,9vw,150px);font-weight:410;line-height:.92;letter-spacing:-.03em;font-variation-settings:"opsz" 144,"SOFT" 4,"WONK" 1}
+.h2,.collhero h1,.pinfo h1{font-weight:420;letter-spacing:-.018em;font-variation-settings:"opsz" 144}
+
+/* — JEDEN akcent: kursywa cork <em> wszedzie (rzadkosc = couture) — */
+.hero h1 em,.h2 em,.collhero h1 em,.pinfo h1 em,.serif em{font-style:italic;font-weight:520;color:var(--cork)}
+.hero h1 em{font-variation-settings:"opsz" 144,"SOFT" 8,"WONK" 1}
+
+/* — racjonowanie koloru: eyebrow -> ink + kreska; tag -> hairline — */
+.eyebrow,.pinfo .kick{color:var(--ink2);display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before,.pinfo .kick::before{content:"";width:34px;height:1px;background:var(--ink);opacity:.55}
+.hero .kick{color:var(--paper)}
+.prod .tag{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:0;letter-spacing:.14em}
+.split .stamp{color:var(--cork);font-style:italic}
+
+/* — kwadratowe kadry (koniec miekkich rogow) + plate-captions — */
+.cell,.prod .ph,.gallery .main,.split,.b2b{border-radius:0}
+.prod h4{font-weight:420;font-variation-settings:"opsz" 18;letter-spacing:.005em}
+
+/* — cena czytana pierwsza (graft: modern-craft) — */
+.prod .px,.price{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:600}
+
+/* — jedno glowne CTA; drugie hero -> link tekstowy — */
+.hero .btn.ghost{background:none;border:none;padding:15px 0;color:var(--paper);border-bottom:1px solid currentColor;border-radius:0;margin-left:28px}
+
+/* — b2b: kolory eyebrow/p przez klasy (zamiast inline) — by dzialal dark — */
+.b2b .upper{color:#5b3c1c}
+.b2b p{color:#4a3215}
+
+/* — sage focus ring (a11y, oba tryby) — */
+a:focus-visible,button:focus-visible,summary:focus-visible,.btn:focus-visible,.opt button:focus-visible,.thumbs img:focus-visible,.thumb:focus-visible{outline:2px solid var(--sage);outline-offset:3px;border-radius:2px}
+
+/* — przelacznik motywu w nav — */
+.themetoggle{background:none;border:none;font:inherit;font-size:18px;line-height:1;padding:0;cursor:pointer;color:inherit}
+
+/* — ziarno analogowe (graft: warm-heritage) — fixed, nieanimowane.
+     UWAGA: nav celowo POMINIETY (ma position:sticky;z-index:30). */
+body{position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.topbar,.hero,.values,section,footer{position:relative;z-index:2}
+
+/* ============================================================
+   DARK MODE — "warm-charcoal gallery wall" (graft: modern-craft)
+   <html data-theme="dark">. Zachowuje tozsamosc cork/wood.
+   ============================================================ */
+[data-theme="dark"]{--paper:#1A1714;--paper2:#231F1A;--ink:#EDE6D8;--ink2:#B7AB97;--cork:#D2A36C;--cork-d:#B9854D;--wood:#B98C66;--sage:#A7A580;--line:#3A332B;--surface:#231F1A;--surface-2:#2C2720;--glow:rgba(167,165,128,.16);color-scheme:dark}
+[data-theme="dark"] body{background:var(--paper);color:var(--ink)}
+[data-theme="dark"] nav{background:rgba(26,23,20,.82);border-bottom-color:var(--line)}
+[data-theme="dark"] .topbar,[data-theme="dark"] footer,[data-theme="dark"] .values,[data-theme="dark"] .split,[data-theme="dark"] .collhero{background:var(--surface);color:var(--ink)}
+[data-theme="dark"] footer a,[data-theme="dark"] .values span{color:var(--ink2)}
+[data-theme="dark"] footer h5,[data-theme="dark"] footer .logo{color:var(--ink)}
+[data-theme="dark"] .fbot{border-top-color:var(--line)}
+[data-theme="dark"] .split .txt .h2,[data-theme="dark"] .split .txt p{color:var(--ink)}
+[data-theme="dark"] .b2b{background:var(--surface-2);color:var(--ink)}
+[data-theme="dark"] .b2b .h2,[data-theme="dark"] .b2b .upper,[data-theme="dark"] .b2b p{color:var(--ink)}
+[data-theme="dark"] .btn{background:var(--cork);color:#1A1714}
+[data-theme="dark"] .btn:hover{background:#E6B57C;color:#1A1714}
+[data-theme="dark"] .prod .ph,[data-theme="dark"] .cell,[data-theme="dark"] .gallery .main,[data-theme="dark"] .pronote,[data-theme="dark"] .thumbs img{background:var(--paper2)}
+/* tekst nad zdjeciami zostaje kremowy niezaleznie od motywu */
+[data-theme="dark"] .hero .inner,[data-theme="dark"] .hero .kick,[data-theme="dark"] .hero .btn.ghost,[data-theme="dark"] .cell .lbl{color:#F1E9DB}
+/* hero scrim glebszy + sage glow */
+[data-theme="dark"] .hero::after{background:radial-gradient(120% 90% at 18% 100%,var(--glow),transparent 60%),linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.62))}
+[data-theme="dark"] body::before{opacity:.045;mix-blend-mode:screen}
