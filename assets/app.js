@@ -40,7 +40,7 @@ const T = {
   acc1:'Details & materials',acc1b:'Natural cork handle, FSC beechwood core, boar &amp; nylon bristles. Handmade in Spain. Naturally antibacterial and lightweight.',
   acc2:'Shipping & returns',acc2b:'Free shipping over €45. Dispatched in 24–48h. 30-day returns. Worldwide delivery available.',
   acc3:'Care',acc3b:'Remove hair after each use, clean with the Regincós brush cleaner. Keep cork dry. Do not soak.',
-  trust1:'Handmade in Spain',trust2:'30-day returns',trust3:'Pro trusted',rel_title:'Complete the set',rv_eye:'Reviews',rv_h2:'What stylists say.',rv_count:'128 reviews · 96% would recommend',rf_all:'All hair',
+  trust1:'Handmade in Spain · since 1987',trust2:'30-day returns',trust3:'Pro trusted',trust4:'FSC-certified cork',rel_title:'Complete the set',rv_eye:'Reviews',rv_h2:'What stylists say.',rv_count:'128 reviews · 96% would recommend',rf_all:'All hair',
   pc1:'Cork Grip Round',pc2:'Cork Grip Large',pc3:'Cork Paddle Brush',pc4:'Cork Vent Brush',pc5:'Cork Duo Brush',pc6:'Cork Elipse Brush',pc7:'Cork Premium Noire',pc8:'Cork Oval Brush'
  },
  pt:{
@@ -84,7 +84,7 @@ const T = {
   acc1:'Detalhes e materiais',acc1b:'Pega de cortiça natural, núcleo de faia FSC, cerdas de javali e nylon. Feita à mão em Espanha. Naturalmente antibacteriana e leve.',
   acc2:'Envios e devoluções',acc2b:'Envio grátis acima de €45. Expedição em 24–48h. Devoluções em 30 dias. Entrega internacional disponível.',
   acc3:'Cuidados',acc3b:'Remova o cabelo após cada uso, limpe com o limpa-escovas Regincós. Mantenha a cortiça seca. Não mergulhar.',
-  trust1:'Feita à mão em Espanha',trust2:'Devoluções 30 dias',trust3:'Confiança dos profissionais',rel_title:'Complete o conjunto',rv_eye:'Avaliações',rv_h2:'O que dizem os estilistas.',rv_count:'128 avaliações · 96% recomendam',rf_all:'Todos',
+  trust1:'Feita à mão · desde 1987',trust2:'Devoluções 30 dias',trust3:'Confiança dos profissionais',trust4:'Cortiça certificada FSC',rel_title:'Complete o conjunto',rv_eye:'Avaliações',rv_h2:'O que dizem os estilistas.',rv_count:'128 avaliações · 96% recomendam',rf_all:'Todos',
   pc1:'Cork Grip Redonda',pc2:'Cork Grip Grande',pc3:'Escova Plana Cortiça',pc4:'Escova Ventilada Cortiça',pc5:'Cork Duo',pc6:'Cork Elipse',pc7:'Cork Premium Noire',pc8:'Cork Oval'
  }
 };
