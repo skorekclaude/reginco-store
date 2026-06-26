@@ -40,7 +40,7 @@ const T = {
   acc1:'Details & materials',acc1b:'Natural cork handle, FSC beechwood core, boar &amp; nylon bristles. Handmade in Spain. Naturally antibacterial and lightweight.',
   acc2:'Shipping & returns',acc2b:'Free shipping over €45. Dispatched in 24–48h. 30-day returns. Worldwide delivery available.',
   acc3:'Care',acc3b:'Remove hair after each use, clean with the Regincós brush cleaner. Keep cork dry. Do not soak.',
-  trust1:'Handmade in Spain',trust2:'30-day returns',trust3:'Pro trusted',rel_title:'Complete the set',rv_eye:'Reviews',rv_h2:'What stylists say.',rv_count:'128 reviews · 96% would recommend',
+  trust1:'Handmade in Spain',trust2:'30-day returns',trust3:'Pro trusted',rel_title:'Complete the set',rv_eye:'Reviews',rv_h2:'What stylists say.',rv_count:'128 reviews · 96% would recommend',rf_all:'All hair',
   pc1:'Cork Grip Round',pc2:'Cork Grip Large',pc3:'Cork Paddle Brush',pc4:'Cork Vent Brush',pc5:'Cork Duo Brush',pc6:'Cork Elipse Brush',pc7:'Cork Premium Noire',pc8:'Cork Oval Brush'
  },
  pt:{
@@ -84,7 +84,7 @@ const T = {
   acc1:'Detalhes e materiais',acc1b:'Pega de cortiça natural, núcleo de faia FSC, cerdas de javali e nylon. Feita à mão em Espanha. Naturalmente antibacteriana e leve.',
   acc2:'Envios e devoluções',acc2b:'Envio grátis acima de €45. Expedição em 24–48h. Devoluções em 30 dias. Entrega internacional disponível.',
   acc3:'Cuidados',acc3b:'Remova o cabelo após cada uso, limpe com o limpa-escovas Regincós. Mantenha a cortiça seca. Não mergulhar.',
-  trust1:'Feita à mão em Espanha',trust2:'Devoluções 30 dias',trust3:'Confiança dos profissionais',rel_title:'Complete o conjunto',rv_eye:'Avaliações',rv_h2:'O que dizem os estilistas.',rv_count:'128 avaliações · 96% recomendam',
+  trust1:'Feita à mão em Espanha',trust2:'Devoluções 30 dias',trust3:'Confiança dos profissionais',rel_title:'Complete o conjunto',rv_eye:'Avaliações',rv_h2:'O que dizem os estilistas.',rv_count:'128 avaliações · 96% recomendam',rf_all:'Todos',
   pc1:'Cork Grip Redonda',pc2:'Cork Grip Grande',pc3:'Escova Plana Cortiça',pc4:'Escova Ventilada Cortiça',pc5:'Cork Duo',pc6:'Cork Elipse',pc7:'Cork Premium Noire',pc8:'Cork Oval'
  }
 };
@@ -94,6 +94,7 @@ function setLang(l){
   document.documentElement.lang=l;
   try{localStorage.setItem('rg_lang',l);}catch(e){}
   if(window.quizRerender)window.quizRerender();
+  if(window.reviewsRerender)window.reviewsRerender();
 }
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
@@ -153,18 +154,28 @@ function initSearch(){
 
 /* ===== UGC reviews (krok 19). Prototyp; produkcyjnie -> Judge.me / Loox / Okendo via app blocks + metafields ===== */
 const REVIEWS=[
- {n:'Marta R.',loc:'Lisboa',s:5,b:'A pega de cortiça é incrível — leve e quente ao toque. Uso-a todos os dias no salão.'},
- {n:'James A.',loc:'London',s:5,b:'Best round brush I have owned. The cork grip genuinely stops my wrist aching on long blow-dries.'},
- {n:'Sofia M.',loc:'Porto',s:4,b:'Linda e bem feita. As cerdas são firmes; demora um pouco a habituar, mas vale a pena.'},
- {n:'Daniel K.',loc:'Berlin',s:5,b:'A beautiful object that actually works. You can feel the 1987 heritage — proper craftsmanship.'}
+ {n:'Marta R.',loc:'Lisboa',s:5,ht:'thick',b:'A pega de cortiça é incrível — leve e quente ao toque. Uso-a todos os dias no salão.'},
+ {n:'James A.',loc:'London',s:5,ht:'fine',b:'Best round brush I have owned. The cork grip genuinely stops my wrist aching on long blow-dries.'},
+ {n:'Sofia M.',loc:'Porto',s:4,ht:'curly',b:'Linda e bem feita. As cerdas são firmes; demora um pouco a habituar, mas vale a pena.'},
+ {n:'Daniel K.',loc:'Berlin',s:5,ht:'straight',b:'A beautiful object that actually works. You can feel the 1987 heritage — proper craftsmanship.'}
 ];
+const HT_KEY={fine:'qo_fine',thick:'qo_thick',curly:'qo_curly',straight:'qo_straight'};
 function initReviews(){
   const list=document.getElementById('rlist');if(!list)return;
+  function L(k){const l=document.documentElement.lang||'en';return (T[l]&&T[l][k]!==undefined)?T[l][k]:k;}
   const avg=REVIEWS.reduce((a,r)=>a+r.s,0)/REVIEWS.length;
   const avgEl=document.querySelector('.reviews .ravg');if(avgEl)avgEl.textContent=avg.toFixed(1);
   const bars=document.getElementById('rbars');
   if(bars){let h='';for(let star=5;star>=1;star--){const c=REVIEWS.filter(r=>r.s===star).length;const pct=Math.round(c/REVIEWS.length*100);h+='<div class="rbar"><span class="rb-l">'+star+'★</span><span class="rb-t"><span style="width:'+pct+'%"></span></span><span class="rb-n">'+c+'</span></div>';}bars.innerHTML=h;}
-  list.innerHTML=REVIEWS.map(r=>'<div class="rcard"><div class="rc-top"><span class="rc-av">'+r.n.charAt(0)+'</span><div><div class="rc-n">'+r.n+'</div><div class="rc-loc">'+r.loc+'</div></div><span class="rc-st">'+'★'.repeat(r.s)+'<span class="rc-off">'+'★'.repeat(5-r.s)+'</span></span></div><p class="rc-b">'+r.b+'</p></div>').join('');
+  const filters=document.getElementById('rfilters');let active='all';
+  function renderCards(){
+    const rows=REVIEWS.filter(r=>active==='all'||r.ht===active);
+    list.innerHTML=rows.map(r=>'<div class="rcard"><div class="rc-top"><span class="rc-av">'+r.n.charAt(0)+'</span><div><div class="rc-n">'+r.n+'</div><div class="rc-loc">'+r.loc+'</div></div><span class="rc-st">'+'★'.repeat(r.s)+'<span class="rc-off">'+'★'.repeat(5-r.s)+'</span></span></div><p class="rc-b">'+r.b+'</p><span class="rc-ht">'+L(HT_KEY[r.ht])+'</span></div>').join('');
+  }
+  const types=['all','fine','thick','curly','straight'];
+  function renderChips(){if(!filters)return;filters.innerHTML=types.map(t=>'<button class="rchip'+(t===active?' on':'')+'" type="button" data-ht="'+t+'">'+L(t==='all'?'rf_all':HT_KEY[t])+'</button>').join('');filters.querySelectorAll('.rchip').forEach(c=>c.addEventListener('click',()=>{active=c.getAttribute('data-ht');renderChips();renderCards();}));}
+  renderChips();renderCards();
+  window.reviewsRerender=function(){renderChips();renderCards();};
 }
 
 /* ===== Find-your-brush quiz (high-ROI: Jones Road/Shein — discovery + email capture; prod -> Klaviyo/Shopify Forms) ===== */

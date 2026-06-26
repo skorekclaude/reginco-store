@@ -433,3 +433,11 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .bn-note{font-size:12.5px;color:var(--ink2);margin-top:10px}
 .btn.block.added{background:var(--sage);color:#14110d}
 @media(max-width:900px){.bundle .bn-row{grid-template-columns:1fr;gap:22px}}
+
+/* ===== reviews filter-by-hair-type (high-ROI #2: Shein filter-by-fit) ===== */
+.rfilters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 4px}
+.rchip{font-size:12.5px;font-weight:500;padding:7px 14px;border:1px solid var(--line);border-radius:20px;background:transparent;color:var(--ink2);cursor:pointer;transition:.15s}
+.rchip:hover{border-color:var(--cork);transform:translateY(-1px)}
+.rchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rcard{position:relative}
+.rc-ht{display:inline-block;margin-top:12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cork-d);border:1px solid var(--line);padding:3px 9px}
