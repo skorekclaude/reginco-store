@@ -1,0 +1,110 @@
+{%- comment -%}
+  Sustainability — editorial page section.
+  Hero statement → pillars (number + icon) → materials note (split) → closing CTA.
+  Copy is editable via section/block settings; stable UI labels via {{ | t }}.
+{%- endcomment -%}
+
+<header class="collhero">
+  {%- if section.settings.hero_image != blank -%}
+    {{ section.settings.hero_image | image_url: width: 1800 | image_tag: class: 'img', alt: section.settings.hero_heading }}
+  {%- endif -%}
+  <div class="wrap">
+    <div class="crumb">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> &nbsp;/&nbsp; {{ 'sustainability.breadcrumb' | t }}
+    </div>
+    {%- if section.settings.hero_kicker != blank -%}<div class="upper kick">{{ section.settings.hero_kicker }}</div>{%- endif -%}
+    <h1 class="serif">{{ section.settings.hero_heading }}</h1>
+    {%- if section.settings.hero_text != blank -%}<p>{{ section.settings.hero_text }}</p>{%- endif -%}
+  </div>
+</header>
+
+{%- if section.blocks.size > 0 -%}
+<section class="wrap sustain">
+  {%- if section.settings.pillars_eyebrow != blank -%}<div class="eyebrow upper">{{ section.settings.pillars_eyebrow }}</div>{%- endif -%}
+  {%- if section.settings.pillars_heading != blank -%}<div class="h2 serif">{{ section.settings.pillars_heading }}</div>{%- endif -%}
+  <div class="sustain-grid">
+    {%- for block in section.blocks -%}
+      <div class="pillar" {{ block.shopify_attributes }}>
+        {%- if block.settings.stat != blank -%}<div class="pillar-num serif">{{ block.settings.stat }}</div>{%- endif -%}
+        {%- if block.settings.icon != blank -%}<div class="pillar-ic" aria-hidden="true">{{ block.settings.icon }}</div>{%- endif -%}
+        <div class="pillar-h serif">{{ block.settings.heading }}</div>
+        {%- if block.settings.text != blank -%}<p class="pillar-p">{{ block.settings.text }}</p>{%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+
+{%- if section.settings.note_heading != blank or section.settings.note_image != blank -%}
+<section class="wrap">
+  <div class="split">
+    {%- if section.settings.note_image != blank -%}
+    <div class="img" style="background-image:url('{{ section.settings.note_image | image_url: width: 1000 }}')"></div>
+    {%- endif -%}
+    <div class="txt">
+      {%- if section.settings.note_stamp != blank -%}<div class="stamp serif">{{ section.settings.note_stamp }}</div>{%- endif -%}
+      {%- if section.settings.note_eyebrow != blank -%}<div class="upper" style="color:var(--cork);margin:18px 0 10px">{{ section.settings.note_eyebrow }}</div>{%- endif -%}
+      <div class="h2 serif">{{ section.settings.note_heading }}</div>
+      {%- if section.settings.note_text != blank -%}<p>{{ section.settings.note_text }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<section class="wrap story-cta">
+  <div class="h2 serif">{{ section.settings.cta_heading }}</div>
+  {%- assign cta_url = section.settings.cta_link | default: routes.all_products_collection_url -%}
+  <a class="btn" href="{{ cta_url }}">{{ section.settings.cta_label | default: 'sustainability.cta_default' | t }}</a>
+</section>
+
+{% schema %}
+{
+  "name": "Sustentabilidade",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Zdjęcie tła hero" },
+    { "type": "text", "id": "hero_kicker", "label": "Nadtytuł", "default": "Cortiça · renovável · desde 1987" },
+    { "type": "inline_richtext", "id": "hero_heading", "label": "Nagłówek", "info": "Owiń słowo w <em>…</em> dla akcentu kursywą cork", "default": "Feito para durar <em>décadas</em>, não estações." },
+    { "type": "textarea", "id": "hero_text", "label": "Tekst hero", "default": "A cortiça renova-se sem abater a árvore. A madeira de faia é de origem responsável. Cada escova é feita à mão em Espanha para durar uma vida." },
+
+    { "type": "header", "content": "Pilares" },
+    { "type": "text", "id": "pillars_eyebrow", "label": "Nadtytuł sekcji", "default": "O nosso compromisso" },
+    { "type": "text", "id": "pillars_heading", "label": "Nagłówek sekcji", "default": "Materiais que respeitam o que vem a seguir." },
+
+    { "type": "header", "content": "Nota sobre materiais (split)" },
+    { "type": "image_picker", "id": "note_image", "label": "Zdjęcie" },
+    { "type": "text", "id": "note_stamp", "label": "Stempel", "default": "'87" },
+    { "type": "text", "id": "note_eyebrow", "label": "Nadtytuł", "default": "Cortiça & faia" },
+    { "type": "text", "id": "note_heading", "label": "Nagłówek", "default": "Da casca, não do tronco." },
+    { "type": "textarea", "id": "note_text", "label": "Tekst", "default": "A cortiça é colhida da casca do sobreiro a cada nove anos — a árvore continua viva e absorve ainda mais CO₂ ao regenerar-se. O núcleo em faia provém de florestas geridas de forma responsável. As cerdas veganas estão disponíveis em toda a gama." },
+
+    { "type": "header", "content": "CTA final" },
+    { "type": "text", "id": "cta_heading", "label": "Nagłówek CTA", "default": "Escolha uma escova que dura." },
+    { "type": "text", "id": "cta_label", "label": "Przycisk (puste = tłumaczenie)" },
+    { "type": "url", "id": "cta_link", "label": "Link (puste = wszystkie produkty)" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pilar",
+      "settings": [
+        { "type": "text", "id": "stat", "label": "Liczba / statystyka", "info": "np. „9 anos\", „100%\", „1987\"" },
+        { "type": "text", "id": "icon", "label": "Ikona (emoji lub znak)", "default": "🌳" },
+        { "type": "text", "id": "heading", "label": "Nagłówek", "default": "Renovável por natureza" },
+        { "type": "textarea", "id": "text", "label": "Tekst", "default": "A cortiça é colhida à mão sem abater o sobreiro — uma colheita que se repete durante mais de um século." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "default": {
+    "blocks": [
+      { "type": "pillar", "settings": { "stat": "9 anos", "icon": "🌳", "heading": "Renovável por natureza", "text": "A cortiça é colhida à mão da casca do sobreiro a cada nove anos — sem nunca abater a árvore." } },
+      { "type": "pillar", "settings": { "stat": "0", "icon": "✦", "heading": "Naturalmente antibacteriana", "text": "A cortiça resiste a bactérias e humidade sem tratamentos químicos — mais higiene, menos plástico." } },
+      { "type": "pillar", "settings": { "stat": "1987", "icon": "✿", "heading": "Feito à mão em Espanha", "text": "Cada pega é esculpida e montada por artesãos, com madeira de faia de origem responsável." } },
+      { "type": "pillar", "settings": { "stat": "100%", "icon": "♡", "heading": "Opções veganas", "text": "Cerdas veganas em toda a gama e embalagem reduzida ao essencial." } }
+    ]
+  },
+  "presets": [ { "name": "Sustentabilidade" } ]
+}
+{% endschema %}

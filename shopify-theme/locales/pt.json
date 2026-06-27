@@ -37,5 +37,15 @@
     "checkout": "Finalizar compra",
     "empty": "O seu cesto está vazio.",
     "continue": "Continuar a comprar"
+  },
+  "sections": {
+    "product_bundle": {
+      "add_all": "Adicionar tudo ao cesto",
+      "added": "Adicionado ao cesto ✓",
+      "adding": "A adicionar…",
+      "error": "Algo correu mal. Tente novamente.",
+      "save": "Poupe {{ amount }}",
+      "editor_empty": "Escolha produtos complementares nos blocos da secção, ou configure recomendações de produtos, para mostrar o pacote."
+    }
   }
 }

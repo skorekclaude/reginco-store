@@ -37,5 +37,15 @@
     "checkout": "Checkout",
     "empty": "Your cart is empty.",
     "continue": "Continue shopping"
+  },
+  "sections": {
+    "product_bundle": {
+      "add_all": "Add all to cart",
+      "added": "Added to cart ✓",
+      "adding": "Adding…",
+      "error": "Something went wrong. Please try again.",
+      "save": "Save {{ amount }}",
+      "editor_empty": "Pick complementary products in the section blocks, or set up product recommendations, to show the bundle."
+    }
   }
 }

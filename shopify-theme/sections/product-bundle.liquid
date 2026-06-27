@@ -1,0 +1,200 @@
+{%- comment -%}
+  Complete-the-ritual bundle / frequently-bought-together.
+  Intended for the PRODUCT template. Shows the current product + complementary
+  products (merchant-picked via blocks, else product.recommendations), a combined
+  price with an optional discount badge, and an "add all" button that adds every
+  first-available variant to the cart via /cart/add.js (JS in global.js).
+{%- endcomment -%}
+
+{%- liquid
+  assign max_extra = section.settings.max_products | default: 2
+
+  comment
+    Count how many merchant-picked complementary products are valid (a product
+    that isn't the current one). Drives the picked-vs-recommendations fallback.
+  endcomment
+  assign picked = 0
+  for block in section.blocks
+    assign bp = block.settings.product
+    if bp != blank and bp.id != product.id and picked < max_extra
+      assign picked = picked | plus: 1
+    endif
+  endfor
+-%}
+
+<section class="wrap bundle" id="bundle-{{ section.id }}">
+  {%- if section.settings.eyebrow != blank -%}<div class="upper eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+  {%- if section.settings.heading != blank -%}<div class="h2 serif">{{ section.settings.heading }}</div>{%- endif -%}
+
+  {%- comment -%}
+    Render block-picked complements, capped at max_extra. If none picked,
+    fall back to product.recommendations.
+  {%- endcomment -%}
+  {%- assign rendered = 0 -%}
+  {%- capture items_html -%}
+    {%- comment -%} Always start with the current product {%- endcomment -%}
+    {%- assign cur_variant = product.selected_or_first_available_variant -%}
+    <div class="bn-item" data-variant-id="{{ cur_variant.id }}" data-price="{{ cur_variant.price }}">
+      {%- if product.featured_media -%}
+        <img src="{{ product.featured_media | image_url: width: 200 }}" alt="{{ product.title | escape }}" loading="lazy" width="64" height="64">
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+      {%- endif -%}
+      <div>
+        <div class="bn-n serif">{{ product.title }}</div>
+        <div class="bn-p">{{ cur_variant.price | money }}</div>
+      </div>
+    </div>
+
+    {%- if picked > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- assign bp = block.settings.product -%}
+        {%- if bp != blank and bp.id != product.id and rendered < max_extra -%}
+          {%- assign bv = bp.selected_or_first_available_variant -%}
+          {%- if bv != blank -%}
+            {%- assign rendered = rendered | plus: 1 -%}
+            <span class="bn-plus" aria-hidden="true">+</span>
+            <div class="bn-item" data-variant-id="{{ bv.id }}" data-price="{{ bv.price }}">
+              {%- if bp.featured_media -%}
+                <img src="{{ bp.featured_media | image_url: width: 200 }}" alt="{{ bp.title | escape }}" loading="lazy" width="64" height="64">
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+              {%- endif -%}
+              <div>
+                <a class="bn-n serif" href="{{ bp.url }}">{{ bp.title }}</a>
+                <div class="bn-p">{{ bv.price | money }}</div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for rec in product.recommendations.products limit: max_extra -%}
+        {%- assign bv = rec.selected_or_first_available_variant -%}
+        {%- if bv != blank -%}
+          {%- assign rendered = rendered | plus: 1 -%}
+          <span class="bn-plus" aria-hidden="true">+</span>
+          <div class="bn-item" data-variant-id="{{ bv.id }}" data-price="{{ bv.price }}">
+            {%- if rec.featured_media -%}
+              <img src="{{ rec.featured_media | image_url: width: 200 }}" alt="{{ rec.title | escape }}" loading="lazy" width="64" height="64">
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+            {%- endif -%}
+            <div>
+              <a class="bn-n serif" href="{{ rec.url }}">{{ rec.title }}</a>
+              <div class="bn-p">{{ bv.price | money }}</div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- comment -%} Compute the combined total in cents {%- endcomment -%}
+  {%- assign total_cents = product.selected_or_first_available_variant.price -%}
+  {%- assign extra_count = 0 -%}
+  {%- if picked > 0 -%}
+    {%- assign counted = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- assign bp = block.settings.product -%}
+      {%- if bp != blank and bp.id != product.id and counted < max_extra -%}
+        {%- assign bv = bp.selected_or_first_available_variant -%}
+        {%- if bv != blank -%}
+          {%- assign total_cents = total_cents | plus: bv.price -%}
+          {%- assign counted = counted | plus: 1 -%}
+          {%- assign extra_count = extra_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- for rec in product.recommendations.products limit: max_extra -%}
+      {%- assign bv = rec.selected_or_first_available_variant -%}
+      {%- if bv != blank -%}
+        {%- assign total_cents = total_cents | plus: bv.price -%}
+        {%- assign extra_count = extra_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%} Apply discount (percent off the combined total) {%- endcomment -%}
+  {%- assign discount = section.settings.discount_percent | default: 0 -%}
+  {%- assign discounted_cents = total_cents -%}
+  {%- assign saved_cents = 0 -%}
+  {%- if discount > 0 -%}
+    {%- assign saved_cents = total_cents | times: discount | divided_by: 100 -%}
+    {%- assign discounted_cents = total_cents | minus: saved_cents -%}
+  {%- endif -%}
+
+  {%- comment -%} Only render the bundle when there is at least one complementary product {%- endcomment -%}
+  {%- if extra_count > 0 -%}
+    <div class="bn-row">
+      <div class="bn-items">
+        {{ items_html }}
+      </div>
+      <div class="bn-buy">
+        {%- if discount > 0 -%}
+          <div class="bn-was">{{ total_cents | money }}</div>
+        {%- endif -%}
+        <div class="bn-total">
+          {{ discounted_cents | money }}
+          {%- if saved_cents > 0 -%}
+            {%- assign saved_money = saved_cents | money -%}
+            <span class="bn-save">{{ 'sections.product_bundle.save' | t: amount: saved_money }}</span>
+          {%- endif -%}
+        </div>
+        <button class="btn block" type="button" data-bundle-add
+          data-discount="{{ discount }}"
+          data-cart-redirect="{{ section.settings.go_to_cart }}">
+          {{ 'sections.product_bundle.add_all' | t }}
+        </button>
+        {%- if section.settings.note != blank -%}<div class="bn-note">{{ section.settings.note }}</div>{%- endif -%}
+      </div>
+    </div>
+  {%- elsif request.design_mode -%}
+    {%- comment -%} Theme-editor hint when nothing is pickable yet {%- endcomment -%}
+    <div class="bn-row"><div class="bn-note">{{ 'sections.product_bundle.editor_empty' | t }}</div></div>
+  {%- endif -%}
+</section>
+
+{%- comment -%} Localized strings + cart route for the add-all handler in global.js {%- endcomment -%}
+<script>
+  window.RGbundleStrings = window.RGbundleStrings || {
+    adding: {{ 'sections.product_bundle.adding' | t | json }},
+    added: {{ 'sections.product_bundle.added' | t | json }},
+    error: {{ 'sections.product_bundle.error' | t | json }}
+  };
+  window.RGcartUrl = {{ routes.cart_url | json }};
+</script>
+
+{% schema %}
+{
+  "name": "Pacote (ritual)",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Nadtytuł", "default": "Complete o ritual" },
+    { "type": "inline_richtext", "id": "heading", "label": "Nagłówek", "info": "Owiń jedno słowo w <em>…</em> dla akcentu kursywą cork", "default": "O conjunto <em>completo</em>." },
+    { "type": "range", "id": "max_products", "label": "Maks. produktów uzupełniających", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "range", "id": "discount_percent", "label": "Zniżka na pakiet (%)", "info": "Zniżka liczona od sumy cen. 0 = brak zniżki.", "min": 0, "max": 50, "step": 1, "default": 10 },
+    { "type": "checkbox", "id": "go_to_cart", "label": "Przejdź do koszyka po dodaniu", "default": true },
+    { "type": "richtext", "id": "note", "label": "Notatka", "default": "<p>Embalado para oferta · envio grátis incluído.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Produkt uzupełniający",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Produkt" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pacote (ritual)",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

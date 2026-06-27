@@ -9,7 +9,16 @@
       },
       "block_order": ["a1", "a2", "a3"],
       "settings": {}
+    },
+    "bundle": {
+      "type": "product-bundle",
+      "blocks": {
+        "b1": { "type": "product", "settings": {} },
+        "b2": { "type": "product", "settings": {} }
+      },
+      "block_order": ["b1", "b2"],
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": ["main", "bundle"]
 }

@@ -1,0 +1,112 @@
+<section class="wrap">
+  {%- if section.settings.eyebrow != blank -%}<div class="upper eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+  {%- if section.settings.heading != blank -%}<div class="h2 serif">{{ section.settings.heading }}</div>{%- endif -%}
+
+  <div class="motion-grid">
+    {%- for block in section.blocks -%}
+      {%- assign p = block.settings.product -%}
+      {%- if p != blank -%}
+        {%- comment -%} Poster: block image override, else product featured image {%- endcomment -%}
+        {%- if block.settings.poster != blank -%}
+          {%- assign poster_url = block.settings.poster | image_url: width: 500 -%}
+        {%- elsif p.featured_media -%}
+          {%- assign poster_url = p.featured_media | image_url: width: 500 -%}
+        {%- else -%}
+          {%- assign poster_url = '' -%}
+        {%- endif -%}
+
+        {%- comment -%} Orbit video source priority: block file → block url → product metafield {%- endcomment -%}
+        {%- assign orbit_meta = p.metafields.custom.orbit_video -%}
+        <a class="mprod" href="{{ p.url }}" {{ block.shopify_attributes }}>
+          <div class="mph">
+            {%- if block.settings.video != blank -%}
+              <video muted loop playsinline preload="none"{% if poster_url != blank %} poster="{{ poster_url }}"{% endif %}>
+                {%- for source in block.settings.video.sources -%}
+                  <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                {%- endfor -%}
+              </video>
+            {%- elsif block.settings.video_url != blank -%}
+              <video muted loop playsinline preload="none"{% if poster_url != blank %} poster="{{ poster_url }}"{% endif %}>
+                <source src="{{ block.settings.video_url }}" type="video/mp4">
+              </video>
+            {%- elsif orbit_meta != blank and orbit_meta.value.sources -%}
+              <video muted loop playsinline preload="none"{% if poster_url != blank %} poster="{{ poster_url }}"{% endif %}>
+                {%- for source in orbit_meta.value.sources -%}
+                  <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                {%- endfor -%}
+              </video>
+            {%- elsif orbit_meta != blank -%}
+              <video muted loop playsinline preload="none"{% if poster_url != blank %} poster="{{ poster_url }}"{% endif %}>
+                <source src="{{ orbit_meta }}" type="video/mp4">
+              </video>
+            {%- elsif poster_url != blank -%}
+              <img src="{{ poster_url }}" alt="{{ p.title | escape }}" loading="lazy" width="500" height="500">
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+            {%- endif -%}
+          </div>
+          <h4 class="serif">{{ p.title }}</h4>
+          <div class="px">{{ p.price | money }}</div>
+        </a>
+      {%- endif -%}
+    {%- else -%}
+      {%- comment -%} Editor/empty fallback so the grid isn't blank {%- endcomment -%}
+      {%- for i in (1..4) -%}
+        <span class="mprod">
+          <div class="mph">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
+          <h4 class="serif">{{ 'sections.bestsellers_motion.placeholder_title' | t }}</h4>
+          <div class="px">{{ 0 | money }}</div>
+        </span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+(function () {
+  var cells = document.querySelectorAll('#shopify-section-{{ section.id }} .motion-grid video');
+  if (!cells.length) return;
+  var rm = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var sd = navigator.connection && navigator.connection.saveData;
+  if (rm || sd) return; /* poster stays; no autoplay */
+  cells.forEach(function (v) {
+    if (v.preload === 'none') v.preload = 'metadata';
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Bestsellers em movimento",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Nadtytuł", "default": "Mais vendidos" },
+    { "type": "inline_richtext", "id": "heading", "label": "Nagłówek", "info": "Owiń jedno słowo w <em>…</em> dla akcentu kursywą cork", "default": "Amada pelos <em>profissionais</em>." }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Produkt (orbit)",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Produkt" },
+        { "type": "video", "id": "video", "label": "Wideo orbit (plik Shopify)", "info": "Krótkie, ciche, zapętlone wideo 360°. Pierwszeństwo przed adresem URL i metafieldem." },
+        { "type": "url", "id": "video_url", "label": "Wideo orbit (URL .mp4)", "info": "Użyj, gdy wideo jest hostowane zewnętrznie. Fallback gdy brak pliku wideo." },
+        { "type": "image_picker", "id": "poster", "label": "Plakat / fallback", "info": "Domyślnie zdjęcie główne produktu. Pokazywane przy reduced-motion / Save-Data." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestsellers em movimento",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

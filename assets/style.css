@@ -566,3 +566,43 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .mobnav-in a:last-child{border-bottom:none}
 @media(max-width:900px){.navburger{display:flex}}
 @media(min-width:901px){.mobnav{display:none}}
+
+/* ===== professionals page ===== */
+/* ===== Professionals page (pro_) ===== */
+.pro-hero .inner .btn{margin-top:22px}
+.pro-pillars{padding:64px 0 8px}
+.pro-pillars .h2{margin:6px 0 34px;max-width:18ch}
+.pro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.pro-card{border-top:2px solid var(--line);padding-top:22px}
+.pro-ico{font-size:26px;color:var(--cork);line-height:1;margin-bottom:16px}
+.pro-c-h{font-size:clamp(20px,2vw,25px);margin:0 0 10px}
+.pro-card p,.pro-step p{color:var(--ink);opacity:.78;font-size:15px;line-height:1.6;margin:0}
+.pro-steps{padding:60px 0 24px}
+.pro-steps .h2{margin:6px 0 34px}
+.pro-steprow{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.pro-step .ch-num{margin-bottom:14px}
+.pro-perks{padding:8px 0 40px}
+.pro-trust{justify-content:center;flex-wrap:wrap;gap:14px 30px}
+@media (max-width:820px){
+  .pro-grid,.pro-steprow{grid-template-columns:1fr;gap:26px}
+}
+/* gentle reveal — disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  .pro-card,.pro-step{animation:proFade .6s ease both}
+  .pro-grid .pro-card:nth-child(2),.pro-steprow .pro-step:nth-child(2){animation-delay:.08s}
+  .pro-grid .pro-card:nth-child(3),.pro-steprow .pro-step:nth-child(3){animation-delay:.16s}
+  @keyframes proFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+}
+
+/* ===== help page ===== */
+/* ===== help / customer-care page ===== */
+.help-contact{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+.help-card{border:1px solid var(--line);padding:20px 22px}
+.help-card .upper{color:var(--ink2);margin-bottom:8px}
+.help-card .help-val{font-size:15px;color:var(--ink2)}
+.help-card .help-link{display:inline-block;font-size:19px;color:var(--ink);font-weight:420;font-variation-settings:"opsz" 40;letter-spacing:-.01em;border-bottom:1px solid var(--line);transition:border-color .2s,color .2s}
+.help-card .help-link:hover{color:var(--cork-d);border-color:var(--cork)}
+.help-faq{max-width:760px;margin-top:30px}
+#faq{scroll-margin-top:96px}
+#shipping,#returns,#contact{scroll-margin-top:96px}
+@media(max-width:700px){.help-contact{grid-template-columns:1fr}}

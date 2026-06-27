@@ -1,0 +1,196 @@
+{%- comment -%}
+  Find-your-brush quiz — 3 steps (hair type → material → use) routing to a recommended product
+  + 10%-off email capture. Steps/answers are fixed; the result mapping is editor-configurable via
+  "result" blocks (each = an answer-combo → a product picker). Driven by Shopify product objects.
+{%- endcomment -%}
+
+{%- liquid
+  assign default_product = section.settings.default_product
+-%}
+
+<section class="wrap quiz" id="quiz-{{ section.id }}" data-quiz-section>
+  {%- if section.settings.eyebrow != blank -%}<div class="upper eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+  {%- if section.settings.heading != blank -%}<div class="h2 serif">{{ section.settings.heading }}</div>{%- endif -%}
+  {%- if section.settings.lead != blank -%}<div class="lead">{{ section.settings.lead }}</div>{%- endif -%}
+
+  <div class="qz-card">
+    <div class="qz-prog"><span class="qz-bar" data-qz-bar></span></div>
+    <div class="qz-stage" data-qz-stage></div>
+  </div>
+
+  {%- comment -%} Email-capture: real Shopify newsletter form, revealed by JS on the result screen {%- endcomment -%}
+  <div class="qz-email-tpl" hidden data-qz-email-tpl>
+    <div class="qz-email">
+      <h4>{{ 'quiz.email_heading' | t }}</h4>
+      <p>{{ 'quiz.email_text' | t }}</p>
+      {%- form 'customer', class: 'qz-email-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter,find-your-brush-quiz">
+        {%- if form.posted_successfully? -%}
+          <div class="qz-done">{{ 'quiz.email_done' | t }}</div>
+        {%- else -%}
+          <div class="qz-email-row">
+            <input
+              type="email"
+              name="contact[email]"
+              required
+              autocomplete="email"
+              placeholder="{{ 'quiz.email_placeholder' | t }}"
+              aria-label="{{ 'quiz.email_placeholder' | t }}">
+            <button class="btn dark" type="submit">{{ 'quiz.email_button' | t }}</button>
+          </div>
+          {%- if form.errors -%}<div class="qz-err">{{ form.errors | default_errors }}</div>{%- endif -%}
+        {%- endif -%}
+      {%- endform -%}
+      <button class="qz-back" type="button" data-qz-restart>{{ 'quiz.restart' | t }}</button>
+    </div>
+  </div>
+
+  {%- comment -%} Result→product mapping, emitted as JSON for the JS engine {%- endcomment -%}
+  <script type="application/json" data-quiz-config>
+    {
+      "steps": [
+        {
+          "key": "hair",
+          "q": {{ 'quiz.q_hair' | t | json }},
+          "opts": [
+            ["fine",     {{ 'quiz.o_fine'     | t | json }}],
+            ["thick",    {{ 'quiz.o_thick'    | t | json }}],
+            ["curly",    {{ 'quiz.o_curly'    | t | json }}],
+            ["straight", {{ 'quiz.o_straight' | t | json }}]
+          ]
+        },
+        {
+          "key": "material",
+          "q": {{ 'quiz.q_material' | t | json }},
+          "opts": [
+            ["cork",   {{ 'quiz.o_cork'   | t | json }}],
+            ["wood",   {{ 'quiz.o_wood'   | t | json }}],
+            ["either", {{ 'quiz.o_either' | t | json }}]
+          ]
+        },
+        {
+          "key": "use",
+          "q": {{ 'quiz.q_use' | t | json }},
+          "opts": [
+            ["blowdry",  {{ 'quiz.o_blowdry'  | t | json }}],
+            ["detangle", {{ 'quiz.o_detangle' | t | json }}],
+            ["finish",   {{ 'quiz.o_finish'   | t | json }}],
+            ["beard",    {{ 'quiz.o_beard'    | t | json }}]
+          ]
+        }
+      ],
+      "i18n": {
+        "back":   {{ 'quiz.back'       | t | json }},
+        "eye":    {{ 'quiz.result_eye' | t | json }},
+        "cta":    {{ 'quiz.cta'        | t | json }},
+        "noprod": {{ 'quiz.no_product' | t | json }}
+      },
+      "rules": [
+        {%- assign first_rule = true -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'result' -%}
+            {%- assign rp = block.settings.product -%}
+            {%- if rp != blank -%}
+              {%- unless first_rule %},{% endunless -%}
+              {%- assign first_rule = false -%}
+              {
+                "hair":     {{ block.settings.hair     | json }},
+                "material": {{ block.settings.material | json }},
+                "use":      {{ block.settings.use      | json }},
+                "reason":   {{ block.settings.reason   | json }},
+                "product": {
+                  "title":  {{ rp.title | json }},
+                  "url":    {{ rp.url | json }},
+                  "price":  {{ rp.price | money | json }},
+                  "image":  {{ rp.featured_image | image_url: width: 600 | json }}
+                }
+              }
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      ],
+      "fallback":
+        {%- if default_product != blank -%}
+          {
+            "reason":  {{ section.settings.default_reason | json }},
+            "product": {
+              "title":  {{ default_product.title | json }},
+              "url":    {{ default_product.url | json }},
+              "price":  {{ default_product.price | money | json }},
+              "image":  {{ default_product.featured_image | image_url: width: 600 | json }}
+            }
+          }
+        {%- else -%}
+          null
+        {%- endif -%}
+    }
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Quiz · Encontre a sua escova",
+  "tag": "section",
+  "class": "section-find-your-brush",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Nadtytuł", "default": "Encontre a sua escova" },
+    { "type": "inline_richtext", "id": "heading", "label": "Nagłówek", "info": "Owiń jedno słowo w <em>…</em> dla akcentu cork", "default": "Dois minutos até à sua <em>escova ideal</em>." },
+    { "type": "textarea", "id": "lead", "label": "Tekst wprowadzający", "default": "Responda a três perguntas rápidas e encontramos a escova de cortiça ou madeira certa para si." },
+    { "type": "header", "content": "Resultado padrão (fallback)" },
+    { "type": "product", "id": "default_product", "label": "Produto padrão", "info": "Mostrado quando nenhuma regra corresponde às respostas." },
+    { "type": "textarea", "id": "default_reason", "label": "Razão (padrão)", "default": "O ícone — pega de cortiça e cerdas de javali para volume e brushings sem esforço." }
+  ],
+  "blocks": [
+    {
+      "type": "result",
+      "name": "Regra de resultado",
+      "settings": [
+        { "type": "paragraph", "content": "Cada combinação de respostas aponta para um produto. Deixe um campo em «Qualquer» para corresponder a todas as opções desse passo. A primeira regra correspondente (de cima para baixo) vence." },
+        {
+          "type": "select", "id": "hair", "label": "Cabelo", "default": "any",
+          "options": [
+            { "value": "any", "label": "Qualquer" },
+            { "value": "fine", "label": "Fino" },
+            { "value": "thick", "label": "Grosso" },
+            { "value": "curly", "label": "Encaracolado" },
+            { "value": "straight", "label": "Liso" }
+          ]
+        },
+        {
+          "type": "select", "id": "material", "label": "Material", "default": "any",
+          "options": [
+            { "value": "any", "label": "Qualquer" },
+            { "value": "cork", "label": "Cortiça" },
+            { "value": "wood", "label": "Madeira" },
+            { "value": "either", "label": "Surpreenda-me" }
+          ]
+        },
+        {
+          "type": "select", "id": "use", "label": "Uso", "default": "any",
+          "options": [
+            { "value": "any", "label": "Qualquer" },
+            { "value": "blowdry", "label": "Brushing e volume" },
+            { "value": "detangle", "label": "Desembaraçar e alisar" },
+            { "value": "finish", "label": "Acabamento e brilho" },
+            { "value": "beard", "label": "Barba e cuidado" }
+          ]
+        },
+        { "type": "product", "id": "product", "label": "Produto recomendado" },
+        { "type": "textarea", "id": "reason", "label": "Razão", "default": "A escova certa para esta combinação." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quiz · Encontre a sua escova",
+      "blocks": [
+        { "type": "result", "settings": { "use": "beard", "reason": "Escova de barba vegana — cerdas sem javali para cuidado." } },
+        { "type": "result", "settings": { "material": "wood", "reason": "Escova plana de faia clássica — robusta, quente, para alisar no dia a dia." } },
+        { "type": "result", "settings": { "use": "detangle", "reason": "Uma escova plana de cortiça larga para desembaraçar e alisar cabelo comprido depressa." } },
+        { "type": "result", "settings": { "hair": "curly", "reason": "Uma escova plana de cortiça larga para desembaraçar e alisar cabelo comprido depressa." } },
+        { "type": "result", "settings": { "use": "finish", "reason": "Escova ventilada de cortiça — secagem rápida e controlo de frizz." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
