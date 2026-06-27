@@ -574,7 +574,13 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .jr-sources a,.jr-body a{color:var(--cork-d);text-decoration:underline;text-underline-offset:2px}
 .jr-sources a:hover,.jr-body a:hover{color:var(--cork)}
 .jr-cta{text-align:center;margin-top:44px}
-@media(max-width:600px){.jr-body p{font-size:16px}.jr-hero{padding-top:40px}}
+.jr-lead{font-size:21px;line-height:1.62;color:var(--ink);margin-bottom:22px}
+.jr-lead::first-letter{font-family:'Fraunces',Georgia,serif;float:left;font-size:74px;line-height:.74;padding:9px 12px 0 0;color:var(--cork-d);font-weight:500}
+.jr-close{font-family:'Fraunces',Georgia,serif;font-size:20px;line-height:1.5;color:var(--ink);margin:36px 0 0;font-style:italic}
+.jr-note{margin-top:42px;border-top:1px solid var(--line);padding-top:20px}
+.jr-note p{font-size:13px;line-height:1.85;color:var(--ink2)}
+.jr-note a{color:var(--cork-d);text-decoration:underline;text-underline-offset:2px}
+@media(max-width:600px){.jr-body p{font-size:16px}.jr-hero{padding-top:40px}.jr-lead{font-size:18.5px}.jr-lead::first-letter{font-size:60px}}
 /* ===== stockists (Professionals page) ===== */
 .stockists{padding-top:10px}
 .stk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:8px}
