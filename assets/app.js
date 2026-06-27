@@ -482,6 +482,7 @@ function initPDP(){
     var sbn=document.querySelector('.stickybar .sb-name');if(sbn){sbn.textContent=name;sbn.removeAttribute('data-i');}
     var sbp=document.querySelector('.stickybar .sb-price');if(sbp)sbp.textContent=price;
     var pw=document.getElementById('pdpwish');if(pw){pw.setAttribute('data-h',h);if(window.syncWishButtons)syncWishButtons();}
+    renderRelated(p);
     document.title=name+' — Regincós Hair';
     /* ===== SEO: meta description, Open Graph, JSON-LD Product schema (real catalog data) ===== */
     var sdesc=(p.d||(name+' — handcrafted cork & wood hair brush by Regincós, Spain since 1987.')).slice(0,160);
@@ -614,6 +615,22 @@ function initCartPage(){
   if(grid)grid.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var i=parseInt(b.getAttribute('data-i2'),10);var act=b.getAttribute('data-act');var cc=cartGet();if(!cc[i]&&act!=='rm')return;if(act==='inc')cartSetQty(i,(cc[i].q||1)+1);else if(act==='dec')cartSetQty(i,(cc[i].q||1)-1);else if(act==='rm')cartRemove(i);});
   renderCartPage();
 }
+/* ===== Shared product-card markup (recently-viewed + related; works with delegated add/wish) ===== */
+function prodCardHTML(p){
+  var nm=p.t,price='€'+Number(p.p).toFixed(2).replace('.',',');
+  return '<a class="prod" href="product.html?p='+p.h+'" data-price="'+p.p+'"><div class="ph"><img src="'+((p.imgs&&p.imgs[0])||p.img)+'?width=600" alt="'+nm.replace(/"/g,'')+'" loading="lazy"><button class="wish'+((window.wishHas&&wishHas(p.h))?' on':'')+'" type="button" data-h="'+p.h+'" aria-label="Save to wishlist">♡</button><span class="add" data-i="addcart"></span></div><h4 class="serif">'+nm+'</h4><div class="px">'+price+'</div></a>';
+}
+function _fillCardI18n(grid){var l=document.documentElement.lang||'en';grid.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k];});}
+/* ===== Related products (PDP) — real, from the same line in the catalog ===== */
+function renderRelated(p){
+  var grid=document.getElementById('relatedGrid');if(!grid||!p||!window.CATALOG)return;
+  var rel=window.CATALOG.filter(function(x){return x.line===p.line&&x.h!==p.h;});
+  if(rel.length<4)window.CATALOG.forEach(function(x){if(x.h!==p.h&&rel.indexOf(x)<0&&rel.length<8)rel.push(x);});
+  rel=rel.slice(0,4);
+  if(!rel.length)return;
+  grid.innerHTML=rel.map(prodCardHTML).join('');
+  _fillCardI18n(grid);
+}
 /* ===== Recently viewed (PDP) — localStorage, renders previously-viewed products ===== */
 function recentTrack(){
   var h=new URLSearchParams(location.search).get('p');if(!h)return;
@@ -625,12 +642,8 @@ function recentTrack(){
   if(!sec||!grid||!window.CATALOG)return;
   var items=prev.filter(function(x){return x!==h;}).map(function(x){return window.CATALOG.find(function(p){return p.h===x;});}).filter(Boolean).slice(0,4);
   if(!items.length)return;
-  grid.innerHTML=items.map(function(p){
-    var nm=p.t,price='€'+Number(p.p).toFixed(2).replace('.',',');
-    return '<a class="prod" href="product.html?p='+p.h+'" data-price="'+p.p+'"><div class="ph"><img src="'+((p.imgs&&p.imgs[0])||p.img)+'?width=600" alt="'+nm.replace(/"/g,'')+'" loading="lazy"><button class="wish'+((window.wishHas&&wishHas(p.h))?' on':'')+'" type="button" data-h="'+p.h+'" aria-label="Save to wishlist">♡</button><span class="add" data-i="addcart"></span></div><h4 class="serif">'+nm+'</h4><div class="px">'+price+'</div></a>';
-  }).join('');
-  var l=document.documentElement.lang||'en';
-  grid.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k];});
+  grid.innerHTML=items.map(prodCardHTML).join('');
+  _fillCardI18n(grid);
   sec.hidden=false;
 }
 /* ===== Newsletter band (injected before footer; 10%-off email capture, localStorage) ===== */
