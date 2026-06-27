@@ -1,12 +1,31 @@
+{%- assign orbit_video = product.metafields.custom.orbit_video -%}
+{%- liquid
+  assign orbit_src = ''
+  if orbit_video != blank
+    if orbit_video.value.sources
+      assign orbit_src = orbit_video.value.sources.last.url
+    else
+      assign orbit_src = orbit_video | string
+    endif
+  endif
+-%}
+
 <div class="wrap">
   <div class="crumb"><a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>{% if product.collections.first %} · <a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>{% endif %} · <span>{{ product.title }}</span></div>
 
   <div class="pdp">
-    <div class="gallery">
+    <div class="gallery" data-pdp-gallery>
       <div class="main">
         {%- if product.featured_media -%}
           <img id="mainimg" src="{{ product.featured_media | image_url: width: 1100 }}" alt="{{ product.featured_media.alt | escape }}">
         {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}
+        {%- if orbit_src != blank -%}
+          <video id="v360" class="v360" muted loop playsinline preload="none"
+            {%- if product.featured_media %} poster="{{ product.featured_media | image_url: width: 1100 }}"{%- endif -%}>
+            <source src="{{ orbit_src }}" type="video/mp4">
+          </video>
+          <button type="button" class="v360btn" id="v360btn" aria-pressed="false">{{ 'products.product.view_360' | t }}</button>
+        {%- endif -%}
       </div>
       {%- if product.media.size > 1 -%}
       <div class="thumbs">
@@ -41,7 +60,7 @@
             <option value="{{ v.id }}" {% if v == product.selected_or_first_available_variant %}selected{% endif %} {% unless v.available %}disabled{% endunless %}>{{ v.title }}</option>
           {%- endfor -%}
         </select>
-        <div class="buyrow">
+        <div class="buyrow" data-buyrow>
           <div class="qty"><button type="button" id="minus">−</button><span id="q">1</span><button type="button" id="plus">+</button></div>
           <input type="hidden" name="quantity" id="quantity" value="1">
           <button type="submit" class="btn" {% unless product.available %}disabled{% endunless %}>
@@ -69,6 +88,32 @@
   </div>
 </div>
 
+{%- if section.settings.heritage_show and section.settings.heritage_heading != blank -%}
+  <section class="wrap">
+    <div class="split">
+      <div class="img"{% if section.settings.heritage_image %} style="background-image:url('{{ section.settings.heritage_image | image_url: width: 1000 }}')"{% endif %}></div>
+      <div class="txt">
+        {%- if section.settings.heritage_stamp != blank -%}<div class="stamp serif">{{ section.settings.heritage_stamp }}</div>{%- endif -%}
+        {%- if section.settings.heritage_eyebrow != blank -%}<div class="upper" style="color:var(--cork);margin:18px 0 10px">{{ section.settings.heritage_eyebrow }}</div>{%- endif -%}
+        <div class="h2 serif">{{ section.settings.heritage_heading }}</div>
+        {%- if section.settings.heritage_text != blank -%}<p>{{ section.settings.heritage_text }}</p>{%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+<div class="stickybar" id="pdp-stickybar" aria-hidden="true">
+  <div class="wrap">
+    <div class="sb-info">
+      <span class="sb-name serif">{{ product.title }}</span>
+      <span class="sb-price" id="sb-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+    </div>
+    <button type="submit" form="product-form" class="btn" {% unless product.available %}disabled{% endunless %}>
+      {%- if product.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+    </button>
+  </div>
+</div>
+
 <script>
 window.RGvariants = {{ product.variants | json }};
 window.RGmoney = function(c){ return new Intl.NumberFormat('{{ request.locale.iso_code }}',{style:'currency',currency:'{{ cart.currency.iso_code }}'}).format(c/100); };
@@ -78,7 +123,9 @@ window.RGsyncVariant = function(){
   if(!v) return;
   var sel=document.getElementById('variant-id'); if(sel) sel.value=v.id;
   var pr=document.getElementById('price'); if(pr) pr.textContent=window.RGmoney(v.price);
+  var sp=document.getElementById('sb-price'); if(sp) sp.textContent=window.RGmoney(v.price);
 };
+if (window.RGinitPDP) window.RGinitPDP();
 </script>
 
 {% schema %}
@@ -88,7 +135,14 @@ window.RGsyncVariant = function(){
     { "type": "textarea", "id": "pro_note", "label": "Nota dla profesjonalistów", "default": "Profissional? Inicie sessão para preços grossistas." },
     { "type": "text", "id": "trust1", "label": "Trust 1", "default": "Feita à mão em Espanha" },
     { "type": "text", "id": "trust2", "label": "Trust 2", "default": "Devoluções 30 dias" },
-    { "type": "text", "id": "trust3", "label": "Trust 3", "default": "Confiança dos profissionais" }
+    { "type": "text", "id": "trust3", "label": "Trust 3", "default": "Confiança dos profissionais" },
+    { "type": "header", "content": "Banda de herança (split)" },
+    { "type": "checkbox", "id": "heritage_show", "label": "Mostrar banda de herança", "default": true },
+    { "type": "image_picker", "id": "heritage_image", "label": "Imagem" },
+    { "type": "text", "id": "heritage_stamp", "label": "Selo (ano)", "default": "'87" },
+    { "type": "text", "id": "heritage_eyebrow", "label": "Sobrescrito", "default": "Desde 1987" },
+    { "type": "text", "id": "heritage_heading", "label": "Título", "default": "Feita à mão em Espanha" },
+    { "type": "richtext", "id": "heritage_text", "label": "Texto" }
   ],
   "blocks": [
     { "type": "accordion", "name": "Akordeon", "settings": [

@@ -26,7 +26,7 @@
       {%- form 'customer', class: 'qz-email-form' -%}
         <input type="hidden" name="contact[tags]" value="newsletter,find-your-brush-quiz">
         {%- if form.posted_successfully? -%}
-          <div class="qz-done">{{ 'quiz.email_done' | t }}</div>
+          <div class="qz-done" data-qz-posted>{{ 'quiz.email_done' | t }}</div>
         {%- else -%}
           <div class="qz-email-row">
             <input

@@ -1,13 +1,21 @@
 {
   "general": {
-    "accessibility": { "skip": "Saltar para o conteúdo" },
-    "search": { "search": "Pesquisar" },
+    "accessibility": {
+      "skip": "Saltar para o conteúdo"
+    },
+    "search": {
+      "search": "Pesquisar"
+    },
     "cart": "Cesto",
     "continue": "Continuar a comprar",
-    "breadcrumb": { "home": "Início" }
+    "breadcrumb": {
+      "home": "Início"
+    }
   },
   "customer": {
-    "account": { "title": "Conta" },
+    "account": {
+      "title": "Conta"
+    },
     "log_in": "Iniciar sessão",
     "register": "Criar conta",
     "email": "Email",
@@ -19,7 +27,8 @@
       "sold_out": "Esgotado",
       "on_sale": "Promoção",
       "new": "Novo",
-      "vegan": "Vegana"
+      "vegan": "Vegana",
+      "view_360": "Ver em 360°"
     }
   },
   "collections": {
@@ -46,6 +55,39 @@
       "error": "Algo correu mal. Tente novamente.",
       "save": "Poupe {{ amount }}",
       "editor_empty": "Escolha produtos complementares nos blocos da secção, ou configure recomendações de produtos, para mostrar o pacote."
+    },
+    "bestsellers_motion": {
+      "placeholder_title": "Cork Grip Redonda"
     }
+  },
+  "quiz": {
+    "q_hair": "Como é o seu cabelo?",
+    "o_fine": "Fino",
+    "o_thick": "Grosso",
+    "o_curly": "Encaracolado",
+    "o_straight": "Liso",
+    "q_material": "Cortiça ou madeira?",
+    "o_cork": "Cortiça — leve e quente",
+    "o_wood": "Madeira — clássica",
+    "o_either": "Surpreenda-me",
+    "q_use": "Para quê?",
+    "o_blowdry": "Brushing e volume",
+    "o_detangle": "Desembaraçar e alisar",
+    "o_finish": "Acabamento e brilho",
+    "o_beard": "Barba e cuidado",
+    "back": "Voltar",
+    "result_eye": "A sua escova",
+    "cta": "Ver esta escova",
+    "restart": "Refazer o quiz",
+    "no_product": "Adicione um produto a uma regra de resultado para ver a sua escova.",
+    "email_heading": "Ganhe 10% no primeiro pedido",
+    "email_text": "Deixe o seu email e enviamos a sua escova e o código.",
+    "email_placeholder": "voce@email.com",
+    "email_button": "Enviar a minha escova",
+    "email_done": "Pronto — verifique o email para a sua escova e código."
+  },
+  "sustainability": {
+    "breadcrumb": "Sustentabilidade",
+    "cta_default": "Ver a coleção"
   }
 }

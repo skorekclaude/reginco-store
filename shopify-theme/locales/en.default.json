@@ -1,13 +1,21 @@
 {
   "general": {
-    "accessibility": { "skip": "Skip to content" },
-    "search": { "search": "Search" },
+    "accessibility": {
+      "skip": "Skip to content"
+    },
+    "search": {
+      "search": "Search"
+    },
     "cart": "Cart",
     "continue": "Continue shopping",
-    "breadcrumb": { "home": "Home" }
+    "breadcrumb": {
+      "home": "Home"
+    }
   },
   "customer": {
-    "account": { "title": "Account" },
+    "account": {
+      "title": "Account"
+    },
     "log_in": "Log in",
     "register": "Create account",
     "email": "Email",
@@ -19,7 +27,8 @@
       "sold_out": "Sold out",
       "on_sale": "Sale",
       "new": "New",
-      "vegan": "Vegan"
+      "vegan": "Vegan",
+      "view_360": "View in 360°"
     }
   },
   "collections": {
@@ -46,6 +55,39 @@
       "error": "Something went wrong. Please try again.",
       "save": "Save {{ amount }}",
       "editor_empty": "Pick complementary products in the section blocks, or set up product recommendations, to show the bundle."
+    },
+    "bestsellers_motion": {
+      "placeholder_title": "Cork Grip Round"
     }
+  },
+  "quiz": {
+    "q_hair": "How is your hair?",
+    "o_fine": "Fine",
+    "o_thick": "Thick",
+    "o_curly": "Curly",
+    "o_straight": "Straight",
+    "q_material": "Cork or wood?",
+    "o_cork": "Cork — light and warm",
+    "o_wood": "Wood — classic",
+    "o_either": "Surprise me",
+    "q_use": "What is it for?",
+    "o_blowdry": "Blow-dry and volume",
+    "o_detangle": "Detangle and smooth",
+    "o_finish": "Finish and shine",
+    "o_beard": "Beard and grooming",
+    "back": "Back",
+    "result_eye": "Your match",
+    "cta": "Shop this brush",
+    "restart": "Retake the quiz",
+    "no_product": "Add a product to a result rule to see your match.",
+    "email_heading": "Get 10% off your first order",
+    "email_text": "Drop your email and we send your match plus the code.",
+    "email_placeholder": "you@email.com",
+    "email_button": "Send my match",
+    "email_done": "Done — check your inbox for your match and code."
+  },
+  "sustainability": {
+    "breadcrumb": "Sustainability",
+    "cta_default": "Shop the collection"
   }
 }
