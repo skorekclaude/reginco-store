@@ -38,7 +38,7 @@ const T = {
   sort_lab:'Sort',sort_feat:'Featured',sort_new:'Newest',sort_low:'Price: low to high',sort_high:'Price: high to low',
   price_lab:'Price',price_all:'All',price_u15:'Under €15',price_o35:'Over €35',
   addcart:'Add to cart',loadmore:'Load more',view360:'360° view',view3d:'3D · AR',sr_ph:'Try: brush for frizzy hair',sr_hint:'Search by need — try “volume”, “frizz”, “beard” or “vegan”.',sr_none:'No matches — try “frizz”, “volume” or “beard”.',
-  cart_title:'Your cart',cart_empty:'Your cart is empty.',cart_empty_cta:'Browse the collection',cart_sub:'Subtotal',cart_checkout:'Checkout',cart_remove:'Remove',cart_added:'Added to cart',cart_ship_free:'Free EU shipping unlocked',cart_ship_a:'You’re',cart_ship_b:'away from free EU shipping',cart_note:'Ships from Spain · EU 3–5 days · taxes incl.',cart_clear:'Clear',
+  cart_title:'Your cart',cart_empty:'Your cart is empty.',cart_empty_cta:'Browse the collection',cart_sub:'Subtotal',cart_checkout:'Checkout',cart_remove:'Remove',cart_added:'Added to cart',cart_ship_free:'Free EU shipping unlocked',cart_ship_a:'You’re',cart_ship_b:'away from free EU shipping',cart_note:'Ships from Spain · EU 3–5 days · taxes incl.',cart_clear:'Clear',wish_title:'Wishlist',wish_empty:'Your wishlist is empty.',wish_add:'Add to cart',wish_added:'Saved to wishlist',
 "sus_kick":"Sustainability · cork since 1987",
   "sus_h1":"Carved from what the forest <em>gives back</em>.",
   "sus_sub":"Cork and wood are not a trend for us. They are why a Regincós brush is light, warm and built to outlive a decade of fashions — handcrafted in Spain by the Regincós family since 1962.",
@@ -171,7 +171,7 @@ const T = {
   sort_lab:'Ordenar',sort_feat:'Destaques',sort_new:'Mais recentes',sort_low:'Preço: crescente',sort_high:'Preço: decrescente',
   price_lab:'Preço',price_all:'Todos',price_u15:'Até €15',price_o35:'Mais de €35',
   addcart:'Adicionar ao cesto',loadmore:'Ver mais',view360:'Vista 360°',view3d:'3D · AR',sr_ph:'Tente: escova para cabelo frisado',sr_hint:'Procure por necessidade — “volume”, “frizz”, “barba” ou “vegana”.',sr_none:'Sem resultados — tente “frizz”, “volume” ou “barba”.',
-  cart_title:'O seu cesto',cart_empty:'O seu cesto está vazio.',cart_empty_cta:'Ver a coleção',cart_sub:'Subtotal',cart_checkout:'Finalizar compra',cart_remove:'Remover',cart_added:'Adicionado ao cesto',cart_ship_free:'Portes grátis na UE desbloqueados',cart_ship_a:'Faltam',cart_ship_b:'para portes grátis na UE',cart_note:'Envio de Espanha · UE 3–5 dias · impostos incl.',cart_clear:'Limpar',
+  cart_title:'O seu cesto',cart_empty:'O seu cesto está vazio.',cart_empty_cta:'Ver a coleção',cart_sub:'Subtotal',cart_checkout:'Finalizar compra',cart_remove:'Remover',cart_added:'Adicionado ao cesto',cart_ship_free:'Portes grátis na UE desbloqueados',cart_ship_a:'Faltam',cart_ship_b:'para portes grátis na UE',cart_note:'Envio de Espanha · UE 3–5 dias · impostos incl.',cart_clear:'Limpar',wish_title:'Favoritos',wish_empty:'A sua lista de favoritos está vazia.',wish_add:'Adicionar ao cesto',wish_added:'Guardado nos favoritos',
 "sus_kick":"Sustentabilidade · cortiça desde 1987",
   "sus_h1":"Esculpidas com o que a floresta <em>devolve</em>.",
   "sus_sub":"A cortiça e a madeira não são uma tendência para nós. São a razão por que uma escova Regincós é leve, quente e feita para sobreviver a uma década de modas — feita à mão em Espanha pela família Regincós desde 1962.",
@@ -275,6 +275,7 @@ function setLang(l){
   if(window.reviewsRerender)window.reviewsRerender();
   if(window.cartRerender)window.cartRerender();
   if(window.cartPageRerender)window.cartPageRerender();
+  if(window.wishRerender)window.wishRerender();
 }
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
@@ -297,6 +298,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initCart();
   initNav();
   initCartPage();
+  initWish();
   /* perf: async-decode every image, lazy-load all but the LCP product image */
   document.querySelectorAll('img').forEach(function(im){im.setAttribute('decoding','async');if(im.id!=='mainimg'&&!im.hasAttribute('loading'))im.setAttribute('loading','lazy');});
   var _lcp=document.getElementById('mainimg');if(_lcp)_lcp.setAttribute('fetchpriority','high');
@@ -463,6 +465,7 @@ function initPDP(){
     else if(v360)v360.style.display='none';
     var sbn=document.querySelector('.stickybar .sb-name');if(sbn){sbn.textContent=name;sbn.removeAttribute('data-i');}
     var sbp=document.querySelector('.stickybar .sb-price');if(sbp)sbp.textContent=price;
+    var pw=document.getElementById('pdpwish');if(pw){pw.setAttribute('data-h',h);if(window.syncWishButtons)syncWishButtons();}
     document.title=name+' — Regincós Hair';
     /* ===== SEO: meta description, Open Graph, JSON-LD Product schema (real catalog data) ===== */
     var sdesc=(p.d||(name+' — handcrafted cork & wood hair brush by Regincós, Spain since 1987.')).slice(0,160);
@@ -595,6 +598,50 @@ function initCartPage(){
   if(grid)grid.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var i=parseInt(b.getAttribute('data-i2'),10);var act=b.getAttribute('data-act');var cc=cartGet();if(!cc[i]&&act!=='rm')return;if(act==='inc')cartSetQty(i,(cc[i].q||1)+1);else if(act==='dec')cartSetQty(i,(cc[i].q||1)-1);else if(act==='rm')cartRemove(i);});
   renderCartPage();
 }
+/* ===== Wishlist (♡) — localStorage, drawer, heart toggles (delegated, survives re-renders) ===== */
+function wishGet(){try{return JSON.parse(localStorage.getItem('rg_wish')||'[]');}catch(e){return [];}}
+function wishSave(w){try{localStorage.setItem('rg_wish',JSON.stringify(w));}catch(e){}wishBadge();syncWishButtons();if(document.getElementById('wishDrawer'))wishRender();}
+function wishHas(h){return wishGet().some(function(x){return x.h===h;});}
+function wishToggle(item){var w=wishGet();var i=w.findIndex(function(x){return x.h===item.h;});var added;if(i>=0){w.splice(i,1);added=false;}else{w.unshift({h:item.h,t:item.t,p:Number(item.p),img:item.img});added=true;}wishSave(w);return added;}
+function wishRemove(h){wishSave(wishGet().filter(function(x){return x.h!==h;}));}
+function wishCount(){return wishGet().length;}
+function wishBadge(){var n=wishCount();document.querySelectorAll('[title="account"]').forEach(function(s){s.classList.toggle('haswish',n>0);s.setAttribute('data-n',n||'');});}
+function syncWishButtons(){document.querySelectorAll('.wish[data-h]').forEach(function(b){b.classList.toggle('on',wishHas(b.getAttribute('data-h')));});}
+function wishEnsureDOM(){
+  if(document.getElementById('wishDrawer'))return;
+  var ov=document.createElement('div');ov.className='cart-ov';ov.id='wishOv';ov.hidden=true;ov.addEventListener('click',wishClose);
+  var d=document.createElement('aside');d.className='cart-dr';d.id='wishDrawer';d.setAttribute('aria-hidden','true');d.setAttribute('role','dialog');d.setAttribute('aria-label','Wishlist');
+  d.innerHTML='<div class="cd-top"><span class="cd-ttl serif"></span><button class="cd-x" type="button" aria-label="Close">✕</button></div><div class="cd-items" id="wiItems"></div>';
+  document.body.appendChild(ov);document.body.appendChild(d);
+  d.querySelector('.cd-x').addEventListener('click',wishClose);
+  d.querySelector('#wiItems').addEventListener('click',function(e){
+    var b=e.target.closest('[data-act]');if(!b)return;var h=b.getAttribute('data-h2');var act=b.getAttribute('data-act');
+    if(act==='wrm')wishRemove(h);
+    else if(act==='wadd'){var p=_catProd(h);if(p){cartAdd({h:p.h,t:p.t,p:p.p,img:(p.imgs&&p.imgs[0])||p.img,v:'',q:1});wishRemove(h);wishClose();}}
+  });
+}
+function wishRender(){
+  var d=document.getElementById('wishDrawer');if(!d)return;
+  d.querySelector('.cd-ttl').textContent=cartT('wish_title');
+  var items=d.querySelector('#wiItems');var w=wishGet();
+  if(!w.length){items.innerHTML='<div class="cd-empty"><p>'+cartT('wish_empty')+'</p><a class="btn" href="collection.html">'+cartT('cart_empty_cta')+'</a></div>';return;}
+  items.innerHTML=w.map(function(x){return '<div class="cd-item"><a href="product.html?p='+x.h+'"><img src="'+cartImg(x.img)+'" alt="" loading="lazy"></a><div class="cd-mid"><div class="cd-n serif"><a href="product.html?p='+x.h+'">'+x.t+'</a></div><div class="cd-qr"><button class="cd-rm" type="button" data-act="wadd" data-h2="'+x.h+'">'+cartT('wish_add')+'</button><button class="cd-rm" type="button" data-act="wrm" data-h2="'+x.h+'">'+cartT('cart_remove')+'</button></div></div><div class="cd-p">'+eurFmt(x.p)+'</div></div>';}).join('');
+}
+function wishOpen(){wishEnsureDOM();wishRender();var d=document.getElementById('wishDrawer'),ov=document.getElementById('wishOv');ov.hidden=false;void d.offsetWidth;d.classList.add('show');ov.classList.add('show');d.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function wishClose(){var d=document.getElementById('wishDrawer'),ov=document.getElementById('wishOv');if(!d)return;d.classList.remove('show');ov.classList.remove('show');d.setAttribute('aria-hidden','true');document.body.style.overflow='';setTimeout(function(){ov.hidden=true;},320);}
+function initWish(){
+  wishEnsureDOM();wishBadge();syncWishButtons();
+  document.querySelectorAll('[title="account"]').forEach(function(s){s.style.cursor='pointer';s.addEventListener('click',wishOpen);});
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.wish[data-h]');if(!b)return;
+    e.preventDefault();e.stopPropagation();
+    var h=b.getAttribute('data-h');var p=_catProd(h);
+    var item=p?{h:p.h,t:p.t,p:p.p,img:(p.imgs&&p.imgs[0])||p.img}:{h:h,t:b.getAttribute('data-t')||'Brush',p:Number(b.getAttribute('data-p'))||0,img:b.getAttribute('data-img')||''};
+    var added=wishToggle(item);b.classList.toggle('on',added);
+    if(added)cartToast(cartT('wish_added'));
+  });
+  window.wishRerender=wishRender;
+}
 function initCart(){
   cartEnsureDOM();cartBadge();
   document.querySelectorAll('[title="cart"]').forEach(function(s){s.style.cursor='pointer';s.addEventListener('click',cartOpen);});
@@ -611,9 +658,9 @@ function initCart(){
       });
     });
   }
-  /* collection / related cards: the hover "add" overlay */
-  document.querySelectorAll('.prod .add').forEach(function(add){
-    add.addEventListener('click',function(e){
+  /* collection / related cards: the hover "add" overlay — delegated so it survives grid re-renders (filter/sort) */
+  document.addEventListener('click',function(e){
+      var add=e.target.closest('.prod .add');if(!add)return;
       e.preventDefault();e.stopPropagation();
       var card=add.closest('.prod');if(!card)return;
       var cim=card.querySelector('img');
@@ -625,7 +672,6 @@ function initCart(){
       if(!pr){var px=card.querySelector('.px');if(px)pr=parseFloat((px.textContent||'').replace('€','').replace(',','.'))||0;}
       var im=(card.querySelector('img')||{}).src||'';
       cartAdd({h:href||t,t:t,p:pr,img:im,v:'',q:1},cim);
-    });
   });
   /* PDP bundle "add all three" */
   var bn=document.getElementById('bnbtn');
