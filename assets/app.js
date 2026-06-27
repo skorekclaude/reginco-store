@@ -1,6 +1,6 @@
 const T = {
  en:{
-  topbar:'Free shipping over <b>€45</b> · Handcrafted with cork &amp; wood since <b>1987</b>',
+  topbar:'Free shipping over <b>€49</b> · Handcrafted with cork &amp; wood since <b>1987</b>',
   nav_cork:'Cork',nav_wood:'Wood',nav_men:'Men',nav_combs:'Combs',nav_lookbook:'Lookbook',
   lb_eye:'Lookbook',lb_h1:'Worn by hands that <em>create</em>.',lb_lead:'The cork grip in the wild — on salon floors and bathroom shelves. Tap a dot to shop the piece.',lb_hint:'Tap the dots to shop',lb_view:'View product',lb_cta_h:'Shop the <em>collection</em>.',lb_cta_btn:'See all brushes',
   hero_kick:'The Cork Grip · est. 1987',hero_h1:'Brushes carved from <em>nature</em>.',
@@ -90,7 +90,7 @@ const T = {
   "help_h1":"How can we <em>help</em>?",
   "help_lead":"Shipping, returns, getting in touch, and the questions we hear most. A Regincós brush is handmade in Spain to last decades — and we stand behind it the same way.",
   "help_ship_h":"Shipping from <em>Spain</em>.",
-  "help_ship_p1":"Every brush is dispatched from our family workshop in Spain, usually within 24–48 hours. Across the EU, delivery takes 3–5 working days, and shipping is free on orders over €45.",
+  "help_ship_p1":"Every brush is dispatched from our family workshop in Spain, usually within 24–48 hours. Across the EU, delivery takes 3–5 working days, and shipping is free on orders over €49.",
   "help_ship_p2":"We ship worldwide too — rates and timings are calculated at checkout by destination. You'll receive tracking by email the moment your order leaves us.",
   "help_ret_h":"Returns, made <em>simple</em>.",
   "help_ret_p1":"Changed your mind? You have 30 days from delivery to return any unused brush in its original condition and packaging. Once it reaches us, we refund to your original payment method.",
@@ -123,18 +123,18 @@ const T = {
   "help_cta_h":"Still can't find your <em>answer</em>?",
   "help_cta_btn":"Browse the collection",
 
-  pd_kick:'Cork Series',pd_crumb:'Cork Grip Round Brush',pd_title:'Cork Grip Round <em>Brush</em>',pd_rev:'128 reviews',pd_save:'Save 17%',pd_stock:'In stock — ships in 24h',ship_promise:'Ships from Spain — EU delivery in 3–5 days · Free over €45',pd_story_eye:'Since 1987',pd_story_h2:'Cut & finished by <em>hand</em>.',pd_story_p:'Cork from the forests of Iberia, beechwood cores, bristles set by hand in our workshop. The same craft, four decades on.',rel_eye:'Complete the ritual',
+  pd_kick:'Cork Series',pd_crumb:'Cork Grip Round Brush',pd_title:'Cork Grip Round <em>Brush</em>',pd_rev:'128 reviews',pd_save:'Save 17%',pd_stock:'In stock — ships in 24h',ship_promise:'Ships from Spain — EU delivery in 3–5 days · Free over €49',pd_story_eye:'Since 1987',pd_story_h2:'Cut & finished by <em>hand</em>.',pd_story_p:'Cork from the forests of Iberia, beechwood cores, bristles set by hand in our workshop. The same craft, four decades on.',rel_eye:'Complete the ritual',
   pd_desc:'The icon. A warm cork handle with the patented Cork Grip, paired with boar &amp; nylon bristles for tension, shine and effortless blow-dries. Balanced for hands that work all day.',
   opt_size:'Size',opt_bristle:'Bristle',br_boar:'Boar & nylon',br_vegan:'Vegan',
   qty_lab:'Quantity',pd_pro:'<b>Professional?</b> Log in for wholesale pricing and bulk discounts.',
   acc1:'Details & materials',acc1b:'Natural cork handle, FSC beechwood core, boar &amp; nylon bristles. Handmade in Spain. Naturally antibacterial and lightweight.',
-  acc2:'Shipping & returns',acc2b:'Free shipping over €45. Dispatched in 24–48h. 30-day returns. Worldwide delivery available.',
+  acc2:'Shipping & returns',acc2b:'Free shipping over €49. Dispatched in 24–48h. 30-day returns. Worldwide delivery available.',
   acc3:'Care',acc3b:'Remove hair after each use, clean with the Regincós brush cleaner. Keep cork dry. Do not soak.',
   trust1:'Handmade in Spain · since 1987',trust2:'30-day returns',trust3:'Pro trusted',trust4:'FSC-certified cork',rel_title:'Complete the set',rv_eye:'Reviews',rv_h2:'What stylists say.',rv_count:'128 reviews · 96% would recommend',rf_all:'All hair',
   pc1:'Cork Grip Round',pc2:'Cork Grip Large',pc3:'Cork Paddle Brush',pc4:'Cork Vent Brush',pc5:'Cork Duo Brush',pc6:'Cork Elipse Brush',pc7:'Cork Premium Noire',pc8:'Cork Oval Brush'
  },
  pt:{
-  topbar:'Envio grátis acima de <b>€45</b> · Feito à mão com cortiça e madeira desde <b>1987</b>',
+  topbar:'Envio grátis acima de <b>€49</b> · Feito à mão com cortiça e madeira desde <b>1987</b>',
   nav_cork:'Cortiça',nav_wood:'Madeira',nav_men:'Homem',nav_combs:'Pentes',nav_lookbook:'Lookbook',
   lb_eye:'Lookbook',lb_h1:'Nas mãos de quem <em>cria</em>.',lb_lead:'O cork grip em ação — em salões e prateleiras de casa. Toque num ponto para comprar a peça.',lb_hint:'Toque nos pontos para comprar',lb_view:'Ver produto',lb_cta_h:'Ver a <em>coleção</em>.',lb_cta_btn:'Ver todas as escovas',
   hero_kick:'O Cork Grip · desde 1987',hero_h1:'Escovas esculpidas pela <em>natureza</em>.',
@@ -224,7 +224,7 @@ const T = {
   "help_h1":"Como podemos <em>ajudar</em>?",
   "help_lead":"Envios, devoluções, como falar connosco e as perguntas que mais ouvimos. Uma escova Regincós é feita à mão em Espanha para durar décadas — e respondemos por ela da mesma forma.",
   "help_ship_h":"Envios de <em>Espanha</em>.",
-  "help_ship_p1":"Cada escova é expedida da nossa oficina familiar em Espanha, normalmente em 24–48 horas. Na União Europeia, a entrega demora 3–5 dias úteis e os portes são grátis em encomendas acima de €45.",
+  "help_ship_p1":"Cada escova é expedida da nossa oficina familiar em Espanha, normalmente em 24–48 horas. Na União Europeia, a entrega demora 3–5 dias úteis e os portes são grátis em encomendas acima de €49.",
   "help_ship_p2":"Também enviamos para todo o mundo — os custos e prazos são calculados na finalização da compra, consoante o destino. Recebe o seguimento por email assim que a sua encomenda sai de cá.",
   "help_ret_h":"Devoluções <em>simples</em>.",
   "help_ret_p1":"Mudou de ideias? Tem 30 dias após a entrega para devolver qualquer escova não usada, no estado e embalagem originais. Quando chega até nós, reembolsamos pelo mesmo meio de pagamento.",
@@ -257,12 +257,12 @@ const T = {
   "help_cta_h":"Ainda não encontrou a sua <em>resposta</em>?",
   "help_cta_btn":"Ver a coleção",
 
-  pd_kick:'Série Cortiça',pd_crumb:'Escova Redonda Cork Grip',pd_title:'Escova Redonda <em>Cork Grip</em>',pd_rev:'128 avaliações',pd_save:'Poupe 17%',pd_stock:'Em stock — envio em 24h',ship_promise:'Enviado de Espanha — entrega UE em 3–5 dias · Grátis acima de €45',pd_story_eye:'Desde 1987',pd_story_h2:'Cortada e acabada à <em>mão</em>.',pd_story_p:'Cortiça das florestas ibéricas, núcleos de faia, cerdas colocadas à mão na nossa oficina. O mesmo ofício, quatro décadas depois.',rel_eye:'Complete o ritual',
+  pd_kick:'Série Cortiça',pd_crumb:'Escova Redonda Cork Grip',pd_title:'Escova Redonda <em>Cork Grip</em>',pd_rev:'128 avaliações',pd_save:'Poupe 17%',pd_stock:'Em stock — envio em 24h',ship_promise:'Enviado de Espanha — entrega UE em 3–5 dias · Grátis acima de €49',pd_story_eye:'Desde 1987',pd_story_h2:'Cortada e acabada à <em>mão</em>.',pd_story_p:'Cortiça das florestas ibéricas, núcleos de faia, cerdas colocadas à mão na nossa oficina. O mesmo ofício, quatro décadas depois.',rel_eye:'Complete o ritual',
   pd_desc:'O ícone. Pega de cortiça quente com o Cork Grip patenteado e cerdas de javali e nylon para tensão, brilho e brushings sem esforço. Equilibrada para mãos que trabalham o dia todo.',
   opt_size:'Tamanho',opt_bristle:'Cerda',br_boar:'Javali e nylon',br_vegan:'Vegana',
   qty_lab:'Quantidade',pd_pro:'<b>Profissional?</b> Inicie sessão para preços grossistas e descontos de volume.',
   acc1:'Detalhes e materiais',acc1b:'Pega de cortiça natural, núcleo de faia FSC, cerdas de javali e nylon. Feita à mão em Espanha. Naturalmente antibacteriana e leve.',
-  acc2:'Envios e devoluções',acc2b:'Envio grátis acima de €45. Expedição em 24–48h. Devoluções em 30 dias. Entrega internacional disponível.',
+  acc2:'Envios e devoluções',acc2b:'Envio grátis acima de €49. Expedição em 24–48h. Devoluções em 30 dias. Entrega internacional disponível.',
   acc3:'Cuidados',acc3b:'Remova o cabelo após cada uso, limpe com o limpa-escovas Regincós. Mantenha a cortiça seca. Não mergulhar.',
   trust1:'Feita à mão · desde 1987',trust2:'Devoluções 30 dias',trust3:'Confiança dos profissionais',trust4:'Cortiça certificada FSC',rel_title:'Complete o conjunto',rv_eye:'Avaliações',rv_h2:'O que dizem os estilistas.',rv_count:'128 avaliações · 96% recomendam',rf_all:'Todos',
   pc1:'Cork Grip Redonda',pc2:'Cork Grip Grande',pc3:'Escova Plana Cortiça',pc4:'Escova Ventilada Cortiça',pc5:'Cork Duo',pc6:'Cork Elipse',pc7:'Cork Premium Noire',pc8:'Cork Oval'
@@ -498,7 +498,7 @@ function initMaterials(){
 }
 
 /* ===== Cart drawer (prototype — localStorage; produkcyjnie -> Shopify AJAX cart) ===== */
-var FREE_SHIP=45, _toastTmr;
+var FREE_SHIP=49, _toastTmr;
 function cartLang(){return document.documentElement.lang||'en';}
 function cartT(k){var l=cartLang();return (T[l]&&T[l][k]!==undefined)?T[l][k]:(T.en[k]!==undefined?T.en[k]:k);}
 function eurFmt(n){return '€'+Number(n||0).toFixed(2).replace('.',',');}
