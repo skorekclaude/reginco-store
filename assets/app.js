@@ -40,7 +40,7 @@ const T = {
   care_kick:'Care & keep · since 1962',care_h1:'Made to last <em>decades</em>.',care_sub:'A Regincós brush is built to outlive a dozen trends. A little care, and it only gets better with age — here is how to keep yours for years.',care_eye:'The ritual',care_h2:'Four small habits.',care_s1_h:'Clear it <em>daily</em>.',care_s1_p:'After each use, lift away loose hair with a comb or your fingers, working from the base of the bristles outward. Thirty seconds keeps the brush working and the bristles springy.',care_s2_h:'Wash, <em>gently</em>.',care_s2_p:'Once a month, add a drop of mild shampoo to lukewarm water and swish only the bristles — never submerge the cork or wood. A soft toothbrush lifts product build-up from the rows.',care_s3_h:'Dry <em>bristles-down</em>.',care_s3_p:'Shake off the water and lay the brush bristles-down on a towel so moisture runs away from the cushion and handle. Let it air-dry fully — never put a dryer to it.',care_s4_h:'Keep cork <em>happy</em>.',care_s4_p:'Cork and beechwood are natural: keep them out of standing water and direct heat. A wipe with a barely-damp cloth is all the handle ever needs; the cork grip only feels better worn in.',care_band_eye:'The long game',care_band_h:'Buy once. Brush for <em>years</em>.',care_band_p:'Customers tell us their Regincós brushes have lasted ten years, even thirty. That longevity is the point: a tool you repair and keep is the most sustainable tool there is. If a bristle loosens or the cushion tires, ask us before you replace — most brushes have years left in them.',care_faq_eye:'Good to know',care_q1:'Can I soak it?',care_q1a:'No — never submerge the cork handle or wooden body. Clean only the bristles, and dry bristles-down. Soaking swells and cracks natural materials.',care_q2:'How often should I clean it?',care_q2a:'Clear loose hair after every use; give the bristles a gentle wash about once a month — more if you use a lot of product.',care_q3:'Boar or vegan — different care?',care_q3a:'Care is identical. Both clean with mild shampoo and lukewarm water; boar bristle simply carries the hair’s natural oils a little more.',care_q4:'When should I replace it?',care_q4a:'Rarely. A Regincós brush is made to be kept. Replace only when the bristles are truly worn flat — and even then, talk to us first.',care_cta_h:'A brush worth <em>keeping</em>.',
   cl_home:'Home',cl_crumb:'Collection',cl_title:'The <em>collection</em>.',cl_kick:'All brushes · since 1987',cl_count:'brushes, by craft',empty_t:'Nothing here yet',empty_p:'No brushes match that filter. Try another.',cl_sub:'Every Regincós brush — cork, wood, Ibiza thermal, combs.',
   filt_all:'All',filt_round:'Round',filt_paddle:'Paddle',filt_vent:'Vented',filt_vegan:'Vegan',
-  sort_lab:'Sort',sort_feat:'Featured',sort_new:'Newest',sort_low:'Price: low to high',sort_high:'Price: high to low',
+  sort_lab:'Sort',sort_feat:'Featured',sort_new:'Newest',sort_low:'Price: low to high',sort_high:'Price: high to low',qv_view:'View full details',
   price_lab:'Price',price_all:'All',price_u15:'Under €15',price_o35:'Over €35',
   addcart:'Add to cart',loadmore:'Load more',view360:'360° view',view3d:'3D · AR',sr_ph:'Try: brush for frizzy hair',sr_hint:'Search by need — try “volume”, “frizz”, “beard” or “vegan”.',sr_none:'No matches — try “frizz”, “volume” or “beard”.',
   cart_title:'Your cart',cart_empty:'Your cart is empty.',cart_empty_cta:'Browse the collection',cart_sub:'Subtotal',cart_checkout:'Checkout',cart_remove:'Remove',cart_added:'Added to cart',cart_ship_free:'Free EU shipping unlocked',cart_ship_a:'You’re',cart_ship_b:'away from free EU shipping',cart_note:'Ships from Spain · EU 3–5 days · taxes incl.',cart_clear:'Clear',wish_title:'Wishlist',wish_empty:'Your wishlist is empty.',wish_add:'Add to cart',wish_added:'Saved to wishlist',
@@ -179,7 +179,7 @@ const T = {
   care_kick:'Cuidados · desde 1962',care_h1:'Feita para durar <em>décadas</em>.',care_sub:'Uma escova Regincós é feita para sobreviver a uma dúzia de tendências. Um pouco de cuidado e só fica melhor com o tempo — eis como guardar a sua durante anos.',care_eye:'O ritual',care_h2:'Quatro pequenos hábitos.',care_s1_h:'Limpe-a <em>diariamente</em>.',care_s1_p:'Após cada uso, retire o cabelo solto com um pente ou os dedos, da base das cerdas para fora. Trinta segundos mantêm a escova a funcionar e as cerdas elásticas.',care_s2_h:'Lave com <em>suavidade</em>.',care_s2_p:'Uma vez por mês, junte uma gota de champô suave a água morna e agite apenas as cerdas — nunca submerja a cortiça ou a madeira. Uma escova de dentes macia remove os resíduos de produto das fileiras.',care_s3_h:'Seque com as <em>cerdas para baixo</em>.',care_s3_p:'Sacuda a água e pouse a escova com as cerdas para baixo sobre uma toalha, para a humidade escorrer para longe da almofada e da pega. Deixe secar ao ar por completo — nunca use secador.',care_s4_h:'Cuide da <em>cortiça</em>.',care_s4_p:'A cortiça e a faia são naturais: mantenha-as longe de água parada e calor direto. Um pano ligeiramente húmido é tudo o que a pega precisa; a pega de cortiça só fica melhor com o uso.',care_band_eye:'O jogo longo',care_band_h:'Compre uma vez. Penteie durante <em>anos</em>.',care_band_p:'Há clientes que nos dizem que as suas escovas Regincós duraram dez anos, até trinta. É esse o ponto: uma ferramenta que se repara e guarda é a mais sustentável que existe. Se uma cerda soltar ou a almofada cansar, fale connosco antes de substituir — a maioria das escovas ainda tem anos pela frente.',care_faq_eye:'Bom saber',care_q1:'Posso mergulhá-la?',care_q1a:'Não — nunca submerja a pega de cortiça nem o corpo de madeira. Limpe só as cerdas e seque com as cerdas para baixo. A imersão incha e racha os materiais naturais.',care_q2:'Com que frequência devo limpá-la?',care_q2a:'Retire o cabelo solto após cada uso; lave as cerdas com suavidade cerca de uma vez por mês — mais se usar muito produto.',care_q3:'Javali ou vegana — cuidados diferentes?',care_q3a:'O cuidado é idêntico. Ambas se limpam com champô suave e água morna; a cerda de javali apenas distribui um pouco mais os óleos naturais do cabelo.',care_q4:'Quando devo substituí-la?',care_q4a:'Raramente. Uma escova Regincós é feita para ser guardada. Substitua apenas quando as cerdas estiverem mesmo gastas — e mesmo assim, fale connosco primeiro.',care_cta_h:'Uma escova que vale a pena <em>guardar</em>.',
   cl_home:'Início',cl_crumb:'Coleção',cl_title:'A <em>coleção</em>.',cl_kick:'Todas as escovas · desde 1987',cl_count:'escovas, por ofício',empty_t:'Nada por aqui',empty_p:'Nenhuma escova corresponde a esse filtro. Experimente outro.',cl_sub:'Cada escova Regincós — cortiça, madeira, rolos Ibiza, pentes.',
   filt_all:'Todas',filt_round:'Redonda',filt_paddle:'Plana',filt_vent:'Ventilada',filt_vegan:'Vegana',
-  sort_lab:'Ordenar',sort_feat:'Destaques',sort_new:'Mais recentes',sort_low:'Preço: crescente',sort_high:'Preço: decrescente',
+  sort_lab:'Ordenar',sort_feat:'Destaques',sort_new:'Mais recentes',sort_low:'Preço: crescente',sort_high:'Preço: decrescente',qv_view:'Ver detalhes',
   price_lab:'Preço',price_all:'Todos',price_u15:'Até €15',price_o35:'Mais de €35',
   addcart:'Adicionar ao cesto',loadmore:'Ver mais',view360:'Vista 360°',view3d:'3D · AR',sr_ph:'Tente: escova para cabelo frisado',sr_hint:'Procure por necessidade — “volume”, “frizz”, “barba” ou “vegana”.',sr_none:'Sem resultados — tente “frizz”, “volume” ou “barba”.',
   cart_title:'O seu cesto',cart_empty:'O seu cesto está vazio.',cart_empty_cta:'Ver a coleção',cart_sub:'Subtotal',cart_checkout:'Finalizar compra',cart_remove:'Remover',cart_added:'Adicionado ao cesto',cart_ship_free:'Portes grátis na UE desbloqueados',cart_ship_a:'Faltam',cart_ship_b:'para portes grátis na UE',cart_note:'Envio de Espanha · UE 3–5 dias · impostos incl.',cart_clear:'Limpar',wish_title:'Favoritos',wish_empty:'A sua lista de favoritos está vazia.',wish_add:'Adicionar ao cesto',wish_added:'Guardado nos favoritos',
@@ -315,6 +315,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initWish();
   initNewsletter();
   initBackToTop();
+  initQuickView();
   /* perf: async-decode every image, lazy-load all but the LCP product image */
   document.querySelectorAll('img').forEach(function(im){im.setAttribute('decoding','async');if(im.id!=='mainimg'&&!im.hasAttribute('loading'))im.setAttribute('loading','lazy');});
   var _lcp=document.getElementById('mainimg');if(_lcp)_lcp.setAttribute('fetchpriority','high');
@@ -615,10 +616,41 @@ function initCartPage(){
   if(grid)grid.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var i=parseInt(b.getAttribute('data-i2'),10);var act=b.getAttribute('data-act');var cc=cartGet();if(!cc[i]&&act!=='rm')return;if(act==='inc')cartSetQty(i,(cc[i].q||1)+1);else if(act==='dec')cartSetQty(i,(cc[i].q||1)-1);else if(act==='rm')cartRemove(i);});
   renderCartPage();
 }
+/* ===== Quick view — modal product preview from catalog (delegated trigger) ===== */
+var _qvHandle='',_qvVariant='';
+function qvEnsureDOM(){
+  if(document.getElementById('qvm'))return;
+  var m=document.createElement('div');m.className='qvm';m.id='qvm';m.hidden=true;m.setAttribute('role','dialog');m.setAttribute('aria-label','Quick view');
+  m.innerHTML='<div class="qvm-card"><button class="qvm-x" type="button" aria-label="Close">✕</button><div class="qvm-img"><img id="qvmImg" src="" alt=""></div><div class="qvm-info"><div class="upper kick" id="qvmLine"></div><h3 class="serif" id="qvmTitle"></h3><div class="qvm-price" id="qvmPrice"></div><p class="qvm-desc" id="qvmDesc"></p><div class="qvm-opts" id="qvmOpts"></div><div class="qvm-actions"><button class="btn block" id="qvmAdd" type="button"></button><a class="qvm-link" id="qvmLink"></a></div></div></div>';
+  document.body.appendChild(m);
+  m.addEventListener('click',function(e){if(e.target===m)qvClose();});
+  m.querySelector('.qvm-x').addEventListener('click',qvClose);
+  document.getElementById('qvmOpts').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;document.querySelectorAll('#qvmOpts button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');_qvVariant=b.textContent.trim();});
+  document.getElementById('qvmAdd').addEventListener('click',function(){var p=_catProd(_qvHandle);if(!p)return;cartAdd({h:p.h,t:p.t,p:p.p,img:(p.imgs&&p.imgs[0])||p.img,v:_qvVariant,q:1},document.getElementById('qvmImg'));qvClose();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')qvClose();});
+}
+function qvOpen(h){
+  var p=_catProd(h);if(!p)return;
+  qvEnsureDOM();
+  _qvHandle=h;_qvVariant=(p.v&&p.v.length)?p.v[0]:'';
+  var l=document.documentElement.lang||'en',img=(p.imgs&&p.imgs[0])||p.img;
+  var im=document.getElementById('qvmImg');im.src=img+'?width=800';im.alt=p.t;
+  document.getElementById('qvmLine').textContent=p.line?p.line.charAt(0).toUpperCase()+p.line.slice(1):'';
+  document.getElementById('qvmTitle').textContent=p.t;
+  document.getElementById('qvmPrice').textContent='€'+Number(p.p).toFixed(2).replace('.',',');
+  var desc=document.getElementById('qvmDesc');desc.textContent=p.d?p.d.slice(0,170):'';desc.style.display=p.d?'':'none';
+  var opts=document.getElementById('qvmOpts');
+  if(p.v&&p.v.length){opts.innerHTML=p.v.map(function(v,i){return '<button type="button" class="'+(i===0?'on':'')+'">'+v+'</button>';}).join('');opts.style.display='';}else{opts.innerHTML='';opts.style.display='none';}
+  document.getElementById('qvmAdd').textContent=(T[l]&&T[l].addcart)||'Add to cart';
+  var link=document.getElementById('qvmLink');link.href='product.html?p='+h;link.textContent=(T[l]&&T[l].qv_view)||'View full details';
+  var m=document.getElementById('qvm');m.hidden=false;void m.offsetWidth;m.classList.add('show');document.body.style.overflow='hidden';
+}
+function qvClose(){var m=document.getElementById('qvm');if(!m)return;m.classList.remove('show');document.body.style.overflow='';setTimeout(function(){m.hidden=true;},250);}
+function initQuickView(){document.addEventListener('click',function(e){var b=e.target.closest('.qv[data-qv]');if(!b)return;e.preventDefault();e.stopPropagation();qvOpen(b.getAttribute('data-qv'));});}
 /* ===== Shared product-card markup (recently-viewed + related; works with delegated add/wish) ===== */
 function prodCardHTML(p){
   var nm=p.t,price='€'+Number(p.p).toFixed(2).replace('.',',');
-  return '<a class="prod" href="product.html?p='+p.h+'" data-price="'+p.p+'"><div class="ph"><img src="'+((p.imgs&&p.imgs[0])||p.img)+'?width=600" alt="'+nm.replace(/"/g,'')+'" loading="lazy"><button class="wish'+((window.wishHas&&wishHas(p.h))?' on':'')+'" type="button" data-h="'+p.h+'" aria-label="Save to wishlist">♡</button><span class="add" data-i="addcart"></span></div><h4 class="serif">'+nm+'</h4><div class="px">'+price+'</div></a>';
+  return '<a class="prod" href="product.html?p='+p.h+'" data-price="'+p.p+'"><div class="ph"><img src="'+((p.imgs&&p.imgs[0])||p.img)+'?width=600" alt="'+nm.replace(/"/g,'')+'" loading="lazy"><button class="qv" type="button" data-qv="'+p.h+'" aria-label="Quick view">⤢</button><button class="wish'+((window.wishHas&&wishHas(p.h))?' on':'')+'" type="button" data-h="'+p.h+'" aria-label="Save to wishlist">♡</button><span class="add" data-i="addcart"></span></div><h4 class="serif">'+nm+'</h4><div class="px">'+price+'</div></a>';
 }
 function _fillCardI18n(grid){var l=document.documentElement.lang||'en';grid.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k];});}
 /* ===== Related products (PDP) — real, from the same line in the catalog ===== */
