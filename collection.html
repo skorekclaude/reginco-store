@@ -58,10 +58,20 @@
     <div class="sort"><span data-i="sort_lab"></span>
       <select id="sort">
         <option value="feat" data-i="sort_feat"></option>
+        <option value="new" data-i="sort_new"></option>
         <option value="low" data-i="sort_low"></option>
         <option value="high" data-i="sort_high"></option>
       </select>
     </div>
+  </div>
+
+  <div class="toolbar-price">
+    <span class="pricelab" data-i="price_lab"></span>
+    <button class="pchip on" type="button" data-price="all" data-i="price_all"></button>
+    <button class="pchip" type="button" data-price="0-15" data-i="price_u15"></button>
+    <button class="pchip" type="button" data-price="15-25">€15–25</button>
+    <button class="pchip" type="button" data-price="25-35">€25–35</button>
+    <button class="pchip" type="button" data-price="35-9999" data-i="price_o35"></button>
   </div>
 
   <div class="pgrid" id="grid"></div>
@@ -89,10 +99,14 @@
   var CAT=(window.CATALOG||[]).slice();
   function eur(p){return '€'+Number(p).toFixed(2).replace('.',',');}
   function shortName(t){return t.replace(/\s*[-–]\s*Cepillo.*$/i,'').replace(/\s*[-–]\s*Cepillo/i,'').trim();}
-  function card(p){return '<a class="prod" href="product.html?p='+p.h+'" data-cat="'+p.line+'" data-price="'+p.p+'"><div class="ph"><img src="'+p.img+'?width=600" alt="'+shortName(p.t).replace(/"/g,'')+'" loading="lazy"><span class="add" data-i="addcart"></span></div><h4 class="serif">'+shortName(p.t)+'</h4><div class="px">'+eur(p.p)+'</div></a>';}
+  function card(p){return '<a class="prod" href="product.html?p='+p.h+'" data-cat="'+p.line+'" data-price="'+p.p+'"><div class="ph loading"><img src="'+p.img+'?width=600" alt="'+shortName(p.t).replace(/"/g,'')+'" loading="lazy"><span class="add" data-i="addcart"></span></div><h4 class="serif">'+shortName(p.t)+'</h4><div class="px">'+eur(p.p)+'</div></a>';}
   var view=CAT.slice();
   function paint(){
     grid.innerHTML=view.map(card).join('');
+    grid.querySelectorAll('.ph.loading img').forEach(function(im){
+      var ph=im.closest('.ph');var done=function(){ph.classList.remove('loading');};
+      if(im.complete&&im.naturalWidth)done();else{im.addEventListener('load',done);im.addEventListener('error',done);}
+    });
     var l=document.documentElement.lang||'en';
     grid.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(typeof T!=='undefined'&&T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k];});
     var n=document.getElementById('count');if(n)n.textContent=view.length;
@@ -100,15 +114,22 @@
   }
   function apply(){
     var f=document.querySelector('.chip.on').getAttribute('data-filter');
-    view=CAT.filter(function(p){return f==='all'||p.line===f;});
+    var pc=document.querySelector('.pchip.on'),pr=pc?pc.getAttribute('data-price'):'all',lo=0,hi=Infinity;
+    if(pr&&pr!=='all'){var b=pr.split('-');lo=Number(b[0]);hi=Number(b[1]);}
+    view=CAT.filter(function(p){var pn=Number(p.p);return (f==='all'||p.line===f)&&pn>=lo&&pn<hi;});
     var sv=document.getElementById('sort').value;
     if(sv==='low')view.sort(function(a,b){return Number(a.p)-Number(b.p);});
     else if(sv==='high')view.sort(function(a,b){return Number(b.p)-Number(a.p);});
+    else if(sv==='new')view.reverse();
     paint();
   }
   document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){
     document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false');});
     c.classList.add('on');c.setAttribute('aria-pressed','true');apply();
+  });});
+  document.querySelectorAll('.pchip').forEach(function(c){c.addEventListener('click',function(){
+    document.querySelectorAll('.pchip').forEach(function(x){x.classList.remove('on');});
+    c.classList.add('on');apply();
   });});
   document.getElementById('sort').addEventListener('change',apply);
   paint();

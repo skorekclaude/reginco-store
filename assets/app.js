@@ -34,65 +34,66 @@ const T = {
   cl_home:'Home',cl_crumb:'Collection',cl_title:'The <em>collection</em>.',cl_kick:'All brushes · since 1987',cl_count:'brushes, by craft',empty_t:'Nothing here yet',empty_p:'No brushes match that filter. Try another.',cl_sub:'Every Regincós brush — cork, wood, Ibiza thermal, combs.',
   filt_all:'All',filt_round:'Round',filt_paddle:'Paddle',filt_vent:'Vented',filt_vegan:'Vegan',
   sort_lab:'Sort',sort_feat:'Featured',sort_new:'Newest',sort_low:'Price: low to high',sort_high:'Price: high to low',
+  price_lab:'Price',price_all:'All',price_u15:'Under €15',price_o35:'Over €35',
   addcart:'Add to cart',loadmore:'Load more',view360:'360° view',view3d:'3D · AR',sr_ph:'Try: brush for frizzy hair',sr_hint:'Search by need — try “volume”, “frizz”, “beard” or “vegan”.',sr_none:'No matches — try “frizz”, “volume” or “beard”.',
   cart_title:'Your cart',cart_empty:'Your cart is empty.',cart_empty_cta:'Browse the collection',cart_sub:'Subtotal',cart_checkout:'Checkout',cart_remove:'Remove',cart_added:'Added to cart',cart_ship_free:'Free EU shipping unlocked',cart_ship_a:'You’re',cart_ship_b:'away from free EU shipping',cart_note:'Ships from Spain · EU 3–5 days · taxes incl.',cart_clear:'Clear',
-"sus_kick":"Sustainability · since 1987",
+"sus_kick":"Sustainability · cork since 1987",
   "sus_h1":"Carved from what the forest <em>gives back</em>.",
-  "sus_sub":"Cork and wood are not a trend for us — they are the reason a Regincós brush is light, warm, and built to outlive a decade of fashions.",
+  "sus_sub":"Cork and wood are not a trend for us. They are why a Regincós brush is light, warm and built to outlive a decade of fashions — handcrafted in Spain by the Regincós family since 1962.",
   "sus_c1_h":"The cork oak <em>keeps</em> its tree.",
-  "sus_c1_p":"Cork is harvested without felling a single tree. Every nine years the bark is peeled by hand from the living cork oak — which simply grows it back. The tree lives 200 years or more, and a freshly stripped oak absorbs up to five times more CO2 as it regenerates. Naturally antibacterial and remarkably light, cork was the obvious choice long before anyone called it sustainable.",
+  "sus_c1_p":"Cork is harvested without felling a single oak. Every nine years the bark is stripped by hand from the living tree, which simply grows it back — and the oak lives 200 years or more, absorbing more CO2 as it regenerates. Cork is renewable, recyclable and takes less energy to make than the alternatives. Light, warm to the touch and naturally static-free, it was the obvious choice long before anyone called it sustainable.",
   "sus_c2_h":"Built to <em>last</em>, not to replace.",
-  "sus_c2_p":"Throwaway tools are the real waste. A Regincós brush is handmade in Spain to be repaired, kept and handed on — bristles set by hand, a beechwood core that takes years of salon use, a cork grip that only feels better worn in. We design against the seasonal cycle: buy once, brush for decades.",
+  "sus_c2_p":"Throwaway tools are the real waste. A Regincós brush is semi-hand made in Spain to be kept and handed on — a beechwood core that takes years of salon use, boar first-cut bristles reinforced with carbon-nylon, and a cork grip that only feels better worn in. Reviewers tell us theirs have lasted 10 years, even 30. We design against the seasonal cycle: buy once, brush for decades.",
   "sus_c3_h":"<em>Honest</em> materials, nothing hidden.",
-  "sus_c3_p":"Beechwood cores come from responsibly managed European forests. Cork from the oak groves of Iberia. No plastic handles, no needless coatings — and packaging kept minimal and plastic-free, recycled and recyclable, designed to protect the brush and then disappear.",
+  "sus_c3_p":"Beechwood and hardwood bodies come from non-endangered, responsibly managed forests, finished with natural products to their warm mahogany tone. Cork from the oak groves of Iberia. No plastic handles, no needless coatings — and packaging kept minimal, recycled and recyclable, made to protect the brush and then disappear.",
   "sus_c4_h":"A <em>vegan</em> option, by design.",
-  "sus_c4_p":"Boar bristle has its place — it carries the hair's natural oils like nothing synthetic can. But for those who'd rather not, every signature shape is offered with a high-quality vegan bristle. Same cork grip, same craft, the same brush built to last. The choice is simply yours.",
+  "sus_c4_p":"Boar bristle has its place — first-cut and heat-resistant, it carries the hair's natural oils like nothing synthetic can while protecting the scalp and hair structure. But for those who'd rather not, every signature shape comes with a high-quality vegan bristle. Same cork grip, same craft, the same brush built to last. The choice is simply yours.",
   "sus_mat_eye":"The materials",
   "sus_mat_h":"Cork, beechwood, boar or <em>vegan</em>.",
-  "sus_mat_p":"Cork bark, harvested without harm and certified at source. FSC beechwood from managed forests. Boar bristle for those who want it, plant-based bristle for those who don't. Four honest materials, assembled by hand in Spain since 1987 — and nothing in the brush we couldn't name to your face.",
+  "sus_mat_p":"Cork bark, harvested without felling the oak. Beechwood and hardwood from managed, non-endangered forests, treated with natural products. Boar first-cut bristle reinforced with carbon-nylon for those who want it, plant-based bristle for those who don't. Four honest materials, assembled by hand in Spain — the Cork Grip System the family has refined since 1987.",
   "sus_cta_h":"Choose a brush you'll <em>keep</em>.",
   "sus_cta_btn":"Shop the collection",
-  "pro_kick":"Pro &amp; Wholesale · since 1987",
+  "pro_kick":"Pro & Wholesale · Cork Grip since 1987",
   "pro_h1":"Tools for hands that <em>work</em>.",
-  "pro_sub":"For hairstylists, salons and distributors. The patented Cork Grip, handmade in Spain — balanced for all-day use, priced for the trade.",
+  "pro_sub":"For hairstylists, salons and distributors. The Regincós Cork Grip System, semi-hand made in Spain since 1962 — balanced for all-day use, built for the chair, priced for the trade.",
   "pro_hero_btn":"Apply for a trade account",
   "pro_p_eye":"Why pros choose the Cork Grip",
   "pro_p_h2":"Built for the <em>chair</em>, not the shelf.",
   "pro_p1_h":"Balance you feel by <em>noon</em>.",
-  "pro_p1_p":"A warm cork handle keeps the brush light and centred in the hand. Less wrist load across a full column of blow-dries — the difference shows by the end of the day.",
+  "pro_p1_p":"A warm cork handle keeps each brush light and centred in the hand. Cork is non-slip, static-free and insulating, so the tool stays controlled through a full column of blow-dries — less wrist load, and the difference shows by the end of the day.",
   "pro_p2_h":"Grip that won't <em>slip</em>.",
-  "pro_p2_p":"The patented Cork Grip stays sure even with product, water or damp hands. Cork is naturally warm and antibacterial, so the handle that earns its place stays hygienic too.",
+  "pro_p2_p":"Developed by Regincós in 1987, the Cork Grip System stays sure even with product, water or damp hands. Cork is naturally warm, soft to the touch and highly resistant to chemicals — the grip that earns its place on your station holds up to salon chemistry day after day.",
   "pro_p3_h":"Made to last <em>decades</em>.",
-  "pro_p3_p":"Beechwood cores, cork grips and boar or vegan bristles, assembled by hand in Spain. These are tools that survive years of salon use — not seasons. Fewer replacements, lower cost per cut.",
+  "pro_p3_p":"Beechwood cores, managed-forest bodies, cork grips and 100% pure boar first-cut bristles reinforced with heat-resistant carbon-nylon — assembled by hand in Spain, with vegan bristle options too. Clients tell us theirs have lasted 30 years. Fewer replacements, lower cost per cut.",
   "pro_band_eye":"Trade program",
   "pro_band_h2":"A partner, not a <em>price list</em>.",
-  "pro_band_p":"Since 1987 our brushes have worked in salons across Europe. Open a trade account for wholesale pricing, salon starter kits and restocks dispatched fast from our Spanish workshop — with a real person on the other end.",
+  "pro_band_p":"A family company since Ramón Regincós began in 1962, we've supplied salons and houses like Jo Hansford in London and Boyd's of Madison Avenue in New York. Open a trade account for wholesale pricing, salon starter kits and restocks dispatched fast from our Spanish workshop — with a real person on the other end.",
   "pro_s_eye":"How the trade program works",
   "pro_s_h2":"Three steps to your <em>account</em>.",
   "pro_s1_h":"Apply",
   "pro_s1_p":"Tell us about your salon, chain or distribution — name, location and what your clients reach for. It takes a few minutes.",
   "pro_s2_h":"Get your terms",
-  "pro_s2_p":"We confirm your trade account, share volume pricing tiers and recommend a salon starter kit matched to your floor.",
-  "pro_s3_h":"Order &amp; restock",
-  "pro_s3_p":"Place your first wholesale order and reorder anytime. Fast EU shipping from Spain, with priority restocks on the brushes you move most.",
+  "pro_s2_p":"We confirm your trade account, share volume pricing tiers and recommend a salon starter kit matched to your floor — boar, vegan or both.",
+  "pro_s3_h":"Order & restock",
+  "pro_s3_p":"Place your first wholesale order and reorder anytime. Fast EU shipping from Spain in 3–5 days, with priority restocks on the brushes you move most.",
   "pro_perk1":"Volume pricing tiers",
   "pro_perk2":"Salon starter kits",
   "pro_perk3":"Fast EU shipping from Spain",
-  "pro_perk4":"Pro warranty &amp; support",
+  "pro_perk4":"Pro warranty & support",
   "pro_cta_h":"Stock the brush your stylists won't put <em>down</em>.",
-  "pro_cta_p":"Apply for a trade account or talk to us about wholesale and distribution. We reply within two business days.",
+  "pro_cta_p":"Apply for a trade account or talk to us about wholesale and distribution — the same brushes trusted by salons and stockists worldwide. We reply within two business days.",
   "pro_cta_btn":"Apply for a trade account",
-  "help_kick":"Help &amp; care",
+  "help_kick":"Help & care",
   "help_h1":"How can we <em>help</em>?",
-  "help_lead":"Shipping, returns, getting in touch, and the questions we hear most. Built to last decades — and backed the same way.",
+  "help_lead":"Shipping, returns, getting in touch, and the questions we hear most. A Regincós brush is handmade in Spain to last decades — and we stand behind it the same way.",
   "help_ship_h":"Shipping from <em>Spain</em>.",
-  "help_ship_p1":"Every brush is dispatched from our workshop in Spain, usually within 24–48 hours. Across the EU, delivery takes 3–5 working days, and shipping is free on orders over €45.",
+  "help_ship_p1":"Every brush is dispatched from our family workshop in Spain, usually within 24–48 hours. Across the EU, delivery takes 3–5 working days, and shipping is free on orders over €45.",
   "help_ship_p2":"We ship worldwide too — rates and timings are calculated at checkout by destination. You'll receive tracking by email the moment your order leaves us.",
   "help_ret_h":"Returns, made <em>simple</em>.",
   "help_ret_p1":"Changed your mind? You have 30 days from delivery to return any unused brush in its original condition and packaging. Once it reaches us, we refund to your original payment method.",
-  "help_ret_p2":"To start a return, email us at hello@regincoshair.com with your order number and we'll send instructions and a label. For hygiene reasons, brushes that have been used can't be returned unless faulty — and anything faulty we'll always put right.",
+  "help_ret_p2":"To start a return, email us at hello@regincoshair.com with your order number and we'll send instructions and a label. For hygiene reasons, used brushes can't be returned unless faulty — and anything faulty we'll always put right.",
   "help_con_h":"Talk to <em>us</em>.",
-  "help_con_p":"A real person reads every message. Whether it's a sizing question, a salon order, or a brush that isn't behaving, we're here.",
+  "help_con_p":"A real person reads every message. Whether it's a sizing question, a salon order, or a brush that isn't behaving, we're here — the same family that has made these brushes since 1962.",
   "help_con_email_l":"Email",
   "help_con_hours_l":"Hours",
   "help_con_hours_v":"Mon–Fri, 9:00–18:00 CET",
@@ -103,19 +104,19 @@ const T = {
   "help_faq_eye":"Good to know",
   "help_faq_h":"Frequently <em>asked</em>.",
   "help_q1":"Boar bristle or vegan — which should I choose?",
-  "help_a1":"Boar bristle distributes the scalp's natural oils down the hair shaft for shine and smoothing, and gives the grip stylists love for blow-dries. Our vegan brushes use a firm plant-and-nylon bristle that's cruelty-free and ideal if you prefer no animal fibre — same cork grip, same handcraft. Both are made in Spain.",
+  "help_a1":"Our boar bristle is 100% pure, first cut, reinforced with carbon-nylon filaments — heat-resistant, so it protects the hair and scalp while distributing the scalp's natural oils for shine and grip on blow-dries. Prefer no animal fibre? Every signature shape comes with a high-quality vegan bristle: same Cork Grip, same handcraft. Both are made in Spain.",
   "help_q2":"How do I clean and care for a cork brush?",
-  "help_a2":"Remove loose hair after each use with a comb or the Regincós brush cleaner. Wipe the bristles with a barely-damp cloth when needed and let the brush dry flat. Keep the cork grip dry — never soak it or run it under the tap, as cork and beechwood don't like standing water. Cared for this way, a Regincós brush lasts for decades.",
+  "help_a2":"Remove loose hair after each use with a comb or the Regincós brush cleaner. Wipe the bristles with a barely-damp cloth when needed and let the brush dry flat. Keep the cork grip dry — never soak it or run it under the tap, as cork and beechwood don't like standing water. Cork is naturally static-free and antibacterial, so cared for this way a Regincós brush lasts for decades.",
   "help_q3":"What warranty do I get, and how long will it last?",
-  "help_a3":"Our brushes are built to last decades, not seasons. Every piece is covered against manufacturing faults for two years — if cork, wood or bristle fails through a defect, we'll repair or replace it. This warranty doesn't cover ordinary wear, accidental damage or water damage from soaking.",
+  "help_a3":"Built to last decades, not seasons — reviewers regularly tell us theirs went 10, even 30 years. Every brush is covered against manufacturing faults for two years: if cork, beechwood or bristle fails through a defect, we'll repair or replace it. The warranty doesn't cover ordinary wear, accidental damage, or water damage from soaking.",
   "help_q4":"How do I choose the right size?",
-  "help_a4":"As a rule of thumb: smaller barrels (43–53&nbsp;mm) suit short hair, fringes and precise blow-dries; larger barrels (65–72&nbsp;mm) cover long or thick hair faster and create smooth, rounded volume. Paddle brushes are best for detangling and straightening longer lengths. Still unsure? Email us your hair type and we'll point you to the right brush.",
+  "help_a4":"As a rule of thumb: smaller barrels (43–53&nbsp;mm) suit short hair, fringes and precise blow-dries; larger barrels (65–72&nbsp;mm) cover long or thick hair faster and build smooth, rounded volume. Paddle brushes are best for detangling and straightening longer lengths. Still unsure? Email us your hair type and we'll point you to the right brush.",
   "help_q5":"Can my order be gift-wrapped?",
   "help_a5":"Yes. Choose gift wrap at checkout and we'll box your brush in our recycled gift packaging with a hand-written note if you'd like one — no prices on the slip. It's the way our boxed sets ship as standard.",
   "help_q6":"Do you offer wholesale for salons and professionals?",
-  "help_a6":"We do. Regincós brushes work in salons across Europe, and we offer trade pricing, priority restocks and bulk options to professionals. Open a pro account or email hello@regincoshair.com with your salon details and we'll set you up.",
+  "help_a6":"We do. Regincós is trusted by high-end salons worldwide — among them Jo Hansford in London and Boyd's of Madison Avenue in New York — and we offer trade pricing, priority restocks and bulk options. Open a pro account or email hello@regincoshair.com with your salon details and we'll set you up.",
   "help_q7":"Where are Regincós brushes made?",
-  "help_a7":"All of them, in our own workshop in Spain — by hand, the same way since 1987. Beechwood cores, the patented cork grip, bristles set by hand. Nothing is outsourced and nothing is mass-moulded.",
+  "help_a7":"All of them, in our own workshop in Spain — by hand, by the family Ramón Regincós founded in 1962. Beechwood cores, the Cork Grip system perfected in 1987, bristles set by hand. Nothing is outsourced and nothing is mass-moulded.",
   "help_cta_h":"Still can't find your <em>answer</em>?",
   "help_cta_btn":"Browse the collection",
 
@@ -164,65 +165,66 @@ const T = {
   cl_home:'Início',cl_crumb:'Coleção',cl_title:'A <em>coleção</em>.',cl_kick:'Todas as escovas · desde 1987',cl_count:'escovas, por ofício',empty_t:'Nada por aqui',empty_p:'Nenhuma escova corresponde a esse filtro. Experimente outro.',cl_sub:'Cada escova Regincós — cortiça, madeira, rolos Ibiza, pentes.',
   filt_all:'Todas',filt_round:'Redonda',filt_paddle:'Plana',filt_vent:'Ventilada',filt_vegan:'Vegana',
   sort_lab:'Ordenar',sort_feat:'Destaques',sort_new:'Mais recentes',sort_low:'Preço: crescente',sort_high:'Preço: decrescente',
+  price_lab:'Preço',price_all:'Todos',price_u15:'Até €15',price_o35:'Mais de €35',
   addcart:'Adicionar ao cesto',loadmore:'Ver mais',view360:'Vista 360°',view3d:'3D · AR',sr_ph:'Tente: escova para cabelo frisado',sr_hint:'Procure por necessidade — “volume”, “frizz”, “barba” ou “vegana”.',sr_none:'Sem resultados — tente “frizz”, “volume” ou “barba”.',
   cart_title:'O seu cesto',cart_empty:'O seu cesto está vazio.',cart_empty_cta:'Ver a coleção',cart_sub:'Subtotal',cart_checkout:'Finalizar compra',cart_remove:'Remover',cart_added:'Adicionado ao cesto',cart_ship_free:'Portes grátis na UE desbloqueados',cart_ship_a:'Faltam',cart_ship_b:'para portes grátis na UE',cart_note:'Envio de Espanha · UE 3–5 dias · impostos incl.',cart_clear:'Limpar',
-"sus_kick":"Sustentabilidade · desde 1987",
+"sus_kick":"Sustentabilidade · cortiça desde 1987",
   "sus_h1":"Esculpidas com o que a floresta <em>devolve</em>.",
-  "sus_sub":"A cortiça e a madeira não são uma tendência para nós — são a razão por que uma escova Regincós é leve, quente e feita para sobreviver a uma década de modas.",
+  "sus_sub":"A cortiça e a madeira não são uma tendência para nós. São a razão por que uma escova Regincós é leve, quente e feita para sobreviver a uma década de modas — feita à mão em Espanha pela família Regincós desde 1962.",
   "sus_c1_h":"O sobreiro <em>fica</em> de pé.",
-  "sus_c1_p":"A cortiça é extraída sem abater uma única árvore. De nove em nove anos, a casca é tirada à mão do sobreiro vivo — que a volta simplesmente a criar. A árvore vive 200 anos ou mais, e um sobreiro acabado de descortiçar absorve até cinco vezes mais CO2 enquanto se regenera. Naturalmente antibacteriana e notavelmente leve, a cortiça foi a escolha óbvia muito antes de lhe chamarem sustentável.",
+  "sus_c1_p":"A cortiça é extraída sem abater um único sobreiro. De nove em nove anos, a casca é tirada à mão da árvore viva, que a volta simplesmente a criar — e o sobreiro vive 200 anos ou mais, absorvendo mais CO2 enquanto se regenera. A cortiça é renovável, reciclável e consome menos energia a produzir do que as alternativas. Leve, quente ao toque e naturalmente antiestática, foi a escolha óbvia muito antes de lhe chamarem sustentável.",
   "sus_c2_h":"Feitas para <em>durar</em>, não para substituir.",
-  "sus_c2_p":"As ferramentas descartáveis são o verdadeiro desperdício. Uma escova Regincós é feita à mão em Espanha para ser reparada, guardada e passada adiante — cerdas colocadas à mão, um núcleo de faia que aguenta anos de salão, uma pega de cortiça que só fica melhor com o uso. Desenhamos contra o ciclo das estações: compre uma vez, penteie durante décadas.",
+  "sus_c2_p":"As ferramentas descartáveis são o verdadeiro desperdício. Uma escova Regincós é feita à mão em Espanha para ser guardada e passada adiante — um núcleo de faia que aguenta anos de salão, cerdas de javali de primeiro corte reforçadas com carbono-nylon e uma pega de cortiça que só fica melhor com o uso. Há clientes que nos dizem que a sua dura há 10 anos, até 30. Desenhamos contra o ciclo das estações: compre uma vez, penteie durante décadas.",
   "sus_c3_h":"Materiais <em>honestos</em>, nada escondido.",
-  "sus_c3_p":"Os núcleos de faia vêm de florestas europeias geridas de forma responsável. A cortiça, dos montados da Península Ibérica. Sem pegas de plástico, sem revestimentos desnecessários — e embalagem reduzida ao essencial e sem plástico, reciclada e reciclável, pensada para proteger a escova e depois desaparecer.",
+  "sus_c3_p":"Os corpos de faia e madeira nobre vêm de florestas geridas de forma responsável, sem espécies ameaçadas, acabados com produtos naturais até ao seu tom quente de mogno. A cortiça, dos montados da Península Ibérica. Sem pegas de plástico, sem revestimentos desnecessários — e embalagem reduzida ao essencial, reciclada e reciclável, feita para proteger a escova e depois desaparecer.",
   "sus_c4_h":"Uma opção <em>vegana</em>, por princípio.",
-  "sus_c4_p":"A cerda de javali tem o seu lugar — distribui os óleos naturais do cabelo como nenhum sintético consegue. Mas, para quem prefere não a usar, cada forma da casa está disponível com uma cerda vegana de alta qualidade. A mesma pega de cortiça, o mesmo ofício, a mesma escova feita para durar. A escolha é simplesmente sua.",
+  "sus_c4_p":"A cerda de javali tem o seu lugar — de primeiro corte e resistente ao calor, distribui os óleos naturais do cabelo como nenhum sintético consegue, protegendo o couro cabeludo e a estrutura do cabelo. Mas, para quem prefere não a usar, cada forma da casa está disponível com uma cerda vegana de alta qualidade. A mesma pega de cortiça, o mesmo ofício, a mesma escova feita para durar. A escolha é simplesmente sua.",
   "sus_mat_eye":"Os materiais",
   "sus_mat_h":"Cortiça, faia, javali ou <em>vegana</em>.",
-  "sus_mat_p":"Casca de cortiça, extraída sem dano e certificada na origem. Faia FSC de florestas geridas. Cerda de javali para quem a quer, cerda de origem vegetal para quem não. Quatro materiais honestos, montados à mão em Espanha desde 1987 — e nada na escova que não lhe pudéssemos dizer de frente.",
+  "sus_mat_p":"Casca de cortiça, extraída sem abater o sobreiro. Faia e madeira nobre de florestas geridas, sem espécies ameaçadas, tratadas com produtos naturais. Cerda de javali de primeiro corte reforçada com carbono-nylon para quem a quer, cerda de origem vegetal para quem não. Quatro materiais honestos, montados à mão em Espanha — o Cork Grip System que a família aperfeiçoa desde 1987.",
   "sus_cta_h":"Escolha uma escova para <em>guardar</em>.",
   "sus_cta_btn":"Ver a coleção",
-  "pro_kick":"Pro &amp; Grossista · desde 1987",
+  "pro_kick":"Pro & Grossista · Cork Grip desde 1987",
   "pro_h1":"Ferramentas para mãos que <em>trabalham</em>.",
-  "pro_sub":"Para cabeleireiros, salões e distribuidores. O Cork Grip patenteado, feito à mão em Espanha — equilibrado para o dia inteiro, com preço para o setor.",
+  "pro_sub":"Para cabeleireiros, salões e distribuidores. O Cork Grip System da Regincós, semi-artesanal em Espanha desde 1962 — equilibrado para o dia inteiro, feito para a cadeira e com preço para o setor.",
   "pro_hero_btn":"Pedir conta profissional",
   "pro_p_eye":"Porque os profissionais escolhem o Cork Grip",
   "pro_p_h2":"Feito para a <em>cadeira</em>, não para a prateleira.",
   "pro_p1_h":"Equilíbrio que se sente ao <em>meio-dia</em>.",
-  "pro_p1_p":"A pega de cortiça quente mantém a escova leve e centrada na mão. Menos esforço no pulso ao longo de uma coluna inteira de brushings — a diferença nota-se ao fim do dia.",
+  "pro_p1_p":"A pega de cortiça quente mantém cada escova leve e centrada na mão. A cortiça é antiderrapante, antiestática e isolante, por isso a ferramenta mantém o controlo ao longo de uma coluna inteira de brushings — menos esforço no pulso, e a diferença nota-se ao fim do dia.",
   "pro_p2_h":"Pega que não <em>escorrega</em>.",
-  "pro_p2_p":"O Cork Grip patenteado mantém-se firme mesmo com produto, água ou mãos húmidas. A cortiça é naturalmente quente e antibacteriana, por isso a pega que merece o seu lugar mantém-se também higiénica.",
+  "pro_p2_p":"Desenvolvido pela Regincós em 1987, o Cork Grip System mantém-se firme mesmo com produto, água ou mãos húmidas. A cortiça é naturalmente quente, suave ao toque e altamente resistente a químicos — a pega que merece o seu lugar na bancada aguenta a química do salão dia após dia.",
   "pro_p3_h":"Feita para durar <em>décadas</em>.",
-  "pro_p3_p":"Núcleos de faia, pegas de cortiça e cerdas de javali ou veganas, montadas à mão em Espanha. São ferramentas que aguentam anos de uso em salão — não estações. Menos substituições, menor custo por corte.",
+  "pro_p3_p":"Núcleos de faia, corpos de madeira de florestas geridas, pegas de cortiça e cerdas 100% de javali de primeiro corte reforçadas com carbono-nylon resistente ao calor — montadas à mão em Espanha, também com opções de cerda vegana. Há clientes que nos dizem que a sua dura há 30 anos. Menos substituições, menor custo por corte.",
   "pro_band_eye":"Programa profissional",
   "pro_band_h2":"Um parceiro, não uma <em>tabela de preços</em>.",
-  "pro_band_p":"Desde 1987 que as nossas escovas trabalham em salões por toda a Europa. Abra uma conta profissional para preços grossistas, kits de arranque para salão e reposições expedidas rapidamente da nossa oficina espanhola — com uma pessoa real do outro lado.",
+  "pro_band_p":"Empresa familiar desde que Ramón Regincós começou em 1962, fornecemos salões e casas como a Jo Hansford em Londres e a Boyd's da Madison Avenue em Nova Iorque. Abra uma conta profissional para preços grossistas, kits de arranque para salão e reposições expedidas rapidamente da nossa oficina espanhola — com uma pessoa real do outro lado.",
   "pro_s_eye":"Como funciona o programa profissional",
   "pro_s_h2":"Três passos até à sua <em>conta</em>.",
   "pro_s1_h":"Candidate-se",
   "pro_s1_p":"Conte-nos sobre o seu salão, cadeia ou distribuição — nome, localização e o que os seus clientes mais procuram. Leva poucos minutos.",
   "pro_s2_h":"Receba as condições",
-  "pro_s2_p":"Confirmamos a sua conta profissional, partilhamos os escalões de preço por volume e recomendamos um kit de arranque adequado ao seu salão.",
+  "pro_s2_p":"Confirmamos a sua conta profissional, partilhamos os escalões de preço por volume e recomendamos um kit de arranque adequado ao seu salão — javali, vegano ou ambos.",
   "pro_s3_h":"Encomende e reponha",
-  "pro_s3_p":"Faça a primeira encomenda grossista e reponha quando quiser. Envio rápido na UE a partir de Espanha, com reposições prioritárias nas escovas que mais vende.",
+  "pro_s3_p":"Faça a primeira encomenda grossista e reponha quando quiser. Envio rápido na UE a partir de Espanha em 3–5 dias, com reposições prioritárias nas escovas que mais vende.",
   "pro_perk1":"Escalões de preço por volume",
   "pro_perk2":"Kits de arranque para salão",
   "pro_perk3":"Envio rápido na UE desde Espanha",
   "pro_perk4":"Garantia e apoio profissional",
   "pro_cta_h":"Tenha a escova que os seus profissionais não vão <em>largar</em>.",
-  "pro_cta_p":"Peça uma conta profissional ou fale connosco sobre venda grossista e distribuição. Respondemos em dois dias úteis.",
+  "pro_cta_p":"Peça uma conta profissional ou fale connosco sobre venda grossista e distribuição — as mesmas escovas em que confiam salões e revendedores por todo o mundo. Respondemos em dois dias úteis.",
   "pro_cta_btn":"Pedir conta profissional",
-  "help_kick":"Ajuda &amp; cuidado",
+  "help_kick":"Ajuda & cuidado",
   "help_h1":"Como podemos <em>ajudar</em>?",
-  "help_lead":"Envios, devoluções, como falar connosco e as perguntas que mais ouvimos. Feitas para durar décadas — e apoiadas da mesma forma.",
+  "help_lead":"Envios, devoluções, como falar connosco e as perguntas que mais ouvimos. Uma escova Regincós é feita à mão em Espanha para durar décadas — e respondemos por ela da mesma forma.",
   "help_ship_h":"Envios de <em>Espanha</em>.",
-  "help_ship_p1":"Cada escova é expedida da nossa oficina em Espanha, normalmente em 24–48 horas. Na União Europeia, a entrega demora 3–5 dias úteis e os portes são grátis em encomendas acima de €45.",
+  "help_ship_p1":"Cada escova é expedida da nossa oficina familiar em Espanha, normalmente em 24–48 horas. Na União Europeia, a entrega demora 3–5 dias úteis e os portes são grátis em encomendas acima de €45.",
   "help_ship_p2":"Também enviamos para todo o mundo — os custos e prazos são calculados na finalização da compra, consoante o destino. Recebe o seguimento por email assim que a sua encomenda sai de cá.",
   "help_ret_h":"Devoluções <em>simples</em>.",
   "help_ret_p1":"Mudou de ideias? Tem 30 dias após a entrega para devolver qualquer escova não usada, no estado e embalagem originais. Quando chega até nós, reembolsamos pelo mesmo meio de pagamento.",
   "help_ret_p2":"Para iniciar uma devolução, escreva-nos para hello@regincoshair.com com o número da encomenda e enviamos as instruções e a etiqueta. Por razões de higiene, escovas já usadas não podem ser devolvidas salvo defeito — e qualquer defeito resolvemos sempre.",
   "help_con_h":"Fale <em>connosco</em>.",
-  "help_con_p":"Cada mensagem é lida por uma pessoa de verdade. Seja uma dúvida sobre tamanhos, uma encomenda para salão ou uma escova que não se porta bem, estamos cá.",
+  "help_con_p":"Cada mensagem é lida por uma pessoa de verdade. Seja uma dúvida sobre tamanhos, uma encomenda para salão ou uma escova que não se porta bem, estamos cá — a mesma família que faz estas escovas desde 1962.",
   "help_con_email_l":"Email",
   "help_con_hours_l":"Horário",
   "help_con_hours_v":"Seg–Sex, 9:00–18:00 CET",
@@ -233,19 +235,19 @@ const T = {
   "help_faq_eye":"Bom saber",
   "help_faq_h":"Perguntas <em>frequentes</em>.",
   "help_q1":"Cerda de javali ou vegana — qual escolher?",
-  "help_a1":"A cerda de javali distribui os óleos naturais do couro cabeludo ao longo do cabelo, dando brilho e alisamento, além da pega que os profissionais adoram nos brushings. As nossas escovas veganas usam uma cerda firme de fibra vegetal e nylon, sem crueldade, ideal se prefere não usar fibra animal — a mesma pega de cortiça, o mesmo ofício à mão. Ambas feitas em Espanha.",
+  "help_a1":"A nossa cerda de javali é 100% pura, de primeiro corte, reforçada com filamentos de carbono-nylon — resistente ao calor, por isso protege o cabelo e o couro cabeludo enquanto distribui os óleos naturais, dando brilho e pega nos brushings. Prefere não usar fibra animal? Cada forma da casa está disponível com uma cerda vegana de alta qualidade: a mesma pega de cortiça, o mesmo ofício à mão. Ambas feitas em Espanha.",
   "help_q2":"Como limpo e cuido de uma escova de cortiça?",
-  "help_a2":"Retire o cabelo solto após cada uso com um pente ou com o limpa-escovas Regincós. Passe um pano apenas húmido pelas cerdas quando necessário e deixe a escova secar deitada. Mantenha a pega de cortiça seca — nunca a mergulhe nem a passe por água corrente, pois a cortiça e a faia não gostam de água parada. Assim cuidada, uma escova Regincós dura décadas.",
+  "help_a2":"Retire o cabelo solto após cada uso com um pente ou com o limpa-escovas Regincós. Passe um pano apenas húmido pelas cerdas quando necessário e deixe a escova secar deitada. Mantenha a pega de cortiça seca — nunca a mergulhe nem a passe por água corrente, pois a cortiça e a faia não gostam de água parada. A cortiça é naturalmente antiestática e antibacteriana, por isso, assim cuidada, uma escova Regincós dura décadas.",
   "help_q3":"Que garantia tenho e quanto tempo dura?",
-  "help_a3":"As nossas escovas são feitas para durar décadas, não estações. Cada peça tem garantia contra defeitos de fabrico durante dois anos — se a cortiça, a madeira ou a cerda falhar por defeito, reparamos ou substituímos. Esta garantia não cobre o desgaste normal, danos acidentais nem danos por água ao mergulhar.",
+  "help_a3":"Feitas para durar décadas, não estações — há clientes que nos dizem que a sua durou 10, até 30 anos. Cada escova tem garantia contra defeitos de fabrico durante dois anos: se a cortiça, a faia ou a cerda falhar por defeito, reparamos ou substituímos. A garantia não cobre o desgaste normal, danos acidentais nem danos por água ao mergulhar.",
   "help_q4":"Como escolho o tamanho certo?",
   "help_a4":"Como regra geral: barris menores (43–53&nbsp;mm) servem cabelo curto, franjas e brushings precisos; barris maiores (65–72&nbsp;mm) tratam cabelo comprido ou grosso mais depressa e criam volume redondo e liso. As escovas planas são ideais para desembaraçar e alisar comprimentos maiores. Ainda com dúvidas? Escreva-nos a indicar o seu tipo de cabelo e indicamos a escova certa.",
   "help_q5":"Posso receber a encomenda embrulhada para oferta?",
   "help_a5":"Sim. Escolha o embrulho de oferta na finalização da compra e embalamos a escova na nossa embalagem reciclada, com um cartão escrito à mão se quiser — e sem preços no talão. É assim que os nossos conjuntos são enviados de série.",
   "help_q6":"Têm condições de grossista para salões e profissionais?",
-  "help_a6":"Temos. As escovas Regincós trabalham em salões por toda a Europa e oferecemos preços de profissional, reposições prioritárias e opções de volume. Abra uma conta profissional ou escreva para hello@regincoshair.com com os dados do seu salão e tratamos de tudo.",
+  "help_a6":"Temos. A Regincós é a escolha de salões de topo em todo o mundo — entre eles o Jo Hansford em Londres e o Boyd's da Madison Avenue em Nova Iorque — e oferecemos preços de profissional, reposições prioritárias e opções de volume. Abra uma conta profissional ou escreva para hello@regincoshair.com com os dados do seu salão e tratamos de tudo.",
   "help_q7":"Onde são feitas as escovas Regincós?",
-  "help_a7":"Todas, na nossa própria oficina em Espanha — à mão, da mesma forma desde 1987. Núcleos de faia, a pega de cortiça patenteada, cerdas colocadas à mão. Nada é subcontratado e nada é moldado em massa.",
+  "help_a7":"Todas, na nossa própria oficina em Espanha — à mão, pela família que Ramón Regincós fundou em 1962. Núcleos de faia, o sistema Cork Grip aperfeiçoado em 1987, cerdas colocadas à mão. Nada é subcontratado e nada é moldado em massa.",
   "help_cta_h":"Ainda não encontrou a sua <em>resposta</em>?",
   "help_cta_btn":"Ver a coleção",
 
@@ -268,6 +270,7 @@ function setLang(l){
   if(window.quizRerender)window.quizRerender();
   if(window.reviewsRerender)window.reviewsRerender();
   if(window.cartRerender)window.cartRerender();
+  if(window.cartPageRerender)window.cartPageRerender();
 }
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
@@ -289,6 +292,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initPDP();
   initCart();
   initNav();
+  initCartPage();
   /* perf: async-decode every image, lazy-load all but the LCP product image */
   document.querySelectorAll('img').forEach(function(im){im.setAttribute('decoding','async');if(im.id!=='mainimg'&&!im.hasAttribute('loading'))im.setAttribute('loading','lazy');});
   var _lcp=document.getElementById('mainimg');if(_lcp)_lcp.setAttribute('fetchpriority','high');
@@ -487,13 +491,14 @@ function cartLang(){return document.documentElement.lang||'en';}
 function cartT(k){var l=cartLang();return (T[l]&&T[l][k]!==undefined)?T[l][k]:(T.en[k]!==undefined?T.en[k]:k);}
 function eurFmt(n){return '€'+Number(n||0).toFixed(2).replace('.',',');}
 function cartGet(){try{return JSON.parse(localStorage.getItem('rg_cart')||'[]');}catch(e){return [];}}
-function cartSave(c){try{localStorage.setItem('rg_cart',JSON.stringify(c));}catch(e){}cartBadge();cartRender();}
+function cartSave(c){try{localStorage.setItem('rg_cart',JSON.stringify(c));}catch(e){}cartBadge();cartRender();if(window.cartPageRerender)window.cartPageRerender();}
 function cartCount(){return cartGet().reduce(function(a,x){return a+(x.q||1);},0);}
 function cartTotal(){return cartGet().reduce(function(a,x){return a+(Number(x.p)||0)*(x.q||1);},0);}
 function cartBadge(){var n=cartCount();document.querySelectorAll('[title="cart"]').forEach(function(s){s.textContent='⛒ '+n;s.classList.toggle('has',n>0);});}
 function cartImg(u){u=u||'';return u+((u&&u.indexOf('?')<0)?'?width=160':'');}
-function cartAdd(item){
+function cartAdd(item,srcEl){
   if(!item||item.p==null||!(Number(item.p)>0))return;
+  if(srcEl)flyToCart(srcEl,item.img);
   var c=cartGet();var key=item.h+'|'+(item.v||'');
   var ex=c.find(function(x){return (x.h+'|'+(x.v||''))===key;});
   if(ex){ex.q=(ex.q||1)+(item.q||1);}else{c.push({h:item.h,t:item.t,p:Number(item.p),img:item.img,v:item.v||'',q:item.q||1});}
@@ -511,7 +516,7 @@ function cartEnsureDOM(){
     '<div class="cd-foot"><div class="cd-sub"><span class="cd-sublab"></span><span id="cdTotal"></span></div><button class="btn block" id="cdCheckout" type="button"></button><div class="cd-note"></div></div>';
   document.body.appendChild(ov);document.body.appendChild(d);
   d.querySelector('.cd-x').addEventListener('click',cartClose);
-  d.querySelector('#cdCheckout').addEventListener('click',function(){if(cartGet().length)cartToast(cartT('cart_note'));});
+  d.querySelector('#cdCheckout').addEventListener('click',function(){if(cartGet().length)window.location.href='cart.html';});
   d.querySelector('#cdItems').addEventListener('click',function(e){
     var b=e.target.closest('[data-act]');if(!b)return;
     var i=parseInt(b.getAttribute('data-i2'),10);var act=b.getAttribute('data-act');var c=cartGet();if(!c[i]&&act!=='rm')return;
@@ -547,6 +552,42 @@ function cartOpen(){cartEnsureDOM();cartRender();var d=document.getElementById('
 function cartClose(){var d=document.getElementById('cartDrawer'),ov=document.getElementById('cartOv');if(!d)return;d.classList.remove('show');ov.classList.remove('show');d.setAttribute('aria-hidden','true');document.body.style.overflow='';setTimeout(function(){ov.hidden=true;},320);}
 function cartToast(msg){cartEnsureDOM();var t=document.getElementById('cartToast');if(!t)return;t.textContent=msg;t.classList.add('show');clearTimeout(_toastTmr);_toastTmr=setTimeout(function(){t.classList.remove('show');},1800);}
 function _catProd(h){return (h&&window.CATALOG)?window.CATALOG.find(function(x){return x.h===h;}):null;}
+/* ===== Fly-to-cart: ghost image arcs from source to the cart icon, then badge bumps ===== */
+function bumpCart(){document.querySelectorAll('[title="cart"]').forEach(function(c){c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');setTimeout(function(){c.classList.remove('bump');},640);});}
+function flyToCart(sourceEl,imgUrl){
+  try{
+    var cart=document.querySelector('[title="cart"]');if(!cart)return;
+    if(!sourceEl||!imgUrl||matchMedia('(prefers-reduced-motion:reduce)').matches){bumpCart();return;}
+    var s=sourceEl.getBoundingClientRect();if(!s.width||!s.height){bumpCart();return;}
+    var c=cart.getBoundingClientRect();
+    var ghost=document.createElement('img');ghost.src=cartImg(imgUrl);ghost.alt='';
+    ghost.style.cssText='position:fixed;left:'+s.left+'px;top:'+s.top+'px;width:'+s.width+'px;height:'+s.height+'px;object-fit:cover;border-radius:8px;z-index:120;pointer-events:none;box-shadow:0 12px 30px rgba(20,15,10,.28);transition:transform .62s cubic-bezier(.5,-0.18,.3,1),opacity .62s ease-in;will-change:transform,opacity';
+    document.body.appendChild(ghost);void ghost.offsetWidth;
+    var dx=(c.left+c.width/2)-(s.left+s.width/2),dy=(c.top+c.height/2)-(s.top+s.height/2);
+    ghost.style.transform='translate('+dx+'px,'+dy+'px) scale(.12)';ghost.style.opacity='0.35';
+    setTimeout(function(){ghost.remove();bumpCart();},630);
+  }catch(e){bumpCart();}
+}
+/* ===== Full cart page (/cart) — shares localStorage + cart helpers with the drawer ===== */
+function renderCartPage(){
+  var wrap=document.getElementById('cartpage');if(!wrap)return;
+  var ttl=wrap.querySelector('[data-i="cart_title"]');if(ttl)ttl.textContent=cartT('cart_title');
+  var grid=document.getElementById('cpGrid');if(!grid)return;
+  var c=cartGet();
+  if(!c.length){grid.innerHTML='<div class="cp-empty"><p>'+cartT('cart_empty')+'</p><a class="btn" href="collection.html">'+cartT('cart_empty_cta')+'</a></div>';return;}
+  var items=c.map(function(x,i){return '<div class="cp-item"><img src="'+cartImg(x.img)+'" alt="" loading="lazy"><div class="cp-mid"><div class="cp-n serif">'+x.t+'</div>'+(x.v?'<div class="cp-v">'+x.v+'</div>':'')+'<button class="cp-rm" type="button" data-act="rm" data-i2="'+i+'">'+cartT('cart_remove')+'</button></div><div class="cp-qty"><button type="button" data-act="dec" data-i2="'+i+'" aria-label="−">−</button><span>'+x.q+'</span><button type="button" data-act="inc" data-i2="'+i+'" aria-label="+">+</button></div><div class="cp-p">'+eurFmt(Number(x.p)*x.q)+'</div></div>';}).join('');
+  var total=cartTotal(),pct=Math.min(100,Math.round(total/FREE_SHIP*100));
+  var ship=total>=FREE_SHIP?'<div class="cd-shiptxt ok">✓ '+cartT('cart_ship_free')+'</div><div class="cd-bar"><i style="width:100%"></i></div>':'<div class="cd-shiptxt">'+cartT('cart_ship_a')+' <b>'+eurFmt(FREE_SHIP-total)+'</b> '+cartT('cart_ship_b')+'</div><div class="cd-bar"><i style="width:'+pct+'%"></i></div>';
+  grid.innerHTML='<div class="cp-items">'+items+'</div><aside class="cp-sum"><div class="cp-ship">'+ship+'</div><div class="cp-row"><span>'+cartT('cart_sub')+'</span><span class="cp-total">'+eurFmt(total)+'</span></div><button class="btn block" type="button" id="cpCheckout">'+cartT('cart_checkout')+'</button><a class="cp-cont" href="collection.html">'+cartT('cart_empty_cta')+'</a><div class="cp-note">'+cartT('cart_note')+'</div></aside>';
+  var co=document.getElementById('cpCheckout');if(co)co.addEventListener('click',function(){cartToast(cartT('cart_note'));});
+}
+function initCartPage(){
+  var wrap=document.getElementById('cartpage');if(!wrap)return;
+  window.cartPageRerender=renderCartPage;
+  var grid=document.getElementById('cpGrid');
+  if(grid)grid.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var i=parseInt(b.getAttribute('data-i2'),10);var act=b.getAttribute('data-act');var cc=cartGet();if(!cc[i]&&act!=='rm')return;if(act==='inc')cartSetQty(i,(cc[i].q||1)+1);else if(act==='dec')cartSetQty(i,(cc[i].q||1)-1);else if(act==='rm')cartRemove(i);});
+  renderCartPage();
+}
 function initCart(){
   cartEnsureDOM();cartBadge();
   document.querySelectorAll('[title="cart"]').forEach(function(s){s.style.cursor='pointer';s.addEventListener('click',cartOpen);});
@@ -559,7 +600,7 @@ function initCart(){
         e.preventDefault();
         var qel=document.getElementById('q');var qty=qel?(parseInt(qel.textContent,10)||1):1;
         var onv=document.querySelector('.opt .row button.on');var variant=onv?onv.textContent.trim():'';
-        cartAdd({h:pp.h,t:pp.t,p:pp.p,img:(pp.imgs&&pp.imgs[0])||pp.img,v:variant,q:qty});
+        cartAdd({h:pp.h,t:pp.t,p:pp.p,img:(pp.imgs&&pp.imgs[0])||pp.img,v:variant,q:qty},document.getElementById('mainimg'));
       });
     });
   }
@@ -568,24 +609,25 @@ function initCart(){
     add.addEventListener('click',function(e){
       e.preventDefault();e.stopPropagation();
       var card=add.closest('.prod');if(!card)return;
+      var cim=card.querySelector('img');
       var href=card.getAttribute('href')||'';var m=href.match(/[?&]p=([^&]+)/);var hh=m?decodeURIComponent(m[1]):null;
       var p=_catProd(hh);
-      if(p){cartAdd({h:p.h,t:p.t,p:p.p,img:(p.imgs&&p.imgs[0])||p.img,v:'',q:1});return;}
+      if(p){cartAdd({h:p.h,t:p.t,p:p.p,img:(p.imgs&&p.imgs[0])||p.img,v:'',q:1},cim);return;}
       var t=(card.querySelector('h4')||{}).textContent||'Brush';
       var pr=parseFloat(card.getAttribute('data-price')||'0')||0;
       if(!pr){var px=card.querySelector('.px');if(px)pr=parseFloat((px.textContent||'').replace('€','').replace(',','.'))||0;}
       var im=(card.querySelector('img')||{}).src||'';
-      cartAdd({h:href||t,t:t,p:pr,img:im,v:'',q:1});
+      cartAdd({h:href||t,t:t,p:pr,img:im,v:'',q:1},cim);
     });
   });
   /* PDP bundle "add all three" */
   var bn=document.getElementById('bnbtn');
   if(bn){bn.addEventListener('click',function(){
-    document.querySelectorAll('.bn-item').forEach(function(it){
+    document.querySelectorAll('.bn-item').forEach(function(it,bi){
       var t=(it.querySelector('.bn-n')||{}).textContent||'Item';
       var pr=parseFloat(((it.querySelector('.bn-p')||{}).textContent||'').replace('€','').replace(',','.'))||0;
       var im=(it.querySelector('img')||{}).src||'';
-      cartAdd({h:'bundle-'+t,t:t,p:pr,img:im,v:'',q:1});
+      cartAdd({h:'bundle-'+t,t:t,p:pr,img:im,v:'',q:1},bi===0?it.querySelector('img'):null);
     });
   });}
 }
