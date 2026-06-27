@@ -4,6 +4,9 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 [id]{scroll-margin-top:90px}
+.skip{position:fixed;left:-9999px;top:10px;z-index:200;background:var(--ink);color:var(--paper);padding:11px 18px;border-radius:3px;font-size:13px;font-weight:600;letter-spacing:.02em}
+.skip:focus{left:14px;outline:2px solid var(--sage);outline-offset:2px}
+[id]:focus{outline:none}
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{background:var(--paper);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 .serif{font-family:'Fraunces',Georgia,serif}
