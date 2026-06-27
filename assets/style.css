@@ -593,6 +593,25 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .e404 h1{font-size:clamp(28px,4.5vw,46px);font-weight:500;letter-spacing:-.01em;max-width:18ch;line-height:1.05}
 .e404 p{color:var(--ink2);max-width:48ch;margin:14px auto 30px;font-size:17px}
 .e404-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+/* ===== newsletter band ===== */
+.nlband{background:var(--paper2);border-top:1px solid var(--line)}
+[data-theme="dark"] .nlband{background:var(--surface)}
+.nl-in{display:flex;align-items:center;justify-content:space-between;gap:34px;padding:50px 0;flex-wrap:wrap}
+.nl-txt .eyebrow{color:var(--cork-d)}
+.nl-txt .h2{margin:6px 0 8px}
+.nl-txt p{color:var(--ink2);font-size:15px;max-width:48ch}
+.nl-form{display:flex;gap:10px;flex:0 0 auto}
+.nl-form input{font-family:inherit;font-size:15px;padding:14px 16px;border:1px solid var(--line);border-radius:3px;background:var(--paper);color:var(--ink);min-width:240px;transition:border-color .2s}
+.nl-form input:focus{outline:none;border-color:var(--cork)}
+.nl-form input.nl-err{border-color:#c0392b}
+.nl-done{font-family:'Fraunces',Georgia,serif;font-size:18px;color:var(--cork-d)}
+@media(max-width:760px){.nl-in{flex-direction:column;align-items:flex-start;gap:20px}.nl-form{width:100%}.nl-form input{flex:1;min-width:0}}
+/* ===== back-to-top ===== */
+.totop{position:fixed;right:18px;bottom:18px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:18px;line-height:1;cursor:pointer;opacity:0;transform:translateY(10px);transition:.25s;box-shadow:0 6px 20px rgba(20,15,10,.18)}
+.totop.show{opacity:1;transform:none}
+.totop:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+[data-theme="dark"] .totop{background:var(--surface-2)}
+@media(max-width:600px){.totop{right:12px;bottom:12px}}
 @media(max-width:600px){.jr-body p{font-size:16px}.jr-hero{padding-top:40px}.jr-lead{font-size:18.5px}.jr-lead::first-letter{font-size:60px}}
 /* ===== stockists (Professionals page) ===== */
 .stockists{padding-top:10px}

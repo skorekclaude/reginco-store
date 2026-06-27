@@ -18,6 +18,7 @@ const T = {
   b2b_eye:'For salons & stylists',b2b_h2:'Are you a <em>professional</em>?',b2b_p:'Register for wholesale pricing, exclusive tools and priority restocks.',b2b_btn:'Open a pro account',
   ts_lead:'Trusted by professionals · stocked worldwide',ts_rating:'on Amazon & Trustpilot',
   e404_kick:'Error 404',e404_h:'This page slipped through the <em>bristles</em>.',e404_p:'The link is broken, or the page has moved. Let us get you back to something handmade.',e404_home:'Back to home',e404_shop:'Shop the collection',
+  nl_eye:'The list',nl_h:'10% off your <em>first</em> brush.',nl_p:'Join for early drops, care notes and the occasional letter. No noise.',nl_ph:'Your email',nl_btn:'Subscribe',nl_done:'Welcome — watch your inbox for 10% off. ✓',
   qz_eye:'Find your brush',qz_h2:'Two minutes to your <em>match</em>.',qz_lead:'Answer three quick questions and we match you to the right cork or wood brush.',qz_back:'Back',qz_result_eye:'Your match',qz_cta:'Shop this brush',qz_restart:'Retake the quiz',
   qq_hair:'How is your hair?',qo_fine:'Fine',qo_thick:'Thick',qo_curly:'Curly',qo_straight:'Straight',
   qq_mat:'Cork or wood?',qo_cork:'Cork — light and warm',qo_wood:'Wood — classic',qo_either:'Surprise me',
@@ -156,6 +157,7 @@ const T = {
   b2b_eye:'Para salões e profissionais',b2b_h2:'É <em>profissional</em>?',b2b_p:'Registe-se para preços grossistas, ferramentas exclusivas e reposições prioritárias.',b2b_btn:'Abrir conta profissional',
   ts_lead:'Confiança dos profissionais · vendida em todo o mundo',ts_rating:'na Amazon & Trustpilot',
   e404_kick:'Erro 404',e404_h:'Esta página escapou por entre as <em>cerdas</em>.',e404_p:'O link está partido, ou a página mudou. Vamos levá-lo de volta a algo feito à mão.',e404_home:'Voltar ao início',e404_shop:'Ver a coleção',
+  nl_eye:'A lista',nl_h:'10% na sua <em>primeira</em> escova.',nl_p:'Junte-se para lançamentos antecipados, notas de cuidado e uma carta ocasional. Sem ruído.',nl_ph:'O seu email',nl_btn:'Subscrever',nl_done:'Bem-vindo — veja a caixa de entrada para os 10%. ✓',
   qz_eye:'Encontre a sua escova',qz_h2:'Dois minutos até à sua <em>escova ideal</em>.',qz_lead:'Responda a três perguntas rápidas e encontramos a escova de cortiça ou madeira certa para si.',qz_back:'Voltar',qz_result_eye:'A sua escova',qz_cta:'Ver esta escova',qz_restart:'Refazer o quiz',
   qq_hair:'Como é o seu cabelo?',qo_fine:'Fino',qo_thick:'Grosso',qo_curly:'Encaracolado',qo_straight:'Liso',
   qq_mat:'Cortiça ou madeira?',qo_cork:'Cortiça — leve e quente',qo_wood:'Madeira — clássica',qo_either:'Surpreenda-me',
@@ -278,6 +280,7 @@ const T = {
 };
 function setLang(l){
   document.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i'); if(T[l][k]!==undefined) el.innerHTML=T[l][k];});
+  document.querySelectorAll('[data-i-ph]').forEach(el=>{const k=el.getAttribute('data-i-ph'); if(T[l][k]!==undefined) el.setAttribute('placeholder',T[l][k]);});
   document.querySelectorAll('.lang a').forEach(a=>a.classList.toggle('on',a.getAttribute('data-set')===l));
   document.documentElement.lang=l;
   try{localStorage.setItem('rg_lang',l);}catch(e){}
@@ -309,6 +312,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   initNav();
   initCartPage();
   initWish();
+  initNewsletter();
+  initBackToTop();
   /* perf: async-decode every image, lazy-load all but the LCP product image */
   document.querySelectorAll('img').forEach(function(im){im.setAttribute('decoding','async');if(im.id!=='mainimg'&&!im.hasAttribute('loading'))im.setAttribute('loading','lazy');});
   var _lcp=document.getElementById('mainimg');if(_lcp)_lcp.setAttribute('fetchpriority','high');
@@ -607,6 +612,32 @@ function initCartPage(){
   var grid=document.getElementById('cpGrid');
   if(grid)grid.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var i=parseInt(b.getAttribute('data-i2'),10);var act=b.getAttribute('data-act');var cc=cartGet();if(!cc[i]&&act!=='rm')return;if(act==='inc')cartSetQty(i,(cc[i].q||1)+1);else if(act==='dec')cartSetQty(i,(cc[i].q||1)-1);else if(act==='rm')cartRemove(i);});
   renderCartPage();
+}
+/* ===== Newsletter band (injected before footer; 10%-off email capture, localStorage) ===== */
+function initNewsletter(){
+  var foot=document.querySelector('footer');
+  if(!foot||!document.querySelector('footer .fcols')||document.getElementById('nlband'))return;
+  var subbed=false;try{subbed=!!localStorage.getItem('rg_sub');}catch(e){}
+  var band=document.createElement('section');band.className='nlband';band.id='nlband';
+  band.innerHTML='<div class="wrap nl-in"><div class="nl-txt"><div class="upper eyebrow" data-i="nl_eye"></div><div class="h2 serif" data-i="nl_h"></div><p data-i="nl_p"></p></div><form class="nl-form" id="nlform" novalidate><input type="email" id="nlemail" required autocomplete="email" data-i-ph="nl_ph" aria-label="Email"><button class="btn dark" type="submit" data-i="nl_btn"></button></form><div class="nl-done" id="nldone" hidden data-i="nl_done"></div></div>';
+  foot.parentNode.insertBefore(band,foot);
+  var l=document.documentElement.lang||'en';
+  band.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k];});
+  band.querySelectorAll('[data-i-ph]').forEach(function(el){var k=el.getAttribute('data-i-ph');if(T[l]&&T[l][k]!==undefined)el.setAttribute('placeholder',T[l][k]);});
+  var form=band.querySelector('#nlform'),done=band.querySelector('#nldone'),em=band.querySelector('#nlemail');
+  function showDone(){form.hidden=true;done.hidden=false;}
+  if(subbed)showDone();
+  form.addEventListener('submit',function(e){e.preventDefault();if(!em.value||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value)){em.classList.add('nl-err');em.focus();return;}em.classList.remove('nl-err');try{localStorage.setItem('rg_sub',em.value);}catch(e){}showDone();});
+}
+/* ===== Back-to-top button ===== */
+function initBackToTop(){
+  if(document.getElementById('toTop'))return;
+  var b=document.createElement('button');b.id='toTop';b.className='totop';b.type='button';b.setAttribute('aria-label','Back to top');b.innerHTML='↑';
+  document.body.appendChild(b);
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  b.addEventListener('click',function(){window.scrollTo({top:0,behavior:rm?'auto':'smooth'});});
+  var onScroll=function(){b.classList.toggle('show',window.scrollY>600);};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 }
 /* ===== Wishlist (♡) — localStorage, drawer, heart toggles (delegated, survives re-renders) ===== */
 function wishGet(){try{return JSON.parse(localStorage.getItem('rg_wish')||'[]');}catch(e){return [];}}
