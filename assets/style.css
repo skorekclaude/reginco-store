@@ -537,6 +537,17 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .navicons [title="account"]{display:inline-block;position:relative}
 .navicons [title="account"].haswish{color:var(--cork-d)}
 .navicons [title="account"].haswish::after{content:attr(data-n);position:absolute;top:-7px;right:-10px;background:var(--cork);color:#241a10;font-size:9px;font-weight:700;min-width:14px;height:14px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px}
+/* ===== trust / press strip (real stockists + rating) ===== */
+.trust-strip{background:var(--ink);color:var(--paper);padding:34px 0}
+[data-theme="dark"] .trust-strip{background:var(--surface);color:var(--ink)}
+.trust-strip .ts-lead{text-align:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cork);margin-bottom:20px;font-weight:600}
+.ts-row{display:flex;align-items:center;justify-content:center;gap:38px;flex-wrap:wrap}
+.ts-item{color:inherit;font-family:'Fraunces',Georgia,serif;font-size:18px;display:flex;flex-direction:column;align-items:center;line-height:1.15;transition:.2s}
+.ts-item span{font-family:'Manrope',system-ui,sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#A99B85;margin-top:4px}
+.ts-item:hover{color:var(--cork)}
+.ts-rating{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600;color:var(--cork)}
+.ts-rating span{font-family:'Manrope',system-ui,sans-serif;font-size:12px;font-weight:500;color:#A99B85;letter-spacing:.02em}
+@media(max-width:620px){.ts-row{gap:22px}.ts-item{font-size:16px}}
 
 /* ===== lookbook (shoppable hotspots) ===== */
 .lb-hero{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;z-index:2}
