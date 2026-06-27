@@ -35,6 +35,8 @@ const T = {
   filt_all:'All',filt_round:'Round',filt_paddle:'Paddle',filt_vent:'Vented',filt_vegan:'Vegan',
   sort_lab:'Sort',sort_feat:'Featured',sort_new:'Newest',sort_low:'Price: low to high',sort_high:'Price: high to low',
   addcart:'Add to cart',loadmore:'Load more',view360:'360° view',sr_ph:'Try: brush for frizzy hair',sr_hint:'Search by need — try “volume”, “frizz”, “beard” or “vegan”.',sr_none:'No matches — try “frizz”, “volume” or “beard”.',
+  cart_title:'Your cart',cart_empty:'Your cart is empty.',cart_empty_cta:'Browse the collection',cart_sub:'Subtotal',cart_checkout:'Checkout',cart_remove:'Remove',cart_added:'Added to cart',cart_ship_free:'Free EU shipping unlocked',cart_ship_a:'You’re',cart_ship_b:'away from free EU shipping',cart_note:'Ships from Spain · EU 3–5 days · taxes incl.',cart_clear:'Clear',
+
   pd_kick:'Cork Series',pd_crumb:'Cork Grip Round Brush',pd_title:'Cork Grip Round <em>Brush</em>',pd_rev:'128 reviews',pd_save:'Save 17%',pd_stock:'In stock — ships in 24h',ship_promise:'Ships from Spain — EU delivery in 3–5 days · Free over €45',pd_story_eye:'Since 1987',pd_story_h2:'Cut & finished by <em>hand</em>.',pd_story_p:'Cork from the forests of Iberia, beechwood cores, bristles set by hand in our workshop. The same craft, four decades on.',rel_eye:'Complete the ritual',
   pd_desc:'The icon. A warm cork handle with the patented Cork Grip, paired with boar &amp; nylon bristles for tension, shine and effortless blow-dries. Balanced for hands that work all day.',
   opt_size:'Size',opt_bristle:'Bristle',br_boar:'Boar & nylon',br_vegan:'Vegan',
@@ -81,6 +83,8 @@ const T = {
   filt_all:'Todas',filt_round:'Redonda',filt_paddle:'Plana',filt_vent:'Ventilada',filt_vegan:'Vegana',
   sort_lab:'Ordenar',sort_feat:'Destaques',sort_new:'Mais recentes',sort_low:'Preço: crescente',sort_high:'Preço: decrescente',
   addcart:'Adicionar ao cesto',loadmore:'Ver mais',view360:'Vista 360°',sr_ph:'Tente: escova para cabelo frisado',sr_hint:'Procure por necessidade — “volume”, “frizz”, “barba” ou “vegana”.',sr_none:'Sem resultados — tente “frizz”, “volume” ou “barba”.',
+  cart_title:'O seu cesto',cart_empty:'O seu cesto está vazio.',cart_empty_cta:'Ver a coleção',cart_sub:'Subtotal',cart_checkout:'Finalizar compra',cart_remove:'Remover',cart_added:'Adicionado ao cesto',cart_ship_free:'Portes grátis na UE desbloqueados',cart_ship_a:'Faltam',cart_ship_b:'para portes grátis na UE',cart_note:'Envio de Espanha · UE 3–5 dias · impostos incl.',cart_clear:'Limpar',
+
   pd_kick:'Série Cortiça',pd_crumb:'Escova Redonda Cork Grip',pd_title:'Escova Redonda <em>Cork Grip</em>',pd_rev:'128 avaliações',pd_save:'Poupe 17%',pd_stock:'Em stock — envio em 24h',ship_promise:'Enviado de Espanha — entrega UE em 3–5 dias · Grátis acima de €45',pd_story_eye:'Desde 1987',pd_story_h2:'Cortada e acabada à <em>mão</em>.',pd_story_p:'Cortiça das florestas ibéricas, núcleos de faia, cerdas colocadas à mão na nossa oficina. O mesmo ofício, quatro décadas depois.',rel_eye:'Complete o ritual',
   pd_desc:'O ícone. Pega de cortiça quente com o Cork Grip patenteado e cerdas de javali e nylon para tensão, brilho e brushings sem esforço. Equilibrada para mãos que trabalham o dia todo.',
   opt_size:'Tamanho',opt_bristle:'Cerda',br_boar:'Javali e nylon',br_vegan:'Vegana',
@@ -99,6 +103,7 @@ function setLang(l){
   try{localStorage.setItem('rg_lang',l);}catch(e){}
   if(window.quizRerender)window.quizRerender();
   if(window.reviewsRerender)window.reviewsRerender();
+  if(window.cartRerender)window.cartRerender();
 }
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
@@ -118,6 +123,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initLookbook();
   initMaterials();
   initPDP();
+  initCart();
   /* perf: async-decode every image, lazy-load all but the LCP product image */
   document.querySelectorAll('img').forEach(function(im){im.setAttribute('decoding','async');if(im.id!=='mainimg'&&!im.hasAttribute('loading'))im.setAttribute('loading','lazy');});
   var _lcp=document.getElementById('mainimg');if(_lcp)_lcp.setAttribute('fetchpriority','high');
@@ -308,4 +314,113 @@ function initMaterials(){
   var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;var sd=navigator.connection&&navigator.connection.saveData;
   if(rm||sd)return;
   cells.forEach(function(v){var p=v.play();if(p&&p.catch)p.catch(function(){});});
+}
+
+/* ===== Cart drawer (prototype — localStorage; produkcyjnie -> Shopify AJAX cart) ===== */
+var FREE_SHIP=45, _toastTmr;
+function cartLang(){return document.documentElement.lang||'en';}
+function cartT(k){var l=cartLang();return (T[l]&&T[l][k]!==undefined)?T[l][k]:(T.en[k]!==undefined?T.en[k]:k);}
+function eurFmt(n){return '€'+Number(n||0).toFixed(2).replace('.',',');}
+function cartGet(){try{return JSON.parse(localStorage.getItem('rg_cart')||'[]');}catch(e){return [];}}
+function cartSave(c){try{localStorage.setItem('rg_cart',JSON.stringify(c));}catch(e){}cartBadge();cartRender();}
+function cartCount(){return cartGet().reduce(function(a,x){return a+(x.q||1);},0);}
+function cartTotal(){return cartGet().reduce(function(a,x){return a+(Number(x.p)||0)*(x.q||1);},0);}
+function cartBadge(){var n=cartCount();document.querySelectorAll('[title="cart"]').forEach(function(s){s.textContent='⛒ '+n;s.classList.toggle('has',n>0);});}
+function cartImg(u){u=u||'';return u+((u&&u.indexOf('?')<0)?'?width=160':'');}
+function cartAdd(item){
+  if(!item||item.p==null||!(Number(item.p)>0))return;
+  var c=cartGet();var key=item.h+'|'+(item.v||'');
+  var ex=c.find(function(x){return (x.h+'|'+(x.v||''))===key;});
+  if(ex){ex.q=(ex.q||1)+(item.q||1);}else{c.push({h:item.h,t:item.t,p:Number(item.p),img:item.img,v:item.v||'',q:item.q||1});}
+  cartSave(c);cartToast(cartT('cart_added'));cartOpen();
+}
+function cartSetQty(i,q){var c=cartGet();if(!c[i])return;c[i].q=Math.max(1,q);cartSave(c);}
+function cartRemove(i){var c=cartGet();c.splice(i,1);cartSave(c);}
+function cartEnsureDOM(){
+  if(document.getElementById('cartDrawer'))return;
+  var ov=document.createElement('div');ov.className='cart-ov';ov.id='cartOv';ov.hidden=true;ov.addEventListener('click',cartClose);
+  var d=document.createElement('aside');d.className='cart-dr';d.id='cartDrawer';d.setAttribute('aria-hidden','true');d.setAttribute('aria-label','Cart');d.setAttribute('role','dialog');
+  d.innerHTML='<div class="cd-top"><span class="cd-ttl serif"></span><button class="cd-x" type="button" aria-label="Close">✕</button></div>'+
+    '<div class="cd-ship" id="cdShip"></div>'+
+    '<div class="cd-items" id="cdItems"></div>'+
+    '<div class="cd-foot"><div class="cd-sub"><span class="cd-sublab"></span><span id="cdTotal"></span></div><button class="btn block" id="cdCheckout" type="button"></button><div class="cd-note"></div></div>';
+  document.body.appendChild(ov);document.body.appendChild(d);
+  d.querySelector('.cd-x').addEventListener('click',cartClose);
+  d.querySelector('#cdCheckout').addEventListener('click',function(){if(cartGet().length)cartToast(cartT('cart_note'));});
+  d.querySelector('#cdItems').addEventListener('click',function(e){
+    var b=e.target.closest('[data-act]');if(!b)return;
+    var i=parseInt(b.getAttribute('data-i2'),10);var act=b.getAttribute('data-act');var c=cartGet();if(!c[i]&&act!=='rm')return;
+    if(act==='inc')cartSetQty(i,(c[i].q||1)+1);
+    else if(act==='dec')cartSetQty(i,(c[i].q||1)-1);
+    else if(act==='rm')cartRemove(i);
+  });
+  if(!document.getElementById('cartToast')){var t=document.createElement('div');t.className='cart-toast';t.id='cartToast';t.setAttribute('role','status');document.body.appendChild(t);}
+  window.cartRerender=cartRender;
+}
+function cartRender(){
+  var d=document.getElementById('cartDrawer');if(!d)return;
+  var c=cartGet();
+  d.querySelector('.cd-ttl').textContent=cartT('cart_title');
+  d.querySelector('.cd-sublab').textContent=cartT('cart_sub');
+  d.querySelector('.cd-note').textContent=cartT('cart_note');
+  d.querySelector('#cdCheckout').textContent=cartT('cart_checkout');
+  var items=d.querySelector('#cdItems'),ship=d.querySelector('#cdShip'),foot=d.querySelector('.cd-foot');
+  if(!c.length){
+    items.innerHTML='<div class="cd-empty"><p>'+cartT('cart_empty')+'</p><a class="btn" href="collection.html">'+cartT('cart_empty_cta')+'</a></div>';
+    ship.style.display='none';foot.style.display='none';return;
+  }
+  foot.style.display='';ship.style.display='';
+  items.innerHTML=c.map(function(x,i){
+    return '<div class="cd-item"><img src="'+cartImg(x.img)+'" alt="" loading="lazy"><div class="cd-mid"><div class="cd-n serif">'+x.t+'</div>'+(x.v?'<div class="cd-v">'+x.v+'</div>':'')+'<div class="cd-qr"><div class="cd-qty"><button type="button" data-act="dec" data-i2="'+i+'" aria-label="−">−</button><span>'+x.q+'</span><button type="button" data-act="inc" data-i2="'+i+'" aria-label="+">+</button></div><button class="cd-rm" type="button" data-act="rm" data-i2="'+i+'">'+cartT('cart_remove')+'</button></div></div><div class="cd-p">'+eurFmt(Number(x.p)*x.q)+'</div></div>';
+  }).join('');
+  var total=cartTotal(),pct=Math.min(100,Math.round(total/FREE_SHIP*100));
+  if(total>=FREE_SHIP){ship.innerHTML='<div class="cd-shiptxt ok">✓ '+cartT('cart_ship_free')+'</div><div class="cd-bar"><i style="width:100%"></i></div>';}
+  else{ship.innerHTML='<div class="cd-shiptxt">'+cartT('cart_ship_a')+' <b>'+eurFmt(FREE_SHIP-total)+'</b> '+cartT('cart_ship_b')+'</div><div class="cd-bar"><i style="width:'+pct+'%"></i></div>';}
+  d.querySelector('#cdTotal').textContent=eurFmt(total);
+}
+function cartOpen(){cartEnsureDOM();cartRender();var d=document.getElementById('cartDrawer'),ov=document.getElementById('cartOv');ov.hidden=false;void d.offsetWidth;d.classList.add('show');ov.classList.add('show');d.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function cartClose(){var d=document.getElementById('cartDrawer'),ov=document.getElementById('cartOv');if(!d)return;d.classList.remove('show');ov.classList.remove('show');d.setAttribute('aria-hidden','true');document.body.style.overflow='';setTimeout(function(){ov.hidden=true;},320);}
+function cartToast(msg){cartEnsureDOM();var t=document.getElementById('cartToast');if(!t)return;t.textContent=msg;t.classList.add('show');clearTimeout(_toastTmr);_toastTmr=setTimeout(function(){t.classList.remove('show');},1800);}
+function _catProd(h){return (h&&window.CATALOG)?window.CATALOG.find(function(x){return x.h===h;}):null;}
+function initCart(){
+  cartEnsureDOM();cartBadge();
+  document.querySelectorAll('[title="cart"]').forEach(function(s){s.style.cursor='pointer';s.addEventListener('click',cartOpen);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')cartClose();});
+  /* PDP buy buttons */
+  var h=new URLSearchParams(location.search).get('p');var pp=_catProd(h);
+  if(pp){
+    document.querySelectorAll('.buyrow .btn, .stickybar .btn').forEach(function(btn){
+      btn.addEventListener('click',function(e){
+        e.preventDefault();
+        var qel=document.getElementById('q');var qty=qel?(parseInt(qel.textContent,10)||1):1;
+        var onv=document.querySelector('.opt .row button.on');var variant=onv?onv.textContent.trim():'';
+        cartAdd({h:pp.h,t:pp.t,p:pp.p,img:(pp.imgs&&pp.imgs[0])||pp.img,v:variant,q:qty});
+      });
+    });
+  }
+  /* collection / related cards: the hover "add" overlay */
+  document.querySelectorAll('.prod .add').forEach(function(add){
+    add.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var card=add.closest('.prod');if(!card)return;
+      var href=card.getAttribute('href')||'';var m=href.match(/[?&]p=([^&]+)/);var hh=m?decodeURIComponent(m[1]):null;
+      var p=_catProd(hh);
+      if(p){cartAdd({h:p.h,t:p.t,p:p.p,img:(p.imgs&&p.imgs[0])||p.img,v:'',q:1});return;}
+      var t=(card.querySelector('h4')||{}).textContent||'Brush';
+      var pr=parseFloat(card.getAttribute('data-price')||'0')||0;
+      if(!pr){var px=card.querySelector('.px');if(px)pr=parseFloat((px.textContent||'').replace('€','').replace(',','.'))||0;}
+      var im=(card.querySelector('img')||{}).src||'';
+      cartAdd({h:href||t,t:t,p:pr,img:im,v:'',q:1});
+    });
+  });
+  /* PDP bundle "add all three" */
+  var bn=document.getElementById('bnbtn');
+  if(bn){bn.addEventListener('click',function(){
+    document.querySelectorAll('.bn-item').forEach(function(it){
+      var t=(it.querySelector('.bn-n')||{}).textContent||'Item';
+      var pr=parseFloat(((it.querySelector('.bn-p')||{}).textContent||'').replace('€','').replace(',','.'))||0;
+      var im=(it.querySelector('img')||{}).src||'';
+      cartAdd({h:'bundle-'+t,t:t,p:pr,img:im,v:'',q:1});
+    });
+  });}
 }
