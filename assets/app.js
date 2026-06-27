@@ -128,7 +128,7 @@ const T = {
   "help_cta_h":"Still can't find your <em>answer</em>?",
   "help_cta_btn":"Browse the collection",
 
-  pd_kick:'Cork Series',pd_crumb:'Cork Grip Round Brush',pd_title:'Cork Grip Round <em>Brush</em>',pd_rev:'128 reviews',pd_save:'Save 17%',pd_stock:'In stock — ships in 24h',ship_promise:'Ships from Spain — EU delivery in 3–5 days · Free over €49',pd_story_eye:'Since 1987',pd_story_h2:'Cut & finished by <em>hand</em>.',pd_story_p:'Cork from the forests of Iberia, beechwood cores, bristles set by hand in our workshop. The same craft, four decades on.',rel_eye:'Complete the ritual',
+  pd_kick:'Cork Series',pd_crumb:'Cork Grip Round Brush',pd_title:'Cork Grip Round <em>Brush</em>',pd_rev:'128 reviews',pd_save:'Save 17%',pd_stock:'In stock — ships in 24h',ship_promise:'Ships from Spain — EU delivery in 3–5 days · Free over €49',pd_story_eye:'Since 1987',pd_story_h2:'Cut & finished by <em>hand</em>.',pd_story_p:'Cork from the forests of Iberia, beechwood cores, bristles set by hand in our workshop. The same craft, four decades on.',rel_eye:'Complete the ritual',rec_eye:'Seen recently',rec_h:'Pick up where you <em>left off</em>.',
   pd_desc:'The icon. A warm cork handle with the patented Cork Grip, paired with boar &amp; nylon bristles for tension, shine and effortless blow-dries. Balanced for hands that work all day.',
   opt_size:'Size',opt_bristle:'Bristle',br_boar:'Boar & nylon',br_vegan:'Vegan',
   qty_lab:'Quantity',pd_pro:'<b>Professional?</b> Log in for wholesale pricing and bulk discounts.',
@@ -267,7 +267,7 @@ const T = {
   "help_cta_h":"Ainda não encontrou a sua <em>resposta</em>?",
   "help_cta_btn":"Ver a coleção",
 
-  pd_kick:'Série Cortiça',pd_crumb:'Escova Redonda Cork Grip',pd_title:'Escova Redonda <em>Cork Grip</em>',pd_rev:'128 avaliações',pd_save:'Poupe 17%',pd_stock:'Em stock — envio em 24h',ship_promise:'Enviado de Espanha — entrega UE em 3–5 dias · Grátis acima de €49',pd_story_eye:'Desde 1987',pd_story_h2:'Cortada e acabada à <em>mão</em>.',pd_story_p:'Cortiça das florestas ibéricas, núcleos de faia, cerdas colocadas à mão na nossa oficina. O mesmo ofício, quatro décadas depois.',rel_eye:'Complete o ritual',
+  pd_kick:'Série Cortiça',pd_crumb:'Escova Redonda Cork Grip',pd_title:'Escova Redonda <em>Cork Grip</em>',pd_rev:'128 avaliações',pd_save:'Poupe 17%',pd_stock:'Em stock — envio em 24h',ship_promise:'Enviado de Espanha — entrega UE em 3–5 dias · Grátis acima de €49',pd_story_eye:'Desde 1987',pd_story_h2:'Cortada e acabada à <em>mão</em>.',pd_story_p:'Cortiça das florestas ibéricas, núcleos de faia, cerdas colocadas à mão na nossa oficina. O mesmo ofício, quatro décadas depois.',rel_eye:'Complete o ritual',rec_eye:'Vistas recentemente',rec_h:'Continue de onde <em>parou</em>.',
   pd_desc:'O ícone. Pega de cortiça quente com o Cork Grip patenteado e cerdas de javali e nylon para tensão, brilho e brushings sem esforço. Equilibrada para mãos que trabalham o dia todo.',
   opt_size:'Tamanho',opt_bristle:'Cerda',br_boar:'Javali e nylon',br_vegan:'Vegana',
   qty_lab:'Quantidade',pd_pro:'<b>Profissional?</b> Inicie sessão para preços grossistas e descontos de volume.',
@@ -308,6 +308,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initLookbook();
   initMaterials();
   initPDP();
+  recentTrack();
   initCart();
   initNav();
   initCartPage();
@@ -612,6 +613,25 @@ function initCartPage(){
   var grid=document.getElementById('cpGrid');
   if(grid)grid.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var i=parseInt(b.getAttribute('data-i2'),10);var act=b.getAttribute('data-act');var cc=cartGet();if(!cc[i]&&act!=='rm')return;if(act==='inc')cartSetQty(i,(cc[i].q||1)+1);else if(act==='dec')cartSetQty(i,(cc[i].q||1)-1);else if(act==='rm')cartRemove(i);});
   renderCartPage();
+}
+/* ===== Recently viewed (PDP) — localStorage, renders previously-viewed products ===== */
+function recentTrack(){
+  var h=new URLSearchParams(location.search).get('p');if(!h)return;
+  var rec=[];try{rec=JSON.parse(localStorage.getItem('rg_recent')||'[]');}catch(e){}
+  var prev=rec.slice();
+  rec=rec.filter(function(x){return x!==h;});rec.unshift(h);rec=rec.slice(0,12);
+  try{localStorage.setItem('rg_recent',JSON.stringify(rec));}catch(e){}
+  var sec=document.getElementById('recently'),grid=document.getElementById('recentGrid');
+  if(!sec||!grid||!window.CATALOG)return;
+  var items=prev.filter(function(x){return x!==h;}).map(function(x){return window.CATALOG.find(function(p){return p.h===x;});}).filter(Boolean).slice(0,4);
+  if(!items.length)return;
+  grid.innerHTML=items.map(function(p){
+    var nm=p.t,price='€'+Number(p.p).toFixed(2).replace('.',',');
+    return '<a class="prod" href="product.html?p='+p.h+'" data-price="'+p.p+'"><div class="ph"><img src="'+((p.imgs&&p.imgs[0])||p.img)+'?width=600" alt="'+nm.replace(/"/g,'')+'" loading="lazy"><button class="wish'+((window.wishHas&&wishHas(p.h))?' on':'')+'" type="button" data-h="'+p.h+'" aria-label="Save to wishlist">♡</button><span class="add" data-i="addcart"></span></div><h4 class="serif">'+nm+'</h4><div class="px">'+price+'</div></a>';
+  }).join('');
+  var l=document.documentElement.lang||'en';
+  grid.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k];});
+  sec.hidden=false;
 }
 /* ===== Newsletter band (injected before footer; 10%-off email capture, localStorage) ===== */
 function initNewsletter(){
