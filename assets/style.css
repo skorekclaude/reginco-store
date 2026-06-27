@@ -548,6 +548,33 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .ts-rating{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600;color:var(--cork)}
 .ts-rating span{font-family:'Manrope',system-ui,sans-serif;font-size:12px;font-weight:500;color:#A99B85;letter-spacing:.02em}
 @media(max-width:620px){.ts-row{gap:22px}.ts-item{font-size:16px}}
+/* ===== Journal article page ===== */
+.journal{padding-bottom:80px}
+.jr-hero{max-width:820px;padding:56px 28px 0;text-align:center}
+.jr-hero .eyebrow{justify-content:center;display:block}
+.jr-hero h1{font-size:clamp(36px,6vw,66px);font-weight:410;line-height:1.03;letter-spacing:-.02em;margin:14px 0 22px;font-variation-settings:"opsz" 144;text-wrap:balance}
+.jr-stand{font-size:19px;color:var(--ink2);max-width:62ch;margin:0 auto;line-height:1.6}
+.jr-meta{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-top:20px}
+.jr-body{max-width:720px;padding-top:8px}
+.jr-fig{margin:40px 0}
+.jr-img{aspect-ratio:16/9;background-size:cover;background-position:center;border-radius:8px;background-color:var(--paper2)}
+.jr-body h2{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.01em;margin:42px 0 14px}
+.jr-body p{font-size:17px;line-height:1.75;color:var(--ink);margin-bottom:16px}
+.jr-quote{font-family:'Fraunces',Georgia,serif;font-size:clamp(20px,3vw,26px);line-height:1.36;color:var(--cork-d);border-left:3px solid var(--cork);padding:4px 0 4px 22px;margin:26px 0;font-style:italic}
+.jr-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:3px;white-space:nowrap}
+.jr-tag.v{background:rgba(124,122,90,.2);color:var(--sage)}
+.jr-tag.b{background:rgba(194,146,94,.2);color:var(--cork-d)}
+.jr-tag.s,.jr-tag.c{background:var(--paper2);color:var(--ink2)}
+.jr-ledger{margin:38px 0;padding:24px;border:1px solid var(--line);border-radius:8px;background:var(--paper2)}
+.jr-ledger div{font-size:14.5px;line-height:1.6;color:var(--ink2);margin-bottom:10px}
+.jr-ledger div:last-child{margin-bottom:0}
+.jr-sources{margin-top:38px;border-top:1px solid var(--line);padding-top:22px}
+.jr-sources h3{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:10px}
+.jr-sources p{font-size:13.5px;line-height:1.9;color:var(--ink2)}
+.jr-sources a,.jr-body a{color:var(--cork-d);text-decoration:underline;text-underline-offset:2px}
+.jr-sources a:hover,.jr-body a:hover{color:var(--cork)}
+.jr-cta{text-align:center;margin-top:44px}
+@media(max-width:600px){.jr-body p{font-size:16px}.jr-hero{padding-top:40px}}
 
 /* ===== lookbook (shoppable hotspots) ===== */
 .lb-hero{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;z-index:2}
