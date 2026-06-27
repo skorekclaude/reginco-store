@@ -561,6 +561,13 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .qvm-link{display:block;text-align:center;font-size:13px;color:var(--ink2);margin-top:14px;text-decoration:underline;text-underline-offset:2px}
 .qvm-link:hover{color:var(--cork-d)}
 @media(max-width:640px){.qvm-card{grid-template-columns:1fr;max-height:90vh}.qvm-img{height:210px}.qvm-info{padding:24px 22px}}
+/* ===== search empty-state ===== */
+.srempty{padding:6px 2px 4px}
+.se-msg{font-size:15px;color:var(--ink2);margin-bottom:16px}
+.se-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.se-chip{font-size:13px;padding:8px 15px;border:1px solid var(--line);border-radius:20px;background:transparent;color:var(--ink2);cursor:pointer;transition:.18s;text-transform:capitalize}
+.se-chip:hover{border-color:var(--cork);color:var(--cork-d)}
+.se-pop-lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-bottom:12px}
 .wishbtn{position:relative;flex:0 0 auto;width:52px;border:1px solid var(--line);background:transparent;color:var(--ink2);font-size:18px;border-radius:3px;cursor:pointer;transition:.2s}
 .wishbtn:hover{border-color:var(--cork);color:var(--cork-d)}
 .wishbtn.on{border-color:#c0392b}

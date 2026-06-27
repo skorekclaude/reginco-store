@@ -42,7 +42,7 @@ const T = {
   filt_all:'All',filt_round:'Round',filt_paddle:'Paddle',filt_vent:'Vented',filt_vegan:'Vegan',
   sort_lab:'Sort',sort_feat:'Featured',sort_new:'Newest',sort_low:'Price: low to high',sort_high:'Price: high to low',qv_view:'View full details',skip:'Skip to content',
   price_lab:'Price',price_all:'All',price_u15:'Under €15',price_o35:'Over €35',
-  addcart:'Add to cart',loadmore:'Load more',view360:'360° view',view3d:'3D · AR',sr_ph:'Try: brush for frizzy hair',sr_hint:'Search by need — try “volume”, “frizz”, “beard” or “vegan”.',sr_none:'No matches — try “frizz”, “volume” or “beard”.',
+  addcart:'Add to cart',loadmore:'Load more',view360:'360° view',view3d:'3D · AR',sr_ph:'Try: brush for frizzy hair',sr_hint:'Search by need — try “volume”, “frizz”, “beard” or “vegan”.',sr_none:'No matches — try “frizz”, “volume” or “beard”.',sr_pop:'Popular right now',
   cart_title:'Your cart',cart_empty:'Your cart is empty.',cart_empty_cta:'Browse the collection',cart_sub:'Subtotal',cart_checkout:'Checkout',cart_remove:'Remove',cart_added:'Added to cart',cart_ship_free:'Free EU shipping unlocked',cart_ship_a:'You’re',cart_ship_b:'away from free EU shipping',cart_note:'Ships from Spain · EU 3–5 days · taxes incl.',cart_clear:'Clear',wish_title:'Wishlist',wish_empty:'Your wishlist is empty.',wish_add:'Add to cart',wish_added:'Saved to wishlist',
 "sus_kick":"Sustainability · cork since 1987",
   "sus_h1":"Carved from what the forest <em>gives back</em>.",
@@ -181,7 +181,7 @@ const T = {
   filt_all:'Todas',filt_round:'Redonda',filt_paddle:'Plana',filt_vent:'Ventilada',filt_vegan:'Vegana',
   sort_lab:'Ordenar',sort_feat:'Destaques',sort_new:'Mais recentes',sort_low:'Preço: crescente',sort_high:'Preço: decrescente',qv_view:'Ver detalhes',skip:'Saltar para o conteúdo',
   price_lab:'Preço',price_all:'Todos',price_u15:'Até €15',price_o35:'Mais de €35',
-  addcart:'Adicionar ao cesto',loadmore:'Ver mais',view360:'Vista 360°',view3d:'3D · AR',sr_ph:'Tente: escova para cabelo frisado',sr_hint:'Procure por necessidade — “volume”, “frizz”, “barba” ou “vegana”.',sr_none:'Sem resultados — tente “frizz”, “volume” ou “barba”.',
+  addcart:'Adicionar ao cesto',loadmore:'Ver mais',view360:'Vista 360°',view3d:'3D · AR',sr_ph:'Tente: escova para cabelo frisado',sr_hint:'Procure por necessidade — “volume”, “frizz”, “barba” ou “vegana”.',sr_none:'Sem resultados — tente “frizz”, “volume” ou “barba”.',sr_pop:'Populares agora',
   cart_title:'O seu cesto',cart_empty:'O seu cesto está vazio.',cart_empty_cta:'Ver a coleção',cart_sub:'Subtotal',cart_checkout:'Finalizar compra',cart_remove:'Remover',cart_added:'Adicionado ao cesto',cart_ship_free:'Portes grátis na UE desbloqueados',cart_ship_a:'Faltam',cart_ship_b:'para portes grátis na UE',cart_note:'Envio de Espanha · UE 3–5 dias · impostos incl.',cart_clear:'Limpar',wish_title:'Favoritos',wish_empty:'A sua lista de favoritos está vazia.',wish_add:'Adicionar ao cesto',wish_added:'Guardado nos favoritos',
 "sus_kick":"Sustentabilidade · cortiça desde 1987",
   "sus_h1":"Esculpidas com o que a floresta <em>devolve</em>.",
@@ -355,8 +355,15 @@ function initSearch(){
   function i18n(scope){const l=loc();scope.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i');if(T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k];});}
   function render(){
     const list=searchRank(inp.value);
-    res.innerHTML=list.length?list.map(p=>'<a class="sr" href="product.html'+(p.h?'?p='+p.h:'')+'"><img src="'+p.img+'" alt=""><span class="nm serif">'+p.t+'</span><span class="pr">'+p.price+'</span></a>').join(''):'<div class="none" data-i="sr_none"></div>';
+    if(list.length){
+      res.innerHTML=list.map(p=>'<a class="sr" href="product.html'+(p.h?'?p='+p.h:'')+'"><img src="'+p.img+'" alt=""><span class="nm serif">'+p.t+'</span><span class="pr">'+p.price+'</span></a>').join('');
+      i18n(res);return;
+    }
+    var chips=['volume','frizz','beard','vegan','cork','wood'];
+    var pop=(window.CATALOG||[]).slice(0,4);
+    res.innerHTML='<div class="srempty"><div class="se-msg" data-i="sr_none"></div><div class="se-chips">'+chips.map(function(c){return '<button class="se-chip" type="button" data-q="'+c+'">'+c+'</button>';}).join('')+'</div>'+(pop.length?'<div class="se-pop-lab" data-i="sr_pop"></div><div class="se-pop">'+pop.map(function(p){return '<a class="sr" href="product.html?p='+p.h+'"><img src="'+((p.imgs&&p.imgs[0])||p.img)+'?width=120" alt=""><span class="nm serif">'+p.t+'</span><span class="pr">€'+Number(p.p).toFixed(2).replace('.',',')+'</span></a>';}).join('')+'</div>':'')+'</div>';
     i18n(res);
+    res.querySelectorAll('.se-chip').forEach(function(c){c.addEventListener('click',function(){inp.value=c.getAttribute('data-q');render();inp.focus();});});
   }
   function open(){ov.classList.add('open');inp.value='';const l=loc();if(T[l]&&T[l].sr_ph)inp.placeholder=T[l].sr_ph;i18n(ov);render();setTimeout(()=>inp.focus(),30);}
   function close(){ov.classList.remove('open');}
