@@ -612,6 +612,51 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .totop:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 [data-theme="dark"] .totop{background:var(--surface-2)}
 @media(max-width:600px){.totop{right:12px;bottom:12px}}
+
+/* ============================================================
+   Finishing pass — curated beautification (design-review panel)
+   ============================================================ */
+/* tasteful text selection */
+::selection{background:var(--cork);color:#1A1714}
+::-moz-selection{background:var(--cork);color:#1A1714}
+[data-theme="dark"] ::selection{background:var(--cork-d);color:#1A1714}
+[data-theme="dark"] ::-moz-selection{background:var(--cork-d);color:#1A1714}
+/* keyboard focus ring (sage) — site-wide a11y, no effect on mouse use */
+:focus-visible{outline:2px solid var(--sage);outline-offset:3px}
+input:focus-visible,select:focus-visible,.nl-form input:focus-visible{outline-offset:2px}
+.navlinks a:focus-visible{border-bottom-color:transparent}
+@media(prefers-contrast:more){:focus-visible{outline-width:3px;outline-offset:4px}}
+/* branded scrollbar */
+*{scrollbar-color:rgba(194,146,94,.5) transparent;scrollbar-width:thin}
+[data-theme="dark"] *{scrollbar-color:rgba(210,163,108,.42) transparent}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background-color:rgba(194,146,94,.5);border-radius:6px;border:3px solid var(--paper)}
+::-webkit-scrollbar-thumb:hover{background-color:rgba(194,146,94,.85)}
+[data-theme="dark"] ::-webkit-scrollbar-thumb{background-color:rgba(210,163,108,.42);border-color:var(--paper)}
+/* prose flow + a relic weight fix */
+.jr-body p,.chapter p,.pro-card p,.pro-step p,.care-card p,.care-faq p,.split .txt p,.lead,.jr-stand{text-wrap:pretty}
+.jr-body h2{font-weight:420;letter-spacing:-.015em}
+/* optical sizing on Fraunces subheads */
+.prod h4,.mprod h4,.bn-n,.care-card .pro-c-h,.lb-card .nm,.stk-shop,.cd-n,.cp-n{font-optical-sizing:auto}
+/* dark-mode parity fixes */
+[data-theme="dark"] nav{background:rgba(26,23,20,.88)}
+[data-theme="dark"] .prod .ph .add{background:rgba(44,39,32,.95);color:var(--ink)}
+[data-theme="dark"] .cart-ov{background:rgba(0,0,0,.4)}
+.stickybar{background:rgba(244,238,227,.95)}
+[data-theme="dark"] .stickybar{background:rgba(26,23,20,.95)}
+/* refined hover depth */
+.prod .ph{transition:box-shadow .28s}
+.cell:hover{box-shadow:0 22px 46px -22px rgba(42,33,24,.45)}
+.prod:hover .ph{box-shadow:0 20px 40px -24px rgba(42,33,24,.4)}
+.btn:not(.ghost):hover{box-shadow:0 12px 24px -12px rgba(42,33,24,.45)}
+[data-theme="dark"] .cell:hover,[data-theme="dark"] .prod:hover .ph{box-shadow:0 22px 46px -22px rgba(0,0,0,.6)}
+.navlinks a:hover{color:var(--cork-d)}
+[data-theme="dark"] .navlinks a:hover{color:var(--cork)}
+/* tactile press feedback */
+@media(prefers-reduced-motion:no-preference){.chip:active,.pchip:active,.rchip:active,.opt .row button:active,.qz-opt:active,.btn:active{transform:scale(.985)}}
+/* honour reduced-motion site-wide */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 @media(max-width:600px){.jr-body p{font-size:16px}.jr-hero{padding-top:40px}.jr-lead{font-size:18.5px}.jr-lead::first-letter{font-size:60px}}
 /* ===== stockists (Professionals page) ===== */
 .stockists{padding-top:10px}
