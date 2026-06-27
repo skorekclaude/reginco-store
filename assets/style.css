@@ -474,6 +474,13 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opa
 .v360btn:hover{border-color:var(--cork)}
 .v360btn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 [data-theme="dark"] .v360btn{background:rgba(26,23,20,.9)}
+/* ===== 3D / AR model-viewer ===== */
+.gallery .main .mv3d{position:absolute;inset:0;width:100%;height:100%;display:none;background:var(--paper2);border-radius:inherit;z-index:2;--poster-color:transparent;--progress-bar-color:var(--cork)}
+.gallery .main.is3d #mainimg{visibility:hidden}
+.gallery .main.is3d .v360{display:none}
+.gallery .main.is3d .mv3d{display:block}
+.mv3dbtn{top:auto;bottom:12px;left:12px;right:auto;z-index:4}
+.mv3dbtn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
 /* ===== lookbook (shoppable hotspots) ===== */
 .lb-hero{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;z-index:2}
