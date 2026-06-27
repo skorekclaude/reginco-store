@@ -124,6 +124,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initMaterials();
   initPDP();
   initCart();
+  initNav();
   /* perf: async-decode every image, lazy-load all but the LCP product image */
   document.querySelectorAll('img').forEach(function(im){im.setAttribute('decoding','async');if(im.id!=='mainimg'&&!im.hasAttribute('loading'))im.setAttribute('loading','lazy');});
   var _lcp=document.getElementById('mainimg');if(_lcp)_lcp.setAttribute('fetchpriority','high');
@@ -423,4 +424,22 @@ function initCart(){
       cartAdd({h:'bundle-'+t,t:t,p:pr,img:im,v:'',q:1});
     });
   });}
+}
+
+/* ===== Mobile nav (hamburger + slide-down) — navlinks are display:none < 900px ===== */
+function initNav(){
+  var navrow=document.querySelector('nav .nav');var links=document.querySelector('.navlinks');var navright=document.querySelector('.navright');
+  if(!navrow||!links||!navright||document.getElementById('mobnav'))return;
+  var burger=document.createElement('button');
+  burger.className='navburger';burger.type='button';burger.setAttribute('aria-label','Menu');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-controls','mobnav');
+  burger.innerHTML='<span></span><span></span><span></span>';
+  navright.insertBefore(burger,navright.firstChild);
+  var panel=document.createElement('div');panel.className='mobnav';panel.id='mobnav';panel.hidden=true;
+  panel.innerHTML='<div class="mobnav-in">'+links.innerHTML+'<a href="index.html" data-i="cl_home">Home</a><a href="our-story.html" data-i="sp_btn2">Our story</a></div>';
+  document.querySelector('nav').appendChild(panel);
+  function close(){panel.classList.remove('show');burger.classList.remove('on');burger.setAttribute('aria-expanded','false');setTimeout(function(){if(!panel.classList.contains('show'))panel.hidden=true;},260);}
+  function open(){panel.hidden=false;void panel.offsetWidth;panel.classList.add('show');burger.classList.add('on');burger.setAttribute('aria-expanded','true');}
+  burger.addEventListener('click',function(){if(panel.classList.contains('show'))close();else open();});
+  panel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+  window.addEventListener('resize',function(){if(window.innerWidth>900)close();});
 }
